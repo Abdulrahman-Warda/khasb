@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_holidays.hr_leave_rule_employee" model="ir.rule">
+        <field name="active">False</field>
+    </record>
+    <record id="hr_holidays.hr_leave_rule_officer_read" model="ir.rule">
+        <field name="active">False</field>
+    </record>
+    <record id="hr_holidays.hr_leave_rule_officer_update" model="ir.rule">
+        <field name="perm_read" eval="True"/>
+    </record>
+['|',
+    '|', ('employee_id.user_id', '=', user.id), ('employee_id.parent_id.user_id', '=', user.id),
+    '|', '|', ('department_id', '=', False), ('department_id.member_ids.user_id', 'in', [user.id]), ('department_id.manager_id.user_id', '=', user.id)
+]
+</odoo>

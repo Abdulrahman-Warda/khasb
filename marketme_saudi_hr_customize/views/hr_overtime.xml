@@ -1,0 +1,99 @@
+<data>
+    <record id="hr_overtime_form" model="ir.ui.view">
+        <field name="name">hr.overtime.form</field>
+        <field name="model">hr.overtime</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" class="oe_highlight" states="draft"/>
+                    <button name="action_accounting_approve" string="Accounting Approve" type="object" states="confirm" class="oe_highlight"/>
+                    <button name="action_cancel" string="Cancel" type="object" class="oe_highlight" states="draft,confirm"/>
+                    <button name="action_draft" string="Set Draft" type="object" class="oe_highlight" states="cancel"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" domain="[('id', 'in', available_employee_ids)]"/>
+                            <field name="available_employee_ids" invisible="1"/>
+                            <field name="request_date"/>
+                            <field name="overtime_hours"/>
+                            <field name="payslip"/>
+                        </group>
+                        <group>
+                            <field name="day_type"/>
+                            <field name="overtime_date"/>
+                            <field name="overtime_amount"/>
+                            <field name="task"/>
+                            <field name="emp_account_id"/>
+                            <field name="treasury_account_id"/>
+                            <field name="journal_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    
+    <record id="hr_overtime_tree" model="ir.ui.view">
+        <field name="name">hr.overtime.tree</field>
+        <field name="model">hr.overtime</field>
+        <!--<field name="field_parent">children_ids if_want_to_add_Childs</field>-->
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="day_type"/>
+                <field name="request_date"/>
+                <field name="overtime_date"/>
+                <field name="overtime_hours"/>
+                <field name="overtime_amount"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="hr_overtime_search" model="ir.ui.view">
+        <field name="name">hr.overtime.search</field>
+        <field name="model">hr.overtime</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="day_type"/>
+                <field name="request_date"/>
+                <field name="overtime_date"/>
+                <field name="overtime_hours"/>
+                <field name="overtime_amount"/>
+                <field name="state"/>
+                <group expand="0" string="Group By">
+                    <filter string="Employee" name="group_employee_id" context="{'group_by':'employee_id'}"/>
+                    <filter string="State" name="group_state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <record id="hr_overtime_action" model="ir.actions.act_window">
+        <field name="name">Hr Overtime</field>
+        <field name="res_model">hr.overtime</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new document
+            </p>
+        </field>
+        <!--<field name="limit">100</field>-->
+        <!--<field name="view_type">tree</field>-->
+        <!--<field name="target">fullscreen</field>-->
+        <!--<field name="view_id" ref=""/>-->
+        <!--<field name="search_view_id" ref=""/>-->
+        <!--<field name="context">{'search_default_[name of search filter]': '1'}</field>-->
+        <!--<field name="context">{"search_default_active":1}</field>-->
+        <!--<field name="domain">[('','','')]</field>-->
+    </record>
+
+</data>

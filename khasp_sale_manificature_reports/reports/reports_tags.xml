@@ -1,0 +1,75 @@
+<odoo>
+    <data>
+        <record id="custom_report_qweb_paperformat" model="report.paperformat">
+            <field name="name">invoice report qweb paperformat</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">25</field>
+            <field name="margin_bottom">15</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+        </record>
+        <record id="general_report_qweb_paperformat" model="report.paperformat">
+            <field name="name">invoice report qweb paperformat</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">25</field>
+            <field name="margin_bottom">15</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report
+                id="action_report_tool_inspection"
+                model="tool.inspection"
+                string="Tool Inspection"
+                report_type="qweb-pdf"
+                name="khasp_sale_manificature_reports.report_tool_inspection"
+                file="khasp_sale_manificature_reports.report_tool_inspection"
+                paperformat="khasp_sale_manificature_reports.custom_report_qweb_paperformat"
+        />
+        <report
+                id="action_report_repair_request"
+                model="repair.request"
+                string="Repair Request"
+                report_type="qweb-pdf"
+                name="khasp_sale_manificature_reports.report_repair_request"
+                file="khasp_sale_manificature_reports.report_repair_request"
+                paperformat="khasp_sale_manificature_reports.general_report_qweb_paperformat"
+
+        />
+        <report
+                id="action_report_inspection_checklist"
+                model="inspection.checklist"
+                string="inspection checklist"
+                report_type="qweb-pdf"
+                name="khasp_sale_manificature_reports.report_inspection_checklist"
+                file="khasp_sale_manificature_reports.report_inspection_checklist"
+                paperformat="khasp_sale_manificature_reports.general_report_qweb_paperformat"
+
+        />
+        <report
+                id="action_report_design_request"
+                model="design.request"
+                string="design request"
+                report_type="qweb-pdf"
+                name="khasp_sale_manificature_reports.report_design_request"
+                file="khasp_sale_manificature_reports.report_design_request"
+                paperformat="khasp_sale_manificature_reports.custom_report_qweb_paperformat"
+
+        />
+
+    </data>
+</odoo>

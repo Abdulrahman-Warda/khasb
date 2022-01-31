@@ -1,0 +1,76 @@
+<data>
+    <record id="hr_transfer_form" model="ir.ui.view">
+        <field name="name">hr.transfer.form</field>
+        <field name="model">hr.transfer</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" class="oe_highlight" states="draft"/>
+                    <button name="action_cancel" string="Cancel" type="object" class="oe_highlight" states="draft,confirm"/>
+                    <button name="action_draft" string="Set Draft" type="object" class="oe_highlight" states="cancel"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="employee_id" domain="[('id', 'in', available_employee_ids)]"/>
+                            <field name="available_employee_ids" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="new_department_id"/>
+                            <field name="new_job_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    
+    <record id="hr_transfer_tree" model="ir.ui.view">
+        <field name="name">hr.transfer.tree</field>
+        <field name="model">hr.transfer</field>
+        <!--<field name="field_parent">children_ids if_want_to_add_Childs</field>-->
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date"/>
+                <field name="employee_id"/>
+                <field name="new_department_id"/>
+                <field name="new_job_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="hr_transfer_search" model="ir.ui.view">
+        <field name="name">hr.transfer.search</field>
+        <field name="model">hr.transfer</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="date"/>
+                <field name="new_department_id"/>
+                <field name="new_job_id"/>
+                <field name="state"/>
+                <group expand="0" string="Group By">
+                    <filter string="Employee" name="group_employee_id" context="{'group_by':'employee_id'}"/>
+                    <filter string="New Job" name="group_new_job_id" context="{'group_by':'new_job_id'}"/>
+                    <filter string="New Department" name="group_new_department_id" context="{'group_by':'new_department_id'}"/>
+                    <filter string="State" name="group_state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <record id="hr_transfer_action" model="ir.actions.act_window">
+        <field name="name">Hr transfer</field>
+        <field name="res_model">hr.transfer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</data>

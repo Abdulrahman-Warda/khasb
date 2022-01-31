@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_exchange_leaves_form" model="ir.ui.view">
+            <field name="name">hr.exchange.leaves</field>
+            <field name="model">hr.exchange.leaves</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="confirm" states="draft" string="Confirm" type="object" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                        <group>
+                            <field name="employee_id"   />
+                            <field name="type"/>
+                            <field name="allocation" domain="[('employee_id','=',employee_id)]"/>
+                            <field name="payment_id" attrs="{'invisible':[('state','!=','confirm')]}"/>
+                        </group>
+                            <group>
+                                <field name="days"/>
+                                <field name="amount"/>
+                                <field name="journal_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_exchange_leaves_tree" model="ir.ui.view">
+            <field name="name">hr.exchange.leaves</field>
+            <field name="model">hr.exchange.leaves</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="employee_id"/>
+                    <field name="type"/>
+                    <field name="allocation"/>
+                    <field name="days"/>
+                    <field name="amount"/>
+                    <field name="payment_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_exchange_leaves" model="ir.actions.act_window">
+            <field name="name">طلب صرف بدل الإجازات مالي</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.exchange.leaves</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+            </p>
+            </field>
+        </record>
+                <menuitem id="menu_exchange_leaves_action" name="طلب صرف بدل الإجازات مالي" parent="hr_holidays.menu_hr_holidays_root" action="action_exchange_leaves" sequence="100"/>
+
+
+
+    </data>
+</odoo>

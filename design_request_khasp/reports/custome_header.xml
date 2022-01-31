@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+
+        <!--custom Header and Footer for reports-->
+        <template id="external_layout">
+            <div  align="center" class="header">
+                <h2> KHASB Investment - خصب للاستثمار</h2>
+            </div>
+            <t t-raw="0" />
+
+            <div class="footer">
+            </div>
+        </template>
+
+    </data>
+</odoo>

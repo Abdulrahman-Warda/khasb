@@ -1,0 +1,248 @@
+<odoo>
+    <data>
+        <template id="report_Governmental_private_purchase">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+
+                    <style>
+                        table, th, td {
+                        border: 2px solid black;
+                        border-collapse: collapse;
+                        }
+                    </style>
+
+                    <t t-call="web.internal_layout">
+                        <div class="page">
+                            <div style="width:100%;">
+                                <div style="float:left;width:20%;">
+                                    <span t-field="o.company_id.logo" t-options='{"widget": "image"}'/>
+                                </div>
+                                <div  align="center">
+                                    <h4>SAHOOD Industrial Company</h4>
+                                </div>
+                            </div>
+
+                            <table style="width:100%;font-size:11px" align="center" class="table table-bordered ">
+                                <tr style="height:10;">
+                                    <th width="50%">Purchase Order
+                                    </th>
+                                    <td>PO Number:
+                                    </td>
+                                    <td>
+                                        <span t-field="o.name"/>
+                                    </td>
+                                </tr>
+                                <tr height="17">
+                                    <td width="50%">Purchaser:
+                                        <span t-field="o.company_id"/>
+                                    </td>
+                                    <td>Date:
+                                    </td>
+                                    <td>
+                                        <span t-field="o.date_order"/>
+                                    </td>
+                                </tr>
+                                <tr height="17">
+                                    <td width="50%">Purchaser Address:
+                                        <span t-field="o.company_id.street"/>
+                                    </td>
+                                    <td>Supplier Code:
+                                    </td>
+                                    <td>
+                                        <!--                                        <span t-field="o.partner_id.supplier_code"/>-->
+                                    </td>
+                                </tr>
+                                <tr height="17">
+                                    <td width="50%">Phone:
+                                        <span t-field="o.company_id.phone"/>
+                                    </td>
+                                    <td colspan="2">Supplier name and address:
+                                    </td>
+                                </tr>
+                                <tr height="17">
+                                    <td width="50%">Fax:
+                                        <span t-field="o.company_id.vat"/>
+                                    </td>
+                                    <td colspan="2" rowspan="3">
+                                        <span t-field="o.partner_id.name"/>
+                                        <br/>
+                                        <span t-field="o.partner_id.street"/>
+                                        <br/>
+                                        mobile:
+                                        <span t-field="o.partner_id.mobile"/>
+                                        <br/>
+                                    </td>
+                                </tr>
+                                <tr height="17">
+                                    <td width="50%">E-mail:
+                                        <span t-field="o.company_id.email"/>
+                                    </td>
+                                </tr>
+                                <tr height="17">
+                                    <td width="50%">Delivery Adress:
+                                    </td>
+                                </tr>
+                                <tr height="17">
+                                    <td width="50%">
+                                        <span t-field="o.partner_id.street"/>
+                                    </td>
+                                    <td>Quotation ref No:
+                                    </td>
+                                    <td>
+                                        <!--                                        <span t-field="o.partner_id.street"/>-->
+                                    </td>
+                                </tr>
+                                <tr height="17">
+                                    <td width="50%">
+                                        <span t-field="o.partner_id.street2"/>
+                                    </td>
+                                    <td>Date:
+                                    </td>
+                                    <td>
+                                        <!--                                        <span t-field="o.partner_id.street"/>-->
+                                    </td>
+                                </tr>
+                            </table>
+                            <table style="width:100%;font-size:11px" class="table table-bordered ">
+                                <tr>
+                                    <th colspan="8">please supply the below item/items as per the
+                                        instruction/conditions
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>SI.No</th>
+                                    <th>Item Code</th>
+                                    <th>Item Description</th>
+                                    <th>UOM</th>
+                                    <th>QTY</th>
+                                    <th>Rate</th>
+                                    <th>Value</th>
+                                    <th>Remarks</th>
+                                </tr>
+                                <tr t-foreach="o.order_line" t-as="l">
+                                    <td>
+                                        <span t-esc="l_index+1"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.product_id.prod_number"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.product_uom"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.product_qty"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.price_unit"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.price_subtotal"/>
+                                    </td>
+                                    <td>
+                                        <!--                                        <span t-field="l.price_subtotal"/>-->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="5" align="center">Currency</td>
+                                    <td rowspan="5" align="center">SAR</td>
+                                    <td colspan="4" align="center">Total Amount</td>
+                                    <td>
+                                        <span t-field="o.total_with_nothing"/>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" align="center">Discount Amount</td>
+                                    <td>
+                                        <span t-field="o.total_discount"/>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" align="center">Total Before VAT</td>
+                                    <td>
+                                        <span t-field="o.amount_untaxed"/>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" align="center">VAT</td>
+                                    <td>
+                                        <span t-field="o.amount_tax"/>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" align="center">Total With VAT</td>
+                                    <td>
+                                        <span t-field="o.amount_total"/>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <table style="width:100%;font-size:11px" class="table table-bordered ">
+                                <tr>
+                                    <th width="30%">Shipping Term</th>
+                                    <td colspan="2">
+                                        <span t-field="o.notes"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th width="30%">Terms Of Payment</th>
+                                    <td colspan="2">
+                                        <span t-field="o.payment_term_id.name"/>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <th width="30%">Delivery</th>
+                                    <td colspan="2">Within
+                                        <span t-field="o.delivery_within"/>
+                                        Days after transfer amount
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th width="30%">Purchase Dep.</th>
+                                    <td width="40%">
+                                        <span t-field="o.purchase_department"/>
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th width="30%">concerned Dep.</th>
+                                    <td width="40%">
+                                        <span t-field="o.concerned_department"/>
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th width="30%">General Manger</th>
+                                    <td width="40%">
+                                        <span t-field="o.general_manger"/>
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+
+        </template>
+
+    </data>
+</odoo>

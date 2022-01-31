@@ -1,0 +1,54 @@
+<odoo>
+  <data>
+    <record id="group_convert_scrap_to_so" model="res.groups">
+      <field name="name">Convert Scrap To So</field>
+    </record>
+
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="stock_scrap_form_view_550" model="ir.ui.view">
+      <field name="name">stock.scrap.form</field>
+      <field name="model">stock.scrap</field>
+      <field name="inherit_id" ref="stock.stock_scrap_form_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//header" position="inside">
+          <button name="create_so" states="done" string="Create So" type="object"
+                  groups="scrap_sales.group_convert_scrap_to_so"
+                  class="oe_highlight"/>
+        </xpath>
+        <xpath expr="//field[@name='date_expected']" position="after">
+          <field name="partner_id" required="0" />
+          <field name="scrap_tags" widget="many2many_tags"/>
+        </xpath>
+
+      </field>
+    </record>
+
+    <!-- Inherit Tree View to Modify it -->
+    <record id="stock_scrap_tree_view_550" model="ir.ui.view">
+      <field name="name">stock.scrap.tree</field>
+      <field name="model">stock.scrap</field>
+      <field name="inherit_id" ref="stock.stock_scrap_tree_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='state']" position="before">
+          <field name="scrap_tags" widget="many2many_tags"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="group_inventory" model="res.groups">
+      <field name="name">Inventory Menu</field>
+    </record>
+
+         <record model='ir.ui.menu' id='stock.menu_stock_root'>
+            <field name="groups_id" eval="[(5,ref('scrap_sales.group_inventory'))]"/>
+        </record>
+   <record model='ir.ui.menu' id='stock.menu_stock_root'>
+            <field name="groups_id" eval="[(4,ref('scrap_sales.group_inventory'))]"/>
+        </record>
+
+
+
+
+  </data>
+</odoo>

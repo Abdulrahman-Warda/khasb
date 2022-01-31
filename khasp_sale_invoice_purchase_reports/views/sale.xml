@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_order_form_report_signature" model="ir.ui.view">
+            <field name="name">sale order signature</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr='//notebook' position="inside">
+                    <page name="other_info" string="Report Information">
+                        <group>
+                            <field name="signature"/>
+                            <field name="offer_period"/>
+                            <field name="general_conditions"/>
+                        </group>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

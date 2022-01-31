@@ -1,0 +1,58 @@
+<odoo>
+  <data>
+            <!--tree view of tool inspection model-->
+        <record id="tool_inspection_tree" model="ir.ui.view">
+            <field name="name">tool inspection tree</field>
+            <field name="model">tool.inspection</field>
+            <field name="arch" type="xml">
+                <tree string="Tool Inspection">
+                    <field name="tool_name"/>
+                    <field name="calibration_date"/>
+                    <field name="calibration_expiry_date"/>
+                    <field name="accuracy"/>
+                    <field name="remarks"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- form view of tool inspection model-->
+        <record id="tool_inspection_form" model="ir.ui.view">
+            <field name="name">tool inspection form</field>
+            <field name="model">tool.inspection</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet >
+                        <group string="Tool Inspection">
+                            <group>
+                                <field name="tool_name"/>
+                                <field name="tool_number"/>
+                            </group>
+                            <group>
+                                <field name="calibration_date"/>
+                                <field name="calibration_expiry_date"/>
+                            </group>
+                            <group>
+                                <field name="accuracy"/>
+                                <field name="remarks"/>
+                            </group>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+            <!-- tool inspection action -->
+        <record id="action_tool_inspection" model="ir.actions.act_window">
+            <field name="name">Tool Inspection</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tool.inspection</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+            <!-- tool inspection menu -->
+        <menuitem id="tool_inspection_manufacturing_khasp" name="Tool Inspection" parent="mrp.menu_mrp_root" action="action_tool_inspection" sequence="7" />
+
+  </data>
+</odoo>

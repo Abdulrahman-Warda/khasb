@@ -1,0 +1,77 @@
+<data>
+    <record id="hr_award_form" model="ir.ui.view">
+        <field name="name">hr.award.form</field>
+        <field name="model">hr.award</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" class="oe_highlight" states="draft"/>
+                    <button name="action_cancel" string="Cancel" type="object" class="oe_highlight" states="draft,confirm"/>
+                    <button name="action_draft" string="Set Draft" type="object" class="oe_highlight" states="cancel"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" domain="[('id', 'in', available_employee_ids)]"/>
+                            <field name="daily_wage" readonly="1"/>
+                            <field name="available_employee_ids" invisible="1"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="award_type"/>
+                            <field name="amount" attrs="{'invisible': [('award_type', '!=', 'amount')]}"/>
+                            <field name="days" attrs="{'invisible': [('award_type', '!=', 'days')]}"/>
+                            <field name="percent" attrs="{'invisible': [('award_type', '!=', 'percent')]}"/>
+                            <field name="total_amount" readonly="1"/>
+                            <field name="notes"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    
+    <record id="hr_award_tree" model="ir.ui.view">
+        <field name="name">hr.award.tree</field>
+        <field name="model">hr.award</field>
+        <!--<field name="field_parent">children_ids if_want_to_add_Childs</field>-->
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="date"/>
+                <field name="amount"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="hr_award_search" model="ir.ui.view">
+        <field name="name">hr.award.search</field>
+        <field name="model">hr.award</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="date"/>
+                <field name="state"/>
+                <group expand="0" string="Group By">
+                    <filter string="Employee" name="group_employee_id" context="{'group_by':'employee_id'}"/>
+                    <filter string="Date" name="group_date" context="{'group_by':'date'}"/>
+                    <filter string="State" name="group_state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <record id="hr_award_action" model="ir.actions.act_window">
+        <field name="name">Hr Award</field>
+        <field name="res_model">hr.award</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</data>

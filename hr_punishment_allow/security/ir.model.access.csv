@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_punishment,hr_punishment,model_hr_punishment,,1,1,1,1
+access_hr_exchange_leaves,hr_exchange_leaves,model_hr_exchange_leaves,,1,1,1,1

@@ -1,0 +1,502 @@
+<odoo>
+  <data>
+        <!--tree view of inspection checklist model-->
+        <record id="repair_request_tree" model="ir.ui.view">
+            <field name="name">inspection checklist tree</field>
+            <field name="model">inspection.checklist</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="building"/>
+                    <field name="foa"/>
+                    <field name="location"/>
+                    <field name="supervisor_name"/>
+                    <field name="supervisor_signature"/>
+                    <field name="manager_name"/>
+                    <field name="manager_signature"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- form view of inspection checklist model-->
+        <record id="repair_request_form" model="ir.ui.view">
+            <field name="name">inspection checklist form</field>
+            <field name="model">inspection.checklist</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="building"/>
+                                <field name="foa"/>
+                                <field name="location"/>
+                                <field name="supervisor_name"/>
+                                <field name="supervisor_signature"/>
+                                <field name="manager_name"/>
+                                <field name="manager_signature"/>
+                                <field name="employee_name"/>
+                                <field name="employee_signature"/>
+                            </group>
+                        </group>
+                    </sheet>
+
+                    <sheet>
+                        <group string="LAYOUT">
+
+                            <group>
+                                <field name="area"/>
+                            </group>
+                            <group>
+                                <field name="comment1" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="adequate"/>
+                            </group>
+                            <group>
+                                <field name="comment2" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="floor"/>
+                            </group>
+                            <group>
+                                <field name="comment3" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="opening"/>
+                            </group>
+                            <group>
+                                <field name="comment4" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="walkways"/>
+                            </group>
+                            <group>
+                                <field name="comment5" nolabel="1"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <field name="action1"/>
+                        </group>
+                    </sheet>
+
+                    <sheet>
+                        <group string="ENVIRONMENT">
+
+                            <group>
+                                <field name="temp"/>
+                            </group>
+                            <group>
+                                <field name="comment6" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="lighting"/>
+                            </group>
+                            <group>
+                                <field name="comment7" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="fittings"/>
+                            </group>
+                            <group>
+                                <field name="comment8" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="odours"/>
+                            </group>
+                            <group>
+                                <field name="comment9" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="noise"/>
+                            </group>
+                            <group>
+                                <field name="comment10" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="ventilation"/>
+                            </group>
+                            <group>
+                                <field name="comment11" nolabel="1"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <field name="action2"/>
+                        </group>
+                    </sheet>
+
+                    <sheet>
+                        <group string="EMERGENCY PROCEDURES">
+
+                            <group>
+                                <field name="procedures"/>
+                            </group>
+                            <group>
+                                <field name="comment12" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="extinguisher"/>
+                            </group>
+                            <group>
+                                <field name="comment13" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="visitor"/>
+                            </group>
+                            <group>
+                                <field name="comment14" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="alarm"/>
+                            </group>
+                            <group>
+                                <field name="comment15" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="escape"/>
+                            </group>
+                            <group>
+                                <field name="comment16" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="emergency"/>
+                            </group>
+                            <group>
+                                <field name="comment17" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="evacuation"/>
+                            </group>
+                            <group>
+                                <field name="comment18" nolabel="1"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <field name="action3"/>
+                        </group>
+                    </sheet>
+
+                    <sheet>
+                        <group string="FIRST AID FACILITIES ">
+
+                            <group>
+                                <field name="kits"/>
+                            </group>
+                            <group>
+                                <field name="comment19" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="stocked"/>
+                            </group>
+                            <group>
+                                <field name="comment20" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="contacts"/>
+                            </group>
+                            <group>
+                                <field name="comment21" nolabel="1"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <field name="action4"/>
+                        </group>
+                    </sheet>
+
+                    <sheet>
+                        <group string="GENERAL FACILITIES">
+
+                            <group>
+                                <field name="washing"/>
+                            </group>
+                            <group>
+                                <field name="comment22" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="lockers"/>
+                            </group>
+                            <group>
+                                <field name="comment23" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="eating_areas"/>
+                            </group>
+                            <group>
+                                <field name="comment24" nolabel="1"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <field name="action5"/>
+                        </group>
+                    </sheet>
+
+                    <sheet>
+                        <group string="ELECTRICAL SAFETY">
+
+                            <group>
+                                <field name="equipment"/>
+                            </group>
+                            <group>
+                                <field name="comment25" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="power_leads"/>
+                            </group>
+                            <group>
+                                <field name="comment26" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="power_leads2"/>
+                            </group>
+                            <group>
+                                <field name="comment27" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="power_boards"/>
+                            </group>
+                            <group>
+                                <field name="comment28" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="faulty_equipment"/>
+                            </group>
+                            <group>
+                                <field name="comment29" nolabel="1"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <field name="action6"/>
+                        </group>
+                    </sheet>
+
+                    <sheet>
+                        <group string="ELECTRICAL SAFETY">
+
+                            <group>
+                                <field name="equipment"/>
+                            </group>
+                            <group>
+                                <field name="comment25" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="power_leads"/>
+                            </group>
+                            <group>
+                                <field name="comment26" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="power_leads2"/>
+                            </group>
+                            <group>
+                                <field name="comment27" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="power_boards"/>
+                            </group>
+                            <group>
+                                <field name="comment28" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="faulty_equipment"/>
+                            </group>
+                            <group>
+                                <field name="comment29" nolabel="1"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <field name="action6"/>
+                        </group>
+                    </sheet>
+
+                    <sheet>
+                        <group string="GENERAL WORKSHOP">
+
+                            <group>
+                                <field name="warning"/>
+                            </group>
+                            <group>
+                                <field name="comment30" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="plant"/>
+                            </group>
+                            <group>
+                                <field name="comment31" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="workshop"/>
+                            </group>
+                            <group>
+                                <field name="comment32" nolabel="1"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <field name="action7"/>
+                        </group>
+                    </sheet>
+
+                    <sheet>
+                        <group string="WASTE DISPOSAL">
+
+                            <group>
+                                <field name="waste_containers"/>
+                            </group>
+                            <group>
+                                <field name="comment33" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="segregated"/>
+                            </group>
+                            <group>
+                                <field name="comment34" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="spill_kits"/>
+                            </group>
+                            <group>
+                                <field name="comment35" nolabel="1"/>
+                            </group>
+
+                        </group>
+
+                        <group>
+                            <field name="action8"/>
+                        </group>
+                    </sheet>
+
+                    <sheet>
+                        <group string="PPE">
+
+                            <group>
+                                <field name="correctly_stored"/>
+                            </group>
+                            <group>
+                                <field name="comment36" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="well_maintained"/>
+                            </group>
+                            <group>
+                                <field name="comment37" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="signage"/>
+                            </group>
+                            <group>
+                                <field name="comment38" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="required_ppe"/>
+                            </group>
+                            <group>
+                                <field name="comment39" nolabel="1"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <field name="action9"/>
+                        </group>
+                    </sheet>
+
+                    <sheet>
+                        <group string="PAINTING">
+
+                            <group>
+                                <field name="ventilation"/>
+                            </group>
+                            <group>
+                                <field name="comment40" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="respiratory_equipment"/>
+                            </group>
+                            <group>
+                                <field name="comment41" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="paint"/>
+                            </group>
+                            <group>
+                                <field name="comment42" nolabel="1"/>
+                            </group>
+
+                            <group>
+                                <field name="thinners"/>
+                            </group>
+                            <group>
+                                <field name="comment43" nolabel="1"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <field name="action10"/>
+                        </group>
+                    </sheet>
+
+                    <sheet>
+                        <group>
+                            <field name="other_comments"/>
+                            <field name="recommendations"/>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+            <!-- inspection checklist action -->
+        <record id="action_inspection_checklist" model="ir.actions.act_window">
+            <field name="name">Inspection Checklist</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">inspection.checklist</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+            <!-- inspection checklist menu -->
+        <menuitem id="inspection_checklist_manufacturing_khasp" name="Inspection Checklist" parent="mrp.menu_mrp_root" action="action_inspection_checklist" sequence="" />
+  </data>
+</odoo>

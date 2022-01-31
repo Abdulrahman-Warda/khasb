@@ -1,0 +1,23 @@
+<data>
+    <record id="regular_leave" model="hr.leave.type">
+        <field name="name" eval="'Regular Leaves '+time.strftime('%Y')"/>
+        <field name="allocation_type">fixed</field>
+        <field name="color_name">black</field>
+        <field name="validity_start" eval="time.strftime('%Y-01-01')"/>
+        <field name="validity_stop" eval="time.strftime('%Y-12-31')"/>
+    </record>
+
+    <record id="emergency_leave" model="hr.leave.type">
+        <field name="name" eval="'Emergency Leaves '+time.strftime('%Y')"/>
+        <field name="allocation_type">fixed</field>
+        <field name="color_name">red</field>
+        <field name="validity_start" eval="time.strftime('%Y-01-01')"/>
+        <field name="validity_stop" eval="time.strftime('%Y-12-31')"/>
+    </record>
+
+    <record id="hr_travel_leave" model="hr.leave.type">
+        <field name="name">Travel Leave</field>
+        <field name="color_name">brown</field>
+        <field name="allocation_type">no</field>
+    </record>
+</data>

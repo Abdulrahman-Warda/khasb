@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+<!--        <record id="mrp_workcenter_view_add_workers" model="ir.ui.view">-->
+<!--            <field name="name">mrp workcenter add workers</field>-->
+<!--            <field name="model">mrp.workcenter</field>-->
+<!--            <field name="inherit_id" ref="mrp.mrp_workcenter_view"/>-->
+<!--            <field name="arch" type="xml">-->
+
+<!--                <xpath expr="//page[last()]" position="after">-->
+<!--                    <page name="workorder_deyails" string="Work Order">-->
+<!--                        <field name="workers_ids">-->
+<!--                            <tree>-->
+<!--                                <field name="name"/>-->
+<!--                            </tree>-->
+<!--                        </field>-->
+<!--                    </page>-->
+<!--                </xpath>-->
+
+<!--            </field>-->
+<!--        </record>-->
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_users_form_8884" model="ir.ui.view">
+            <field name="name">res.users.form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//notebook" position="inside">
+                    <page string="Work Centers">
+                        <field name="work_center_ids" widget="many2many_tags"/>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

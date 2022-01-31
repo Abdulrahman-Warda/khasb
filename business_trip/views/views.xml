@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="business_trip_form" model="ir.ui.view">
+            <field name="name">business.trip.form</field>
+            <field name="model">business.trip</field>
+            <field name="arch" type="xml">
+                <form string="Business Trip">
+                    <header>
+                        <button name="hr_manager" string="Confirm" class="oe_highlight" states="hr_manager"
+                                type="object" groups="hr.group_hr_manager,hr.group_hr_user"/>
+                        <button name="direct_manager" string="Confirm" class="oe_highlight" states="direct_manager"
+                                type="object"/>
+                        <button name="financial_manager" string="Confirm" class="oe_highlight"
+                                states="financial_manager" type="object" groups="account.group_account_manager"/>
+                        <button name="reject" string="Reject" class="oe_highlight"
+                                states="direct_manager,financial_manager" type="object"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Request Name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="employee_id"/>
+                                <field name="contract_id"/>
+                                <field name="country_id"/>
+                                <field name="today_date" readonly="0" string="From Date"/>
+                                <field name="return_date"/>
+                                <field name="duration"/>
+                                <field name="left_vacation_days" readonly="1"/>
+                                <field name="wage" readonly="1" force_save="1"/>
+                                <field name="day_amount" readonly="1" force_save="1"/>
+                                <field name="total" readonly="1" force_save="1"/>
+                                <field name="last_working_day"/>
+                                <field name="last_working_days" readonly="1" force_save="1"/>
+                            </group>
+                            <group>
+                                <field name="ticket_allowance" force_save="1"/>
+                                <field name="deserved_salary" readonly="1" force_save="0"/>
+                                <field name="outstanding_loans" readonly="1" force_save="1"/>
+                                <field name="Total_price" readonly="1" force_save="1"/>
+                                <field name="add_house_allowance"/>
+                                <field name="add_ticket_allowance"/>
+                                <field name="add_outstanding_loans"/>
+                                <field name="reason"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Accounting Configurations">
+                                <group>
+
+                                    <group string="Vacation Days Total">
+                                        <field name="total" readonly="1"/>
+                                        <field name="total_journal_id" string="Journal"
+                                               attrs="{'readonly':[('state','!=','financial_manager')], 'required':[('state','=','financial_manager')]}"/>
+                                        <field name="total_debit_account_id" string="Debit Account"
+                                               attrs="{'readonly':[('state','!=','financial_manager')], 'required':[('state','=','financial_manager')]}"/>
+                                        <field name="total_credit_account_id" string="Credit Account"
+                                               attrs="{'readonly':[('state','!=','financial_manager')], 'required':[('state','=','financial_manager')]}"/>
+                                        <field name="total_account_move_id" string="Account Move"
+                                               attrs="{'invisible':[('state','!=','confirm')]}"/>
+                                    </group>
+                                    <group string="Ticket Allowance">
+                                        <field name="ticket_allowance" readonly="1"/>
+                                        <field name="ticket_allowance_journal_id" string="Journal"
+                                               attrs="{'readonly':[('state','!=','financial_manager')], 'required':[('state','=','financial_manager')]}"/>
+                                        <field name="ticket_allowance_debit_account_id" string="Debit Account"
+                                               attrs="{'readonly':[('state','!=','financial_manager')], 'required':[('state','=','financial_manager')]}"/>
+                                        <field name="ticket_allowance_credit_account_id" string="Credit Account"
+                                               attrs="{'readonly':[('state','!=','financial_manager')], 'required':[('state','=','financial_manager')]}"/>
+                                        <field name="ticket_allowance_move_id" string="Account Move"
+                                               attrs="{'invisible':[('state','!=','confirm')]}"/>
+                                    </group>
+                                    <group string="Deserved Salary">
+                                        <field name="deserved_salary" readonly="1"/>
+                                        <field name="deserved_salary_journal_id" string="Journal"
+                                               attrs="{'readonly':[('state','!=','financial_manager')], 'required':[('state','=','financial_manager')]}"/>
+                                        <field name="deserved_salary_debit_account_id" string="Debit Account"
+                                               attrs="{'readonly':[('state','!=','financial_manager')], 'required':[('state','=','financial_manager')]}"/>
+                                        <field name="deserved_salary_credit_account_id" string="Credit Account"
+                                               attrs="{'readonly':[('state','!=','financial_manager')], 'required':[('state','=','financial_manager')]}"/>
+                                        <field name="deserved_salary_move_id" string="Account Move"
+                                               attrs="{'invisible':[('state','!=','confirm')]}"/>
+                                    </group>
+                                    <group string="Outstanding Loans">
+                                        <field name="outstanding_loans" readonly="1"/>
+                                        <field name="outstanding_loans_journal_id" string="Journal"
+                                               attrs="{'readonly':[('state','!=','financial_manager')], 'required':[('state','=','financial_manager')]}"/>
+                                        <field name="outstanding_loans_debit_account_id" string="Debit Account"
+                                               attrs="{'readonly':[('state','!=','financial_manager')], 'required':[('state','=','financial_manager')]}"/>
+                                        <field name="outstanding_loans_credit_account_id" string="Credit Account"
+                                               attrs="{'readonly':[('state','!=','financial_manager')], 'required':[('state','=','financial_manager')]}"/>
+                                        <field name="outstanding_loans_move_id" string="Account Move"
+                                               attrs="{'invisible':[('state','!=','confirm')]}"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="business_trip_tree" model="ir.ui.view">
+            <field name="name">business.trip.tree</field>
+            <field name="model">business.trip</field>
+            <field name="arch" type="xml">
+                <tree string="Business Trip">
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="country_id"/>
+                    <field name="return_date"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="business_trip_action" model="ir.actions.act_window">
+            <field name="name">Business Trip</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">business.trip</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                    Create your First Business Trip !
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="business_trip_menu" name="Business Trip" parent="hr_holidays.menu_hr_holidays_my_leaves"
+                  action="business_trip_action" sequence="4"/>
+
+        <record id="view_move_form_inherit" model="ir.ui.view">
+            <field name="name">account.move.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='journal_id']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="trip_id" invisible="1"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

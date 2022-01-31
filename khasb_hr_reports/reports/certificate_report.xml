@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="external_layout_standard101">
+        <div class="header" t-att-style="report_header_style">
+            <div class="row">
+                <div class="col-3 mb4">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;"
+                         alt="Logo"/>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+             t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0"/>
+        </div>
+
+        <div class="footer o_standard_footer">
+            <div class="text-center" style="border-top: 1px solid black;">
+
+            </div>
+        </div>
+    </template>
+
+
+    <template id="certificate_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="khasb_hr_reports.external_layout_standard101">
+                    <div t-if="report_language == 'en'" class="page" style="margin-left:20px;margin-right:20px;">
+                        <style>
+                            .serif2 {
+                            font-family:"Times New Roman";
+                            font-size:20pt;
+
+                            }
+                            .serif {
+                            font-family: "Times New Roman";
+                            font-size:16px;
+                            margin-left:5px;
+                            }
+
+                            .serif3 {
+                            font-family:"Times New Roman";
+                            font-size:20px;
+                            }
+                            p {
+                            margin: 0 0 10px;
+                            font-family:"Times New Roman";
+                            font-size:20pt;
+                            text-align: justify;
+                            word-spacing: 5px;
+                            }
+                            div {
+                            text-align: justify;
+                            text-justify: inter-word;
+                            }
+
+                        </style>
+                        <t t-if="report_language == 'en'">
+                            <h3 style="text-align: center;font-family:serif;fontsize:16px;">"CERTIFICATE OF
+                                EMPLOYMENT"
+                            </h3>
+                            <p class="serif2">
+                                <span class="serif2">Certificate No:
+                                    <span class="serif2" t-esc="docs.cer_sequence"/>
+                                </span>
+
+                            </p>
+                            <p class="serif2">
+                                <span class="serif2">Date:
+                                    <span class="serif2" t-esc="date"/>
+                                </span>
+
+                            </p>
+
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <span class="serif">Employee Name</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="serif">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="serif" t-esc="docs.name"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <span class="serif">Employee Number</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="serif">:</span>
+                                </div>
+
+                                <div class="col-7">
+                                    <span class="serif" t-esc="docs.barcode"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <span class="serif">Job Title</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="serif">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="serif" t-esc="docs.job_id.name"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <span class="serif">Nationality</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="serif">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="serif" t-esc="docs.country_id.name"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <span class="serif">National ID / Iqama</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="serif">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="serif" t-esc="docs.identification_id"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <span class="serif">Service Date</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="serif">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="serif" t-esc="docs.joining_date"/>
+                                </div>
+                            </div>
+
+                            <div class="row" t-if="report_salary">
+                                <div class="col-4">
+                                    <span class="serif">Basic Salary</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="serif">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="serif" t-esc="docs.contract_id.wage"/>
+                                    SAR
+                                </div>
+                            </div>
+
+                            <div class="row" t-if="report_salary">
+                                <div class="col-4">
+                                    <span class="serif">Monthly Housing Allowance</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="serif">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="serif" t-esc="docs.contract_id.house_allow"/>
+                                    SAR
+                                </div>
+                            </div>
+
+                            <div class="row" t-if="report_salary">
+                                <div class="col-4">
+                                    <span class="serif">Transportation Allowance</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="serif">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="serif" t-esc="docs.contract_id.trans_allow"/>
+                                    SAR
+                                </div>
+                            </div>
+                            <hr/>
+                            <p style="font-size: 12pt;text-align: justify;" class="serif3">
+                                The General Secretariat of the
+                                <span t-esc="company.name"/>
+                                certifies that the above
+                                employee is one of its current employees.
+                                <br/>
+                                This certificate is issued upon the request of the employee for whatever legal
+                                purposes this may serve and without any responsibility on our part.
+                                <br/>
+                                This certificate is generated electronically. To verify the authenticity of this
+                                certificate, please contact the Human Resources Department on +966 11 418 8000
+                                between 8 am and 4 am (GMT +3) during working days from Sunday to Thursday.
+                                <br/>
+                            </p>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>
+                                        <span>Human Resource Department</span>
+                                    </p>
+                                    <!--                                    <img  style="width:90%" src=""/>-->
+                                    <strong style="margin-left:20px">Ahmed Saeedan Alamry</strong>
+                                </div>
+                                <div class="col-6">
+                                    <br/>
+                                    <!--                                    <img  src=""/>-->
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="row">
+                                <div class="col-5">
+                                    <!--                                <img  src=""/>-->
+                                </div>
+                            </div>
+                        </t>
+
+                    </div>
+                    <div t-if="report_language == 'ar'" dir="rtl" class="page"
+                         style="margin-left:20px;margin-right:20px;">
+                        <style>
+                            .serif2 {
+                            font-family:"Times New Roman";
+                            font-size:20pt;
+
+                            }
+                            .serif {
+                            font-family: "Times New Roman";
+                            font-size:16px;
+                            margin-left:5px;
+                            }
+
+                            .serif3 {
+                            font-family:"Times New Roman";
+                            font-size:20px;
+                            }
+                            p {
+                            margin: 0 0 10px;
+                            font-family:"Times New Roman";
+                            font-size:20pt;
+                            text-align: justify;
+                            word-spacing: 5px;
+                            }
+                            div {
+                            text-align: justify;
+                            text-justify: inter-word;
+                            }
+
+                        </style>
+                        <br/>
+
+                        <t t-if="report_language == 'ar'">
+                            <h3 style="text-align: center;">"شهادة تعريف"</h3>
+                            <div class="row">
+                                <div class="col-12 text-right">
+                                    <p>
+                                        <span class="cus2">رقم الشهادة :</span>
+                                        <span class="cus2" t-esc="docs.cer_sequence"/>
+                                    </p>
+
+                                    <p>
+                                        <span class="cus2">تاريخ الشهادة :</span>
+                                        <span class="cus2" t-esc="date"/>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-4">
+                                    <span class="cus3">اسم الموظف</span>
+                                </div>
+                                <div class="col-1" >
+                                    <span class="cus3">:</span>
+                                </div>
+                                <div class="col-7" >
+                                    <t t-if="user.lang=='ar_SY'">
+                                        <span class="cus3" t-esc="docs.arabic_name"/>
+                                    </t>
+                                    <t t-else="">
+                                        <span class="cus3" t-esc="docs.name"/>
+                                    </t>
+
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-4">
+                                    <span class="cus3">رقم الموظف</span>
+                                </div>
+
+                                <div class="col-1">
+                                    <span class="cus3">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="cus3" t-esc="docs.barcode"/>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <span class="cus3">عنوان وظيفي</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="cus3">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="cus3" t-esc="docs.job_id.name"/>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-4">
+                                    <span class="cus3">الجنسية</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="cus3">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="cus3" t-esc="docs.country_id.name"/>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <span class="cus3">الهوية الوطنية / الإقامة</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="cus3">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="cus3" t-esc="docs.identification_id"/>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <span class="cus3">تاريخ الخدمة</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="cus3">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="cus3" t-esc="docs.joining_date"/>
+                                </div>
+
+
+                            </div>
+
+                            <div t-if="report_salary" class="row">
+                                <div class="col-4">
+                                    <span class="cus3">راتب اساسي</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="cus3">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="cus3" t-esc="docs.contract_id.wage"/>ريال
+                                </div>
+
+
+                            </div>
+
+                            <div t-if="report_salary" class="row">
+                                <div class="col-4">
+                                    <span class="cus3">بدل السكن الشهري</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="cus3">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="cus3" t-esc="docs.contract_id.house_allow"/>ريال
+                                </div>
+
+
+                            </div>
+
+                            <div t-if="report_salary" class="row">
+                                <div class="col-4">
+                                    <span class="cus3">بدل المواصلات</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="cus3">:</span>
+                                </div>
+                                <div class="col-7">
+                                    <span class="cus3"
+                                          t-esc="docs.contract_id.trans_allow"/>ريال
+                                </div>
+
+
+                            </div>
+
+                            <hr/>
+                            <p style="font-size: 14pt;text-align: justify;" id="cus1">
+                                تشهد
+                                <span t-esc="company.name"/>
+                                بأن الموظف أعلاه هو أحد منسوبيها
+                                <br/>
+                                حتى تاريخه. وقد صدرت له هذه الشهادة بنـاءً على طلبـه دون أن يترتب على ذلك<br/>أدنى
+                                مسؤولية على
+                                المجلس.
+                                <br/>
+                                صدرت هذه الشهادة إلكترونياً، ويمكنكم التحقق من صحة محتوياتها من خلال
+                                <br/>
+                                التواصل مع إدارة الموارد
+                                البشرية على 966 11 418 8000+ من الساعة الثامنة
+                                <br/>
+                                صباحاً وحتى الثالثة مساءً خلال أيام العمل من الأحد إلى الخميس.
+                            </p>
+                            <br/>
+                            <div class="row">
+
+                                <div class="col-6" style="float: right;margin-top:80px">
+                                    <img src=""/>
+                                    <br/>
+                                    <!--                                        <img width="width: 145px;" src="/cs_reports/static/src/img/arabic.png"/>-->
+
+                                </div>
+
+                                <div class="col-5">
+                                    <p>
+                                        <br/>
+                                        <strong>إدارة الموارد البشرية</strong>
+                                    </p>
+                                    <img style="width:90%" src=""/>
+                                    <p style="margin-top:20px">
+                                        <span>أحمد سعيدان العمري</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5" style="float: right;">
+                                    <img src=""/>
+                                </div>
+
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

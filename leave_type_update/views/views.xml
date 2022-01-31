@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="edit_holiday_status_form_inherit" model="ir.ui.view">
+            <field name="name">hr.leave.type.form</field>
+            <field name="model">hr.leave.type</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='double_validation']" position="after">
+                    <!-- Add your fields or attributes here -->
+                  <field name="max_days"/>
+                  <field name="gender"/>
+                  <field name="leave_type"/>
+                  <field name="alternative_employee"/>
+                </xpath>
+                <group name="calendar" position="after">
+                  <group name="accrual" string="Accrual Allocation">
+                      <field name="accrual_allocation"/>
+                      <label for="accrual_allocation_count" attrs="{'invisible':[('accrual_allocation','!=',True)]}"/>
+                      <div class="o_row" name="accrual_allocation_count" attrs="{'invisible':[('accrual_allocation','!=',True)]}">
+                          <field name="accrual_allocation_count" nolabel="1"  attrs="{'required':[('accrual_allocation','=',True)]}"/>
+                          <span>: days / month</span>
+                      </div>
+                  </group>
+                </group>
+            </field>
+        </record>
+        <record id="hr_leave_view_form_inherit" model="ir.ui.view">
+            <field name="name">hr.leave.form</field>
+            <field name="model">hr.leave</field>
+            <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='name']" position="after">
+                    <!-- Add your fields or attributes here -->
+                  <field name="if_alternative_employee" invisible="1"/>
+                  <field name="alternative_employee" attrs="{'invisible': [('if_alternative_employee', '=', False)]}"/>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="hr_contract_view_form_inherit" model="ir.ui.view">
+            <field name="name">hr.contract.form.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+              <field name="annual_leave_balance" position="after">
+                <field name="eligible_for_accrual_allocation"/>
+              </field>
+            </field>
+        </record>
+    </data>
+</odoo>

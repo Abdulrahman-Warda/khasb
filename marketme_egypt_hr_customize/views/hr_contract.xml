@@ -1,0 +1,42 @@
+<data>
+    <record id="inherit_hr_contract_form" model="ir.ui.view">
+        <field name="name">inherit.hr.contract.form</field>
+        <field name="model">hr.contract</field>
+        <!--<field name="groups_id" eval="[(4, ref(''))]"/>-->
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_start']" position="before">
+<!--                <field name="hiring_date"/>-->
+                <field name="allocation" invisible="1"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="leave" string="Leave Allocations" attrs="{'invisible':[('allocation','=',False)]}">
+                    <group>
+                        <group>
+                            <field name="regular_leave"/>
+                        </group>
+                        <group>
+                            <field name="emergency_leave"/>
+                        </group>
+                    </group>
+                </page>
+<!--                <page name="allowances_and_deductions" string="Allowances And Deductions">-->
+<!--                    <group>-->
+<!--                        <group string="Allowances">-->
+<!--                            <field name="transport_allowances"/>-->
+<!--                            <field name="living_allowances"/>-->
+<!--                            <field name="other_allowances"/>-->
+<!--                            <field name="internal_travel_allowances"/>-->
+<!--                            <field name="abroad_travel_allowances"/>-->
+<!--                            <field name="other_travel_allowances"/>-->
+<!--                            <field name="hour_travel_allowances"/>-->
+<!--                        </group>-->
+<!--                        <group string="Deductions">-->
+<!--                            <field name="general_deductions"/>-->
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                </page>-->
+            </xpath>
+        </field>
+    </record>
+</data>

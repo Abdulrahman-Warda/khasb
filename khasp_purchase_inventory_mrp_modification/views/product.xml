@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="product_template_only_form_workorder" model="ir.ui.view">
+            <field name="name">product template work order</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//page[last()]" position="after">
+                    <page string="Work Order" name="tool_workorder" attrs="{'invisible' : [('is_tool','=',False)]}">
+                        <button name="unlink_workorders" type="object" class="oe-highlight" string="Clear"/>
+                        <field name="workorder_ids">
+                            <tree>
+                                <field name="workorder_ref"/>
+                                <field name="qty_produced"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="is_tool"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

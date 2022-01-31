@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="mrp_production_workorder_form_inherit_khasp" model="ir.ui.view">
+            <field name="name">mrp.workorder.modification</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
+            <field name="arch" type="xml">
+
+
+                <xpath expr="//field[@name='is_produced']" position="after">
+                   <field name="qty_next_done"/>
+                </xpath>
+
+                <xpath expr="//header//button[@name='button_pending']" position="replace">
+                    <button name="%(work_order_pause_wizard_action)d" type="action" string="Pause" class="btn-warning"
+                            attrs="{'invisible': ['|', '|', ('working_state', '=', 'blocked'), ('state', 'in', ('done', 'pending', 'ready', 'cancel')), ('is_user_working', '=', False)]}"/>
+                </xpath>
+
+
+                <xpath expr="//header//button[@name='record_production']" position="replace">
+                    <button name="%(work_order_done_wizard_action)d" type="action" string="Done" class="btn-warning"
+                            attrs="{'invisible': ['|', '|', '|', ('is_produced', '=', True), ('working_state', '=', 'blocked'), ('state', '!=', 'progress'), ('is_user_working', '=', False)]}"/>
+                </xpath>
+
+
+                <xpath expr="//notebook/page/group/group//field[@name='workcenter_id']" position="after">
+                    <field name="worker_id"/>
+                    <field name="tool_id"/>
+                    <field name="qty_is_done"/>
+                    <field name="done_loc_id"/>
+                    <field name="qty_not_done"/>
+                    <field name="not_done_loc_id"/>
+                </xpath>
+                <xpath expr="//page[last()]" position="after">
+                    <page name="pause_history" string="Pause History">
+                        <field name="pause_history_ids" nolable="1">
+                            <tree>
+                                <field name="pause_time"/>
+                                <field name="reason"/>
+                                <field name="products_no"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page name="operation_details" string="Operation Details">
+                        <group>
+                            <field name="tool_id" nplable="0"/>
+                            <field name="worker_ids">
+                                <tree>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

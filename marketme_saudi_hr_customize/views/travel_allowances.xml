@@ -1,0 +1,90 @@
+<data>
+    <record id="travel_allowances_form" model="ir.ui.view">
+        <field name="name">travel.allowances.form</field>
+        <field name="model">travel.allowances</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" class="oe_highlight" states="draft"/>
+                    <button name="action_cancel" string="Cancel" type="object" class="oe_highlight" states="draft,confirm"/>
+                    <button name="action_accounting_approve" string="Accounting Approve" type="object" states="confirm" class="oe_highlight"/>
+                    <button name="action_draft" string="Set Draft" type="object" class="oe_highlight" states="cancel"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" domain="[('id', 'in', available_employee_ids)]"/>
+                            <field name="available_employee_ids" invisible="1"/>
+                            <field name="travel_duration_type"/>
+                            <field name="travel_type" attrs="{'invisible':[('travel_duration_type','=','hours')]}"/>
+                            <field name="amount"/>
+                            <field name="payslip"/>
+                        </group>
+                        <group>
+                            <field name="date_from" attrs="{'invisible':[('travel_duration_type','=','hours')]}"/>
+                            <field name="date_to" attrs="{'invisible':[('travel_duration_type','=','hours')]}"/>
+                            <field name="duration" attrs="{'invisible':[('travel_duration_type','=','hours')]}"/>
+                            <field name="travel_from_id" attrs="{'invisible':[('travel_duration_type','=','hours')]}"/>
+                            <field name="travel_to_id" attrs="{'invisible':[('travel_duration_type','=','hours')]}"/>
+                            <field name="date_time_from" attrs="{'invisible':[('travel_duration_type','=','days')]}"/>
+                            <field name="date_time_to" attrs="{'invisible':[('travel_duration_type','=','days')]}"/>
+                            <field name="date_time_duration" attrs="{'invisible':[('travel_duration_type','=','days')]}" widget="float_time"/>
+                            <field name="emp_account_id"/>
+                            <field name="treasury_account_id"/>
+                            <field name="journal_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="travel_allowances_tree" model="ir.ui.view">
+        <field name="name">travel.allowances.tree</field>
+        <field name="model">travel.allowances</field>
+        <!--<field name="field_parent">children_ids if_want_to_add_Childs</field>-->
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="travel_type"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="duration"/>
+                <field name="amount"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="travel_allowances_search" model="ir.ui.view">
+        <field name="name">travel.allowances.search</field>
+        <field name="model">travel.allowances</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="travel_type"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <group expand="0" string="Group By">
+                    <filter string="Employee" name="group_employee_id" context="{'group_by':'employee_id'}"/>
+                    <filter string="Travel Type" name="group_travel_type" context="{'group_by':'travel_type'}"/>
+                    <filter string="Date From" name="group_date_from" context="{'group_by':'date_from'}"/>
+                    <filter string="Date To" name="group_date_to" context="{'group_by':'date_to'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="travel_allowances_action" model="ir.actions.act_window">
+        <field name="name">Business Trip</field>
+        <field name="res_model">travel.allowances</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</data>

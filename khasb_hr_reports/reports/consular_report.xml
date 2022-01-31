@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="consular_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="khasb_hr_reports.external_layout_standard101">
+                    <div class="page" style="margin-left:50px;margin-right:30px;">
+                        <style>
+                            .serif {
+                            font-family:"Times New Roman";
+                            font-size:16pt;
+                            }
+                            p {
+                            margin: 0 0 10px;
+                            font-size: 17px;
+
+                            text-align: justify;
+                            word-spacing: 5px;
+                            }
+                            div {
+                            text-align: justify;
+                            text-justify: inter-word;
+                            }
+                        </style>
+                        <br/>
+
+                        <!--<h3 style="text-align: center;">"The Consular"</h3>-->
+
+                        <p>
+                            <span class="serif">Certificate No :</span>
+                            <span class="serif" t-esc="docs.cer_sequence"/>
+                        </p>
+<!--                        <p>-->
+<!--                        <strong> Number Of Certificate Print :</strong>-->
+<!--                        <span t-esc="docs.employee_id.consular_no" />-->
+<!--                        </p>-->
+                        <p>
+                            <span class="serif">Certificate Date :</span>
+                            <span class="serif" t-esc="date"/>
+                        </p>
+                        <br/>
+                        <h3>
+                            <strong>The Consular</strong>
+                        </h3>
+                        <p>
+                            <span class="serif">Visa Section</span>
+                        </p>
+                        <p>
+                            <span class="serif">Embassy of :</span>
+                            <span class="serif" t-esc="country"/>
+                        </p>
+                        <p>
+                            <span class="serif">Riyadh</span>
+
+                        </p>
+                        <p>
+                            <span class="serif">Kingdom of Saudi Arabia</span>
+
+                        </p>
+                        <br/>
+                        <p style="font-size:12pt;text-align: justify;font-family:'Times New Roman';" class="serif">
+                            Dear Sir,
+                            <br/>
+                            <br/>
+
+                            We would like to inform you that Mr.
+                            <t t-if="user.lang=='ar_SY'">
+                                <span t-esc="docs.arabic_name"/>
+                            </t>
+                            <t t-else="">
+                                <span t-esc="docs.name"/>
+                            </t>
+                            <br/>
+                            is holding Passport No.(<span t-esc="docs.passport_id"/>)
+                            is employed at the
+                            <br/>
+                            <span t-esc="company.name"/> since ..th … ….
+                            <br/>
+                            He receives from the <span t-esc="company.name"/> a gross salary of SR..<span
+                                t-esc="docs.contract_id.wage"/>../- only per month inclusive
+                            <br/>
+                            of allowances due. He is provided with transportation allowances and Medical
+                            <br/>
+                            Insurance for him.
+                            <br/>
+                            Therefore, we kindly request that you grant him a multiple entry visa as early as
+                            <br/>
+                            possible.
+                            <br/>
+                            Thank you and we appreciate your usual cooperation and assistance in this regard.
+                            <br/>
+
+                            This certificate is generated electronically. To verify the authenticity of this
+                            <br/>
+                            certificate, please contact the Human Resources Department on +966 11 418 8000
+                            <br/>
+                            between 8 am and 4 am (GMT +3) during working days from Sunday to Thursday.
+                            <br/>
+                        </p>
+                        <br/>
+
+
+                        <hr/>
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <p>
+                                    <strong>Human Resource Department</strong>
+                                    <br/>
+                                    <!--                                    <strong>Sincerely yours,</strong>-->
+                                    <!--                                    <br/>-->
+                                    <strong>Ahmed Saeedan Alamry</strong>
+                                </p>
+<!--                                <img style="width:90%;" />-->
+                                <!--                                <p>-->
+                                <!--                                    <strong>Director - Human Resources</strong>-->
+                                <!--                                </p>-->
+                            </div>
+                            <div class="col-xs-4 col-xs-offset-3">
+                                <br/>
+<!--                                <img />-->
+                            </div>
+                        </div>
+                        <br/>
+                        <!--<br/>-->
+                        <div class="row">
+                            <div class="col-xs-5">
+<!--                                <img />-->
+                            </div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+

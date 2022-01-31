@@ -1,0 +1,68 @@
+<odoo>
+  <data>
+
+        <!--tree view of design_request model-->
+        <record id="design_tree" model="ir.ui.view">
+            <field name="name">design request tree</field>
+            <field name="model">design.request</field>
+            <field name="arch" type="xml">
+                <tree string="Design request">
+                    <field name="type_of_service"/>
+                    <field name="safety_requirements"/>
+                    <field name="material_treatments"/>
+                    <field name="quantity"/>
+                    <field name="design_specifications"/>
+                    <field name="available_sample"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- form view of design_request model-->
+        <record id="design_form" model="ir.ui.view">
+            <field name="name">design request form</field>
+            <field name="model">design.request</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet >
+                        <group string="Design request">
+                            <group style="margin-bottom:30px">
+                                <field name="type_of_service"/>
+                                <field name="available_sample"/>
+                            </group>
+                            <group>
+                                <field name="material_treatments"/>
+                            </group>
+                            <group>
+                                <field name="safety_requirements"/>
+                                <field name="quantityParts" attrs="{'invisible': [('safety_requirements', '!=', 'specificsafety')]}"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <div />
+                            <field style="padding-bottom:30px" name="quantity" />
+                            <field name="type_of_material"/>
+                        </group>
+                        <group>
+                            <field style="padding-bottom:30px" name="usage_of_design"/>
+                            <field name="tolerance_of_design"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+            <!-- Design action -->
+        <record id="action_design_request" model="ir.actions.act_window">
+            <field name="name">Design</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">design.request</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+            <!-- Design menu -->
+        <menuitem id="sale_order_menu_khasp" name="Design" parent="sale.sale_menu_root" action="action_design_request" sequence="7" />
+
+  </data>
+</odoo>

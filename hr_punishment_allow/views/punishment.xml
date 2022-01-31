@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="vview_punishment_tree" model="ir.ui.view">
+            <field name="name">hr.punishment.tree</field>
+            <field name="model">hr.punishment</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="type"/>
+                    <field name="date"/>
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="amount"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_punishment_form" model="ir.ui.view">
+            <field name="name">hr.punishment.form</field>
+            <field name="model">hr.punishment</field>
+            <field name="arch" type="xml">
+                <form string="">
+                      <header>
+                    <button name="confirm" states="draft" string="Confirm" type="object"  class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm" readonly="1"/>
+                </header>
+                    <sheet>
+                        <group>
+                            <field name="type"/>
+                            <field name="date"/>
+                            <field name="employee_id" attrs="{'invisible':[('type','=','department')]}"/>
+                            <field name="department_id" attrs="{'invisible':[('type','=','employee')]}"/>
+                            <field name="amount"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_punishment" model="ir.actions.act_window">
+            <field name="name">Punishment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.punishment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+            </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="menu_punishment_action" name="Punishment" parent="hr_attendance.menu_hr_attendance_root" action="action_punishment" sequence="100"/>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,98 @@
+<data>
+    <record id="group_hr_own_document" model="res.groups">
+        <field name="name">HR Own Document</field>
+    </record>
+
+    <record id="group_hr_department_document" model="res.groups">
+        <field name="name">HR Department Document</field>
+    </record>
+
+    <record id="group_hr_all_document" model="res.groups">
+        <field name="name">HR all Document</field>
+    </record>
+
+    <record id="permission_personal_rule" model="ir.rule">
+        <field name="name">Permission Own Document</field>
+        <field ref="model_hr_permission" name="model_id"/>
+        <field name="domain_force">['|',('employee_id.user_id','=',user.id),('employee_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('marketme_saudi_hr_customize.group_hr_own_document'))]"/>
+    </record>
+
+    <record id="permission_department_rule" model="ir.rule">
+        <field name="name">Permission Department Document</field>
+        <field ref="model_hr_permission" name="model_id"/>
+        <field name="domain_force">['|',('employee_id.parent_id.user_id','=',user.id),'|',('employee_id.user_id','=',user.id),('employee_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('marketme_saudi_hr_customize.group_hr_department_document'))]"/>
+    </record>
+
+    <record id="resignation_personal_rule" model="ir.rule">
+        <field name="name">Resignation Own Document</field>
+        <field ref="model_hr_resignation" name="model_id"/>
+        <field name="domain_force">['|',('employee_id.user_id','=',user.id),('employee_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('marketme_saudi_hr_customize.group_hr_own_document'))]"/>
+    </record>
+
+    <record id="resignation_department_rule" model="ir.rule">
+        <field name="name">Resignation Department Document</field>
+        <field ref="model_hr_resignation" name="model_id"/>
+        <field name="domain_force">['|',('employee_id.parent_id.user_id','=',user.id),'|',('employee_id.user_id','=',user.id),('employee_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('marketme_saudi_hr_customize.group_hr_department_document'))]"/>
+    </record>
+
+    <record id="transfer_personal_rule" model="ir.rule">
+        <field name="name">Transfer Own Document</field>
+        <field ref="model_hr_transfer" name="model_id"/>
+        <field name="domain_force">['|',('employee_id.user_id','=',user.id),('employee_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('marketme_saudi_hr_customize.group_hr_own_document'))]"/>
+    </record>
+
+    <record id="transfer_department_rule" model="ir.rule">
+        <field name="name">Transfer Department Document</field>
+        <field ref="model_hr_transfer" name="model_id"/>
+        <field name="domain_force">['|',('employee_id.parent_id.user_id','=',user.id),'|',('employee_id.user_id','=',user.id),('employee_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('marketme_saudi_hr_customize.group_hr_department_document'))]"/>
+    </record>
+
+    <record id="overtime_personal_rule" model="ir.rule">
+        <field name="name">Overtime Own Document</field>
+        <field ref="model_hr_overtime" name="model_id"/>
+        <field name="domain_force">['|',('employee_id.user_id','=',user.id),('employee_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('marketme_saudi_hr_customize.group_hr_own_document'))]"/>
+    </record>
+
+    <record id="overtime_department_rule" model="ir.rule">
+        <field name="name">Overtime Department Document</field>
+        <field ref="model_hr_overtime" name="model_id"/>
+        <field name="domain_force">['|',('employee_id.parent_id.user_id','=',user.id),'|',('employee_id.user_id','=',user.id),('employee_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('marketme_saudi_hr_customize.group_hr_department_document'))]"/>
+    </record>
+
+    <record id="ticket_personal_rule" model="ir.rule">
+        <field name="name">Ticket Own Document</field>
+        <field ref="model_hr_ticket" name="model_id"/>
+        <field name="domain_force">['|',('employee_id.user_id','=',user.id),('employee_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('marketme_saudi_hr_customize.group_hr_own_document'))]"/>
+    </record>
+
+    <record id="ticket_department_rule" model="ir.rule">
+        <field name="name">Ticket Department Document</field>
+        <field ref="model_hr_ticket" name="model_id"/>
+        <field name="domain_force">['|',('employee_id.parent_id.user_id','=',user.id),'|',('employee_id.user_id','=',user.id),('employee_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('marketme_saudi_hr_customize.group_hr_department_document'))]"/>
+    </record>
+
+    <record id="travel_allowances_personal_rule" model="ir.rule">
+        <field name="name">Business Trip Own Document</field>
+        <field ref="model_travel_allowances" name="model_id"/>
+        <field name="domain_force">['|',('employee_id.user_id','=',user.id),('employee_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('marketme_saudi_hr_customize.group_hr_own_document'))]"/>
+    </record>
+
+    <record id="travel_allowances_department_rule" model="ir.rule">
+        <field name="name">Business Trip Department Document</field>
+        <field ref="model_travel_allowances" name="model_id"/>
+        <field name="domain_force">['|',('employee_id.parent_id.user_id','=',user.id),'|',('employee_id.user_id','=',user.id),('employee_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('marketme_saudi_hr_customize.group_hr_department_document'))]"/>
+    </record>
+
+</data>

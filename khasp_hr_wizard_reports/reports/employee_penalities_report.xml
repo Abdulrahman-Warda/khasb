@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="employee_penalty_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <h3 class="text-center">تقرير الجزاءات</h3>
+                            <br></br>
+                            <br></br>
+                            <table class="table table-bordered table-striped" name="salary_advance_table"
+                                   style="width:100%;direction:rtl;">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:4%">#</th>
+                                        <th class="text-center">اسم الموظف</th>
+                                        <th class="text-center">نوع الجزاء</th>
+                                        <th class="text-center">التاريخ</th>
+                                        <th class="text-center">قيمة الجزاء</th>
+                                    </tr>
+                                </thead>
+                                <t t-set="i" t-value="1"/>
+                                <tbody>
+                                    <t t-foreach="contracts" t-as="element">
+                                        <tr>
+                                            <td class="text-center">
+                                                <span t-esc="i"/>
+                                                <t t-set="i" t-value="i+1"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="element['name']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="element['amount_type']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="element['amount_date']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="element['amount_value']"/>
+                                            </td>
+
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+        <report
+                id="employee_penalty_report_tag"
+                model="employee.age.wizard"
+                report_type="qweb-html"
+                string="Print"
+                name="khasp_hr_wizard_reports.employee_penalty_report"
+                file="khasp_hr_wizard_reports.employee_penalty_report"
+        />
+
+
+    </data>
+</odoo>

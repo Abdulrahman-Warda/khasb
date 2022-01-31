@@ -1,0 +1,98 @@
+<odoo>
+    <data>
+        <template id="report_tool_inspection">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+
+                    <style>
+                        table, th, td {
+                        border: 1px solid black;
+                        border-collapse: collapse;
+                        }
+                    </style>
+
+                    <t t-call="web.internal_layout">
+
+
+                        <div class="page">
+                            <br></br>
+                            <div style="width:100%;">
+                                <div style="float:left;width:33%;">
+                                    <p>
+                                        <strong>Tax ID:</strong>
+                                        <span t-field="o.company_id.vat"/>
+                                    </p>
+                                    <p>
+                                        <strong>CR:</strong>
+                                        <span t-field="o.company_id.company_registry"/>
+                                    </p>
+
+
+                                </div>
+
+
+                                <div style="float:right;width:25%; padding-left:60px">
+                                    <img t-if="o.company_id.state == 'sahood'"
+                                         src="/khasp_sale_manificature_reports/static/src/img/logo.jpg"
+                                         style="width:200px;height:100px;"/>
+                                    <img t-if="o.company_id.state == 'khasp'"
+                                         src="/khasp_sale_manificature_reports/static/src/img/khasp_logo.jpg"
+                                         style="width:150px;height:100px;"/>
+
+                                </div>
+                            </div>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <h3 align="center">Tool Inspection</h3>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <td>
+                                        <strong>Tool Name:</strong>
+                                        <span t-field="o.tool_name"/>
+                                    </td>
+                                    <td>
+                                        <strong>Calibration Date:</strong>
+                                        <span t-field="o.calibration_date"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Tool Number:</strong>
+                                        <span t-field="o.tool_number"/>
+                                    </td>
+                                    <td>
+                                        <strong>Calibration Expiry Date:</strong>
+                                        <span t-field="o.calibration_expiry_date"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <strong>Accuracy:</strong>
+                                        <span t-field="o.accuracy"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <strong>Remarks:</strong>
+                                        <span t-field="o.remarks"/>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+
+        </template>
+
+    </data>
+</odoo>

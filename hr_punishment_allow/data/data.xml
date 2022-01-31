@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_salary_rule_punishment" model="hr.salary.rule">
+            <field name="code">punishment</field>
+            <field name="name">punishment</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = payslip.punishment_amount</field>
+            <field name="sequence" eval="70"/>
+            <field name="note">punishment</field>
+        </record>
+
+        <record id="hr_salary_allowances" model="hr.salary.rule">
+            <field name="code">allowances</field>
+            <field name="name">allowances</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.house_allow+contract.trans_allow+contract.phone_allow+contract.food_allow+contract.other_allow</field>
+            <field name="sequence" eval="70"/>
+            <field name="note">punishment</field>
+        </record>
+
+           <record id="hr_salary_deductions" model="hr.salary.rule">
+            <field name="code">deductions</field>
+            <field name="name">deductions</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (contract.ded_gosi+contract.ded_employee_gosi+contract.ded_company_gosi+contract.ded_bank_fees+contract.ded_other) if contract.is_saudi else  (contract.ded_bank_fees+contract.ded_other)</field>
+            <field name="sequence" eval="70"/>
+            <field name="note">punishment</field>
+        </record>
+
+
+         <record id="hr_salary_allowances_house_allow" model="hr.salary.rule">
+            <field name="code">House Allowance</field>
+            <field name="name">allowances</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.house_allow</field>
+            <field name="sequence" eval="70"/>
+            <field name="note">punishment</field>
+        </record>
+          <record id="hr_salary_allowances_trans_allow" model="hr.salary.rule">
+            <field name="code">Transporation Allowance</field>
+            <field name="name">allowances</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.trans_allow</field>
+            <field name="sequence" eval="70"/>
+            <field name="note">punishment</field>
+        </record>
+
+          <record id="hr_salary_deductions_ded_employee_gosi" model="hr.salary.rule">
+            <field name="code">Employee Gosi</field>
+            <field name="name">deductions</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (contract.ded_employee_gosi) if contract.is_saudi else 0</field>
+            <field name="sequence" eval="70"/>
+            <field name="note">punishment</field>
+        </record>
+
+
+
+
+
+
+
+
+    </data>
+</odoo>

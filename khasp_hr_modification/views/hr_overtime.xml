@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="hr_overtime_form_modification" model="ir.ui.view">
+            <field name="name">hr overtime modification</field>
+            <field name="model">hr.overtime</field>
+            <field name="inherit_id" ref="marketme_saudi_hr_customize.hr_overtime_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//header//field[@name='state']" position="replace">
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,direct_manger,hr_manger,confirm"/>
+                </xpath>
+                <xpath expr="//header//button[@name='action_cancel']" position="attributes">
+                    <attribute name="attrs">{'invisible':['|',('state','=','cancel'),('state','=','done')]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="after">
+                    <button name="action_employee" string="Confirm" type="object" class="oe_highlight" states="draft"
+                            groups="base.group_user"/>
+                    <button name="action_direct_manger" string="Confirm" type="object" class="oe_highlight"
+                            states="direct_manger"/>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="attributes">
+                    <attribute name="states">hr_manger</attribute>
+                    <attribute name="groups">hr.group_hr_manager</attribute>
+                </xpath>
+                <xpath expr="//field[@name='emp_account_id']" position="attributes">
+                    <attribute name="states">confirm,done</attribute>
+                </xpath>
+                <xpath expr="//field[@name='treasury_account_id']" position="attributes">
+                    <attribute name="states">confirm,done</attribute>
+                </xpath>
+                <xpath expr="//field[@name='journal_id']" position="attributes">
+                    <attribute name="states">confirm,done</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

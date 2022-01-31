@@ -1,0 +1,64 @@
+<odoo>
+    <data>
+        <record id="work_order_pause_wizard_form" model="ir.ui.view">
+            <field name="name">work.order.pause.wizard.form</field>
+            <field name="model">work.order.pause.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Pause the process">
+                    <sheet>
+                        <group>
+                            <field name="pause_reason" widget="radio" options="{'horizontal': true}"/>
+                            <field name="products_no" attrs="{'invisible': [('pause_reason', '=', 'rest')]}"/>
+                            <field name="reason" attrs="{'invisible': [('pause_reason', '=', 'rest')]}"/>
+                        </group>
+                        <footer>
+                            <button name="workorder_pause_confirm" string="Confirm" type="object" class="btn-primary"/>
+                            <button string="Cancel" class="btn-secondary" special="cancel"/>
+                        </footer>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--        wizard action-->
+
+        <record id="work_order_pause_wizard_action" model="ir.actions.act_window">
+            <field name="name">Pause the process</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">work.order.pause.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="work_order_pause_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+
+           <record id="work_order_done_wizard_form" model="ir.ui.view">
+            <field name="name">work.order.done.wizard.form</field>
+            <field name="model">work.order.done.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Pause the process">
+                    <sheet>
+                        <group>
+                            <field name="qty_done" />
+                        </group>
+                        <footer>
+                            <button name="workorder_done_confirm" string="Confirm" type="object" class="btn-primary"/>
+                            <button string="Cancel" class="btn-secondary" special="cancel"/>
+                        </footer>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--        wizard action-->
+
+        <record id="work_order_done_wizard_action" model="ir.actions.act_window">
+            <field name="name">Done the process</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">work.order.done.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="work_order_done_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

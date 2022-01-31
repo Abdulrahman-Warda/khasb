@@ -1,0 +1,159 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* design_request_khasp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-20 13:09+0000\n"
+"PO-Revision-Date: 2021-04-20 13:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: design_request_khasp
+#: selection:design.request,safety_requirements:0
+msgid " Is there specific safety standard"
+msgstr ""
+
+#. module: design_request_khasp
+#: model:ir.model.fields,field_description:design_request_khasp.field_design_request__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: design_request_khasp
+#: model:ir.model.fields,field_description:design_request_khasp.field_design_request__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: design_request_khasp
+#: model:ir.actions.act_window,name:design_request_khasp.action_design_request
+#: model:ir.ui.menu,name:design_request_khasp.sale_order_menu_khasp
+msgid "Design"
+msgstr "تصميم"
+
+#. module: design_request_khasp
+#: model_terms:ir.ui.view,arch_db:design_request_khasp.design_form
+#: model_terms:ir.ui.view,arch_db:design_request_khasp.design_tree
+msgid "Design request"
+msgstr "طلب تصميم"
+
+#. module: design_request_khasp
+#: model:ir.model.fields,field_description:design_request_khasp.field_design_request__design_specifications
+msgid "Design specifications"
+msgstr "وصف التصميم"
+
+#. module: design_request_khasp
+#: selection:design.request,type_of_service:0
+msgid "Dimension's matching(CMM)"
+msgstr "مطابقة مقاسات"
+
+#. module: design_request_khasp
+#: model:ir.model.fields,field_description:design_request_khasp.field_design_request__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: design_request_khasp
+#: selection:design.request,material_treatments:0
+msgid "Heat treatment"
+msgstr "معالجة حرارية"
+
+#. module: design_request_khasp
+#: model:ir.model.fields,field_description:design_request_khasp.field_design_request__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: design_request_khasp
+#: selection:design.request,type_of_service:0
+msgid "Lab material analysis"
+msgstr "تحليل مواد"
+
+#. module: design_request_khasp
+#: model:ir.model.fields,field_description:design_request_khasp.field_design_request____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: design_request_khasp
+#: model:ir.model.fields,field_description:design_request_khasp.field_design_request__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: design_request_khasp
+#: model:ir.model.fields,field_description:design_request_khasp.field_design_request__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: design_request_khasp
+#: model:ir.model.fields,field_description:design_request_khasp.field_design_request__material_treatments
+msgid "Material treatments"
+msgstr "معالجة المواد"
+
+#. module: design_request_khasp
+#: selection:design.request,type_of_service:0
+msgid "New design"
+msgstr "تصميم جديد"
+
+#. module: design_request_khasp
+#: selection:design.request,safety_requirements:0
+msgid "No requirements"
+msgstr "لا يوجد"
+
+#. module: design_request_khasp
+#: selection:design.request,safety_requirements:0
+msgid "Other"
+msgstr "أخرى"
+
+#. module: design_request_khasp
+#: selection:design.request,material_treatments:0
+msgid "Paint"
+msgstr "بوية"
+
+#. module: design_request_khasp
+#: model:ir.model.fields,field_description:design_request_khasp.field_design_request__quantity
+msgid "Quantity of parts: (if there is more then 1 please specify)"
+msgstr "كمية الأجزاء"
+
+#. module: design_request_khasp
+#: selection:design.request,type_of_service:0
+msgid "Reverse engineer"
+msgstr "هندسة عكسية"
+
+#. module: design_request_khasp
+#: model:ir.model.fields,field_description:design_request_khasp.field_design_request__safety_requirements
+msgid "Safety requirements"
+msgstr "متطلبات السلامة"
+
+#. module: design_request_khasp
+#: selection:design.request,material_treatments:0
+msgid "Sand blasting"
+msgstr "سنفرة بالرمل "
+
+#. module: design_request_khasp
+#: model:ir.model.fields,field_description:design_request_khasp.field_design_request__tolerance_of_design
+msgid "Tolerance of design"
+msgstr "نسبة الدقة"
+
+#. module: design_request_khasp
+#: model:ir.model.fields,field_description:design_request_khasp.field_design_request__type_of_material
+msgid "Type of material ( if available)"
+msgstr "نوع المادة"
+
+#. module: design_request_khasp
+#: model:ir.model.fields,field_description:design_request_khasp.field_design_request__type_of_service
+msgid "Type of service"
+msgstr "نوع الخدمة"
+
+#. module: design_request_khasp
+#: model:ir.model.fields,field_description:design_request_khasp.field_design_request__usage_of_design
+msgid "Usage of design:"
+msgstr "إستخدامات التصميم"
+
+#. module: design_request_khasp
+#: model:ir.model,name:design_request_khasp.model_design_request
+msgid "design.request"
+msgstr ""
+

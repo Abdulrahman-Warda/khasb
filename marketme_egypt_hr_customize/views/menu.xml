@@ -1,0 +1,28 @@
+<data>
+    <menuitem id="allowances_and_deductions_menu"
+              name="Allowances And Deductions" />
+
+    <menuitem id="hr_award_menu"
+              name="Hr Award"
+              action="hr_award_action"
+              parent="allowances_and_deductions_menu"
+              sequence="1"/>
+
+    <menuitem id="hr_penalty_menu"
+              name="Hr Penalty"
+              action="hr_penalty_action"
+              parent="allowances_and_deductions_menu"
+              sequence="10"/>
+
+    <menuitem id="hr_transportation_menu"
+              name="Hr Transportation"
+              action="hr_transportation_action"
+              parent="allowances_and_deductions_menu"
+              sequence="11"/>
+
+    <menuitem id="travel_allowances_menu"
+              name="Travel Allowances"
+              action="travel_allowances_action"
+              parent="allowances_and_deductions_menu"
+              sequence="20"/>
+</data>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="assign_employees_form" model="ir.ui.view">
+            <field name="name">Assign Employees</field>
+            <field name="model">project.assign.employees</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="selected_employe_ids" widget="many2many_tags" options="{'no_create': True}" invisible="1"/>
+                            <field name="employe_ids" widget="many2many_tags" options="{'no_create': True}"
+                            />
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="assign" type='object' string="Assign" class="oe_highlight"/>
+                        <button special="cancel" string="Cancel"/>
+
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+
+        <act_window id="assign_employees_action"
+                    name="Assign Employees"
+                    res_model="project.assign.employees"
+                    view_mode="form"
+                    target="new"
+                    key2="client_action_multi"/>
+
+
+
+
+
+
+
+    </data>
+</odoo>

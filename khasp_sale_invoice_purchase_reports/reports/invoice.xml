@@ -1,0 +1,177 @@
+<odoo>
+    <data>
+        <template id="report_Governmental_private_invoice">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-if="o.partner_id.customer_type == 'governmental'">
+                        <t t-call="khasp_sale_invoice_purchase_reports.report_governmental_invoice"/>
+                    </t>
+                    <!--                    <t t-if="o.partner_id.customer_type == 'private'">-->
+                    <!--                        <t t-call="khasp_sale_invoice_purchase_reports.report_private_invoice"/>-->
+                    <!--                    </t>-->
+                </t>
+            </t>
+        </template>
+        <template id="report_governmental_invoice">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <link rel="stylesheet"
+                          href="https://fonts.googleapis.com/css?family=Droid Arabic Kufi"/>
+                    <style>
+                        body {
+                        font-family: 'Droid Arabic Kufi', serif;
+                        font-size: 15px;
+                        }
+                    </style>
+                    <t t-call="web.external_layout">
+                        <div class="page" dir="RTL" width="100%">
+                            <table style="width:100%">
+                                <tr>
+                                    <td width="40%" dir="RTL" align="right">
+                                        <p>الرقم :
+                                            <span t-field="o.sequence_number_next_prefix"/>
+                                            <span t-field="o.sequence_number_next"/>
+                                        </p>
+
+                                        <p>التاريخ :
+                                            <span t-field="o.date_invoice"/>
+                                        </p>
+
+                                        <p>الرقم الضريبى:
+
+                                        </p>
+                                    </td>
+                                    <td width="30%">
+                                    </td>
+                                    <td width="30%" dir="RTL" align="right">
+                                    </td>
+                                </tr>
+                            </table>
+                            <div align="center">
+                                <h3>
+                                    فــــاتـــورة
+                                </h3>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div align="right">
+                                <h4>
+                                    السادة /
+                                    <span style="padding-left:100px" t-field="o.partner_id.name"/>
+                                    المحترمين
+
+                                </h4>
+                                <br></br>
+                                <p>
+                                    السلام عليكم ورحمة الله وبركاته
+                                    <span style="padding-left:100px"/>
+                                    وبعد؛؛؛
+                                </p>
+                                <br></br>
+                                <p>
+                                    إشارة الى العقد المبرم رقم(
+                                    <span style="padding-left:30px; padding-right:30px" t-field="o.origin"/>
+                                    ) وتاريخ (
+                                    <span t-field="o.sale_id.confirmation_date"/>
+                                    )
+                                    والخاصة بتصنيع
+                                    <span t-foreach="o.invoice_line_ids" t-as="l" t-field="l.product_id.name"/>,
+                                    واشارة الى الخطاب رقم(
+                                    <span t-field="o.letter_number"/>
+                                    )
+                                    وتاريخ
+                                    <span t-field="o.letter_date"/>
+                                    والخاص
+                                    <span t-field="o.letter_details"/>
+                                    وفيما يلى تفاصيل الفاتورة الخاصة بهذا العقد ومرفق صورة من سند التسليم
+                                </p>
+
+                            </div>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr dir="RTL" align="right">
+                                    <th>الوصـف</th>
+                                    <th>رقم الخزن</th>
+                                    <th>الكميات</th>
+                                    <th>سعر القطعة الواحدة مع الضريبه</th>
+                                    <th>السعر الاجمالى مع الضريبه</th>
+                                </tr>
+                                <tr t-foreach="o.invoice_line_ids" t-as="l" dir="RTL" align="right">
+                                    <td>
+                                        <span t-field="l.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.product_id.prod_number"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.quantity"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.unit_price_with_tax"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.total_price_with_tax"/>
+                                    </td>
+                                </tr>
+                                <tr dir="RTL" align="right">
+                                    <td colspan="4">الاجمالى قبل الضريبة :</td>
+                                    <td>
+                                        <span t-field="o.amount_untaxed"/>
+                                    </td>
+                                </tr>
+                                <tr dir="RTL" align="right">
+                                    <td colspan="4">الضريبة المضافة:</td>
+                                    <td>
+                                        <span t-field="o.amount_tax"/>
+                                    </td>
+                                </tr>
+                                <tr dir="RTL" align="right">
+                                    <td colspan="4">الاجمالى مع الضريبة :</td>
+                                    <td>
+                                        <span t-field="o.amount_total"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div align="center">
+                                <h4>
+                                    عليه نرجوا منكم التكرم بصرف المستحقات المالية الخاصة
+                                    بهذا العقد شاكرين ومقدرين لكم تعاونكم.
+
+                                </h4>
+                            </div>
+                            <div align="center">
+                                <h4>
+                                    والسلام عليكم ورحمة الله وبركاته.
+
+                                </h4>
+                            </div>
+                            <br></br>
+                            <table style="width:100%">
+                                <tr>
+                                    <td width="70%" dir="RTL" align="right">
+
+                                    </td>
+                                    <td width="30%" dir="RTL" align="right">
+                                        <p>
+                                            <span dir="RTL" align="right" t-field="o.signature.name"/>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <span dir="RTL" align="right" t-field="o.signature.job_title"/>
+                                            <br/>
+                                        </p>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+
+        </template>
+
+
+    </data>
+</odoo>

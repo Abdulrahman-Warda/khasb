@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <report id="action_employee_insurance_pdf"
+            model="employee.insurance.report"
+            string="Print Employee Insurance Report"
+            name="hr_employee_contract.employee_insurance_reportt"
+            file="hr_employee_contract.employee_insurance_reportt"
+            report_type="qweb-pdf"
+            menu="False"
+    />
+    <data>
+        <template id="employee_insurance_reportt">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <h3 class="text-center">Employee Insurance Information</h3>
+                            <br></br>
+                            <br></br>
+                            <table class="table table-bordered table-striped" name="crossovered_budget_line_table"
+                                   style="width:100%;direction:ltr;">
+                                <thead>
+                                    <tr style="style; font-size: 14px !important;">
+                                        <th class="text-center">Employee</th>
+                                        <th class="text-center">Department</th>
+                                        <th class="text-center">Job Position</th>
+                                        <th>Ins. Date</th>
+                                        <th>Ins. Salary</th>
+                                        <th>Emp. Percentage</th>
+                                        <th>Comp. Percentage</th>
+                                        <th>Emp. Amount</th>
+                                        <th>Comp. Amount</th>
+                                        <th>Medical Date</th>
+                                        <th>Medical Ins. Emp.</th>
+                                        <th>Medical Ins. Family</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="all_employee_insurance" t-as="insurance">
+                                        <tr>
+                                            <td class="text-center">
+                                                <span t-esc="insurance['employee_name']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="insurance['department']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="insurance['job_position']"/>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <span t-esc="insurance['insurance_date']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="insurance['insurance_salary']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="insurance['employee_percentage']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="insurance['company_percentage']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="insurance['employee_amount']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="insurance['company_amount']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="insurance['medical_date']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="insurance['medical_insurance_employee']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="insurance['medical_insurance_family']"/>
+                                            </td>
+
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

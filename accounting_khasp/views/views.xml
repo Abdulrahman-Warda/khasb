@@ -1,0 +1,17 @@
+<odoo>
+  <data>
+    <record id="view_account_assets_inherit" model="ir.ui.view">
+          <field name="name">view.account.assets.inherit</field>
+          <field name="model">account.asset.asset</field>
+          <field name="inherit_id" ref="om_account_asset.view_account_asset_asset_form"/>
+          <field name="arch" type="xml">
+              <field name="account_analytic_id" position="after">
+                  <field name="employee_name"/>
+              </field>
+              <field name="analytic_tag_ids" position="after">
+                  <field name="department_name"/>
+              </field>
+          </field>
+    </record>
+  </data>
+</odoo>

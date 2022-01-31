@@ -1,0 +1,67 @@
+<data>
+    <menuitem id="hr_saudi_menu" 
+              name="Hr Saudi"
+    />
+    
+    <menuitem id="personal_requests_menu"
+              name="Personal Requests"
+              parent="hr_saudi_menu"
+              sequence="10"
+    />
+
+    <menuitem id="hr_overtime_menu"
+              name="Overtime"
+              action="hr_overtime_action"
+              parent="hr_saudi_menu"
+    />
+
+    <menuitem id="hr_permission_menu"
+              name="Hr Permission"
+              action="hr_permission_action"
+              parent="hr_saudi_menu"
+    />
+
+    <menuitem id="hr_resignation_menu"
+              name="Hr resignation"
+              action="hr_resignation_action"
+              parent="hr_saudi_menu"
+    />
+
+    <menuitem id="hr_ticket_menu"
+              name="Hr ticket"
+              action="hr_ticket_action"
+              parent="hr_saudi_menu"
+    />
+
+    <menuitem id="hr_transfer_menu"
+              name="Hr transfer"
+              action="hr_transfer_action"
+              parent="hr_saudi_menu"
+    />
+
+    <menuitem id="travel_allowances_menu"
+              name="Business Trip"
+              action="travel_allowances_action"
+              sequence="20"
+              parent="hr_saudi_menu"
+    />
+
+    <menuitem id="administrative_requests_menu"
+              name="Administrative Requests"
+              parent="hr_saudi_menu"
+              sequence="20"
+    />
+
+    <menuitem id="hr_loans_menu"
+              name="Hr Loans"
+              parent="hr_saudi_menu"
+              sequence="30"
+    />
+
+    <menuitem id="hr_reports_menu"
+              name="Hr Reports"
+              parent="hr_saudi_menu"
+              sequence="40"
+    />
+
+</data>

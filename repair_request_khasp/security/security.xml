@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record model="ir.module.category" id="module_category_manufacturing_request">
+            <field name="name">Manufacturing Repair</field>
+            <field name="sequence">50</field>
+        </record>
+
+        <record id="group_user_request" model="res.groups">
+            <field name="name">User</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="module_category_manufacturing_request"/>
+        </record>
+
+        <record id="group_manager_request" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="implied_ids" eval="[(4, ref('group_user_request'))]"/>
+            <field name="category_id" ref="module_category_manufacturing_request"/>
+        </record>
+
+        <record id="group_supervisor_request" model="res.groups">
+            <field name="name">Supervisor</field>
+            <field name="category_id" ref="module_category_manufacturing_request"/>
+        </record>
+
+    </data>
+</odoo>

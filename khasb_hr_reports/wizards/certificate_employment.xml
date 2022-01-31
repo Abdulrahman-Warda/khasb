@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="certificate_report_view" model="ir.ui.view">
+        <field name="name">Employee Certificate Report</field>
+        <field name="model">certificate.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <group col="4">
+
+                    <field name="employee_id" options="{'no_quick_create':True,'no_create_edit':True}" readonly="0"
+                    attrs="{'readonly':[('is_manager','=',False)]}"
+                    />
+                    <field name="is_manager" invisible="1"/>
+                    <field name="report_language"/>
+                    <field name="report_salary"/>
+                </group>
+                <footer>
+                    <button name="preview_report" string="Preview" type="object" default_focus="1"
+                            class="oe_highlight" invisible="0"/>
+                    or
+
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_certificate_wizard" model="ir.actions.act_window">
+        <field name="name">تعريف راتب</field>
+        <field name="res_model">certificate.report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="certificate_report_view"/>
+        <field name="target">new</field>
+    </record>
+   <menuitem id="menu_consular_cert_categ" name="تعريف راتب وسفارة"
+   parent="hr.menu_hr_root"
+   />
+
+
+
+ <menuitem id="certificate_report_menu" name="تعريف راتب" action="action_certificate_wizard"
+              parent="menu_consular_cert_categ"
+              sequence="2"/>
+
+
+
+
+
+
+
+
+</odoo>

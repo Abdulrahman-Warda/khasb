@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+
+        <!--        wizard Form-->
+
+        <record id="contract_trial_wizard" model="ir.ui.view">
+            <field name="name">contract trial wizard</field>
+            <field name="model">contract.trial.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Contract Trial">
+                    <group>
+
+                        <field name="type"/>
+<!--                        <field name="employee_id" attrs="{'invisible':[('type','!=','employee')]}"/>-->
+                        <field name="department_id" attrs="{'invisible':[('type','!=','department')]}"/>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Print" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <!--        wizard action-->
+
+        <record id="contract_trial_wizard_action" model="ir.actions.act_window">
+            <field name="name">Contract Trial</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contract.trial.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="contract_trial_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+        <!--        wizard menu-->
+        <menuitem id="contract_trial_wizard_menu" name="Contract Trial"
+                  parent="hr.menu_hr_reporting_timesheet" action="khasp_hr_wizard_reports.contract_trial_wizard_action"
+                  sequence="6"/>
+
+
+    </data>
+</odoo>

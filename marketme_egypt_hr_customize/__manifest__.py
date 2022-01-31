@@ -1,0 +1,43 @@
+
+{
+    'name': 'Egypt HR Customize',
+    'summary': 'Egypt HR Customize',
+    'author': "MarketMe , Mahmoud Elfeky",
+    'company': 'MarketMe',
+    'website': "https://www.linkedin.com/company/marketme-hh/",
+    'version': '12.0.0.1.0',
+    'category': 'HR',
+    'license': 'AGPL-3',
+    'sequence': 1,
+    'depends': [
+        'base',
+        'mail',
+        'hr',
+        'hr_contract',
+        'hr_payroll',
+        'hr_holidays',
+    ],
+    'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        # 'report/',
+        # 'wizard/',
+        'views/hr_contract.xml',
+        'views/hr_award.xml',
+        'views/hr_penalty.xml',
+        'views/transportation_allowance.xml',
+        'views/travel_allowances.xml',
+        'views/res_config_settings.xml',
+        'views/menu.xml',
+        'data/data.xml',
+        'data/ir_cron.xml',
+        'data/salary_rules.xml',
+    ],
+    'demo': [
+        # 'demo/',
+    ],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}
+

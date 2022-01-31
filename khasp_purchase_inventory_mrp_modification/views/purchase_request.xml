@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+<!--        <record id="view_sprogroup_purchase_request_form_done_button" model="ir.ui.view">-->
+<!--            <field name="name">sprogroup.purchase.request.button.done</field>-->
+<!--            <field name="model">sprogroup.purchase.request</field>-->
+<!--            <field name="inherit_id" ref="sprogroup_purchase_request_khasb.view_sprogroup_purchase_request_form"/>-->
+<!--            <field name="arch" type="xml">-->
+
+<!--                <xpath expr="//button[@name='button_rejected']" position="after">-->
+<!--                    <button name="get_done" type="object" string="Done" class="oe_highlight" states="to_approve"/>-->
+<!--                </xpath>-->
+
+<!--            </field>-->
+<!--        </record>-->
+    </data>
+</odoo>

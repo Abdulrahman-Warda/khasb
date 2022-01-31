@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="termination_request_form_modification" model="ir.ui.view">
+            <field name="name">hr termination modification</field>
+            <field name="model">hr.termination</field>
+            <field name="inherit_id" ref="termination_request.termination_request_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//header//field[@name='state']" position="replace">
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,direct_manger,hr_manger,confirm"/>
+                </xpath>
+                <xpath expr="//header//button[@name='reject']" position="replace">
+                    <button name="action_cancel" string="Cancel" type="object" class="oe_highlight"
+                            attrs="{'invisible':[('state','=','cancel')]}"/>
+                </xpath>
+                <xpath expr="//header//button[@name='hr_officer_approval']" position="replace">
+                    <button name="action_employee" string="Confirm" type="object" class="oe_highlight" states="draft"
+                            groups="base.group_user"/>
+                    <button name="action_direct_manger" string="Confirm" type="object" class="oe_highlight"
+                            states="direct_manger"/>
+                    <button name="action_hr_manger" string="Confirm" type="object" class="oe_highlight"
+                            states="hr_manger" groups="hr.group_hr_manager"/>
+                    <button name="set_draft" string="Set To Draft" type="object" class="oe_highlight"
+                            states="cancel"/>
+
+
+                </xpath>
+                <xpath expr="//header//button[@name='financial_manager_approval']" position="replace">
+                </xpath>
+                <xpath expr="//header//button[@name='hr_manager_approval']" position="replace">
+                </xpath>
+                <xpath expr="//header//button[@name='general_manager_approval']" position="replace">
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

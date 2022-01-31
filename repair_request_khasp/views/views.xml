@@ -1,0 +1,83 @@
+<odoo>
+  <data>
+
+        <!--tree view of repair request model-->
+        <record id="repair_request_tree" model="ir.ui.view">
+            <field name="name">repair request tree</field>
+            <field name="model">repair.request</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_name"/>
+                    <field name="employee_number"/>
+                    <field name="department_name"/>
+                    <field name="supervisor_name"/>
+                    <field name="machine_name"/>
+                    <field name="machine_number"/>
+                    <field name="shift"/>
+                    <field name="type_of_maintenance"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- form view of repair request model-->
+        <record id="repair_request_form" model="ir.ui.view">
+            <field name="name">repair request form</field>
+            <field name="model">repair.request</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_approval" string="Approve" type="object" states="draft"
+                                class="btn-primary" />
+                        <button name="action_done" string="Done" type="object" states="request to approval"
+                                class="btn-primary" groups="repair_request_khasp.group_supervisor_request"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,request to approval,done"/>
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="employee_name" style="margin-bottom:10px"/>
+                                <field name="employee_number" style="margin-bottom:10px"/>
+                                <field name="department_name" style="margin-bottom:10px"/>
+                                <field name="supervisor_name" style="margin-bottom:10px"/>
+                                <field name="machine_name" style="margin-bottom:10px"/>
+                                <field name="machine_number" style="margin-bottom:10px"/>
+                                <field name="request_date" style="margin-bottom:10px"/>
+                                <field name="request_time" style="margin-bottom:10px"/>
+                                <field name="shift" style="margin-bottom:10px"/>
+                            </group>
+                            <group>
+                                <field name="start_Date" style="margin-bottom:10px"/>
+                                <field name="end_date" style="margin-bottom:10px"/>
+                                <field name="type_of_maintenance" style="margin-bottom:10px"/>
+                                <field name="employee_signature" style="margin-bottom:10px"/>
+                                <field name="report_date"/>
+                            </group>
+                        </group>
+                        <group>
+                            <div />
+                            <field name="description_of_maintenance" style="margin-bottom:10px"/>
+                            <field name="repair_need"/>
+                            <field name="urgent_repair"/>
+                            <field name="safety_concern"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+            <!-- repair request action -->
+        <record id="action_repair_request" model="ir.actions.act_window">
+            <field name="name">Repair Request</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">repair.request</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+            <!-- repair request menu -->
+        <menuitem id="repair_request_manufacturing_khasp" name="Repair Request" parent="mrp.menu_mrp_root" action="action_repair_request" sequence="" />
+
+  </data>
+</odoo>

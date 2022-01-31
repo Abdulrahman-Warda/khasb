@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <record id="quality_control_inventory_wizard" model="ir.ui.view">
+            <field name="name">quality.control.inventory.wizard</field>
+            <field name="model">quality.control.inventory.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Quality Control">
+                    <group>
+
+                        <field name="qc_state" widget="radio" options="{'horizontal': true}"/>
+
+                    </group>
+                    <notebook>
+                        <page string="Lines">
+                            <field name="lines">
+                                <tree editable="bottom" create="0" delete="0">
+                                    <field name="product_id" readonly="1"/>
+                                    <field name="qty"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="quality_control_pass" string="Confirm" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <!--        wizard action-->
+
+        <record id="quality_control_check" model="ir.actions.act_window">
+            <field name="name">Quality Control</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">quality.control.inventory.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="quality_control_inventory_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

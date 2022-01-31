@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <record id="tool_expiration_mail" model="mail.template">
+            <field name="name">Tool Change</field>
+            <field name="model_id" ref="khasp_purchase_inventory_mrp_modification.model_workorder_tool"/>
+            <field name="email_from">${object.user_id.email_formatted |safe}</field>
+            <field name="email_to">${object.factory_manger.login}</field>
+            <field name="subject"> About Changing Tool (Ref ${object.product_id.name})</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear ${object.factory_manger.name}
+                        <br/>
+                        <br/>
+                        we need to inform you that the tool ${object.product_id.name} hase been used 50 time
+                        <br/>
+                        <br/>
+                        thank you sir.
+                    </p>
+                </div>
+            </field>
+
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,44 @@
+<data>
+    <record id="hr_rule_award" model="hr.salary.rule">
+        <field name="name">Award</field>
+        <field name="sequence" eval="99"/>
+        <field name="code">award</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result=payslip.award_amount</field>
+    </record>
+
+    <record id="hr_rule_travel" model="hr.salary.rule">
+        <field name="name">Travel</field>
+        <field name="sequence" eval="99"/>
+        <field name="code">travel</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result=payslip.travel_amount</field>
+    </record>
+
+    <record id="hr_rule_penalty" model="hr.salary.rule">
+        <field name="name">Penalty</field>
+        <field name="sequence" eval="166"/>
+        <field name="code">penalty</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result=-(payslip.penalty_amount)</field>
+    </record>
+
+
+    <record id="hr_rule_transportation" model="hr.salary.rule">
+        <field name="name">Transportation</field>
+        <field name="sequence" eval="255"/>
+        <field name="code">travel</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result=payslip.transportation_amount</field>
+    </record>
+
+
+</data>

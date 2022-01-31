@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+      <record model="ir.cron" id="accrual_allocation_cron">
+          <field name="name">Accrual Allocation</field>
+          <field name="model_id" ref="hr_holidays.model_hr_leave_type"/>
+          <field name="state">code</field>
+          <field name="code">model._cron_accrual_allocation()</field>
+          <field name="interval_number">1</field>
+          <field name="interval_type">months</field>
+          <field name="numbercall">-1</field>
+          <field name="doall" eval="False"/>
+      </record>
+    </data>
+</odoo>

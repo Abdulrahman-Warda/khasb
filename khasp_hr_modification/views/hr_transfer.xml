@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="hr_transfer_form_modification" model="ir.ui.view">
+            <field name="name">hr transfer modification</field>
+            <field name="model">hr.transfer</field>
+            <field name="inherit_id" ref="marketme_saudi_hr_customize.hr_transfer_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//header//field[@name='state']" position="replace">
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,direct_manger,department_manger,general_manger,hr_manger,confirm"/>
+                </xpath>
+                <xpath expr="//header//button[@name='action_cancel']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('state','=','cancel')]}</attribute>
+
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="after">
+                    <button name="action_employee" string="Confirm" type="object" class="oe_highlight" states="draft"
+                            groups="base.group_user"/>
+                    <button name="action_direct_manger" string="Confirm" type="object" class="oe_highlight"
+                            states="direct_manger"/>
+                    <button name="action_department_manger" string="Confirm" type="object" class="oe_highlight"
+                            states="department_manger"/>
+                    <button name="action_general_manger" string="Confirm" type="object" class="oe_highlight"
+                            states="general_manger" groups="termination_request.group_general_manager"/>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="attributes">
+                    <attribute name="states">hr_manger</attribute>
+                    <attribute name="groups">hr.group_hr_manager</attribute>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

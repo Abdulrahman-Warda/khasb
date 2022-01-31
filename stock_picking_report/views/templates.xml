@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_deliveryslip">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page" dir="RTL">
+                        <html>
+                            <head>
+                                <link rel="stylesheet"
+                                      href="https://fonts.googleapis.com/css?family=Droid Arabic Kufi"/>
+                                <style>
+                                    body {
+                                    font-family: 'Droid Arabic Kufi', serif;
+                                    font-size: 20px;
+                                    }
+                                </style>
+                            </head>
+
+                            <body>
+                                <div style="width:100%;">
+                                    <div dir="RTL" align="right" style="float:right;width:33%;">
+                                        <p>الرقم :
+                                            <span t-field="o.name"/>
+                                        </p>
+
+                                        <p>التاريخ :
+                                            <span t-field="o.scheduled_date"/>
+                                        </p>
+                                        <p>العميل :
+                                            <span t-field="o.partner_id.name"/>
+                                        </p>
+
+
+                                    </div>
+                                    <br></br>
+                                    <br></br>
+                                    <div style="float:left;width:25%; padding-left:60px">
+                                        <span t-field="o.company_id.logo" t-options='{"widget": "image"}'/>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <div class="text-center" align="center">
+                                    <h3>
+                                        نموذج تسليم
+
+                                    </h3>
+
+                                </div>
+
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <table cellspacing="0" border="0" width="100%">
+                                    <!--                                        <tr>-->
+                                    <!--                                            <td height="17" align="left" valign="middle"></td>-->
+
+                                    <!--                                            <td align="left" valign="middle"></td>-->
+
+                                    <!--                                            <td align="left" valign="middle"></td>-->
+
+                                    <!--                                            <td align="left" valign="middle"></td>-->
+                                    <!--                                            <td align="left" valign="middle"></td>-->
+
+                                    <!--                                        </tr>-->
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="center" valign="middle" bgcolor="#CCCCCC">
+                                            <b>م</b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="center" valign="middle" bgcolor="#CCCCCC">
+                                            <b>إسم المنتج</b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="center" valign="middle" bgcolor="#CCCCCC">
+                                            <b>رقم المنتج</b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="center" valign="middle" bgcolor="#CCCCCC">
+                                            <b>الكمية</b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="center" valign="middle" bgcolor="#CCCCCC">
+                                            <b>ملاحظات</b>
+                                        </td>
+                                    </tr>
+
+                                    <t t-foreach="o['move_ids_without_package']" t-as="prod">
+                                        <tr>
+                                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                                align="center" valign="middle">
+                                                <t t-esc="1"/>
+                                            </td>
+                                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                                align="center" valign="middle">
+                                                <t t-esc="prod.product_id.name"/>
+                                            </td>
+                                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                                align="center" valign="middle">
+                                                <t t-esc="prod.product_id.prod_number"/>
+                                            </td>
+
+                                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                                align="center" valign="middle">
+                                                <t t-esc="prod.product_uom_qty"/>
+                                            </td>
+                                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                                align="center" valign="middle">
+                                                <t t-esc="prod.note"/>
+                                            </td>
+
+                                        </tr>
+                                    </t>
+                                </table>
+
+                                <br/>
+                                <br/>
+                                <br/>
+
+                                <table cellspacing="0" border="0" width="100%" class="table">
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="right" valign="middle" bgcolor="#CCCCCC">
+                                            <b>إسم المستلم:</b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="right" valign="middle" bgcolor="#CCCCCC">
+                                            <b>إسم المستلم:</b>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="right" valign="middle" bgcolor="#CCCCCC">
+                                            <b>التاريخ:</b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="right" valign="middle" bgcolor="#CCCCCC">
+                                            <b>التاريخ:</b>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="right" valign="middle" bgcolor="#CCCCCC">
+                                            <b>التوقيع:</b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="right" valign="middle" bgcolor="#CCCCCC">
+                                            <b>التوقيع:</b>
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                            </body>
+
+                        </html>
+
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+    <template id="report_deliveryslip_details">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page" dir="RTL">
+                        <html>
+                            <head>
+                                <link rel="stylesheet"
+                                      href="https://fonts.googleapis.com/css?family=Droid Arabic Kufi"/>
+                                <style>
+                                    body {
+                                    font-family: 'Droid Arabic Kufi', serif;
+                                    font-size: 15px;
+                                    }
+                                </style>
+                            </head>
+
+                            <body>
+                                <div style="width:100%;">
+                                    <div dir="RTL" align="right" style="float:right;width:33%;">
+                                        <p>الرقم :
+                                            <span t-field="o.name"/>
+                                        </p>
+
+                                        <!--                                        <p>التاريخ :-->
+                                        <!--                                            <span t-field="o.scheduled_date"/>-->
+                                        <!--                                        </p>-->
+                                        <p>العميل :
+                                            <span t-field="o.partner_id.name"/>
+                                        </p>
+
+
+                                    </div>
+                                    <br></br>
+                                    <div style="float:left;width:25%; padding-left:60px">
+                                        <span t-field="o.company_id.logo" t-options='{"widget": "image"}'/>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <div class="text-center" align="center">
+                                    <h3>
+                                        نموذج تسليم مفصل
+
+                                    </h3>
+
+                                </div>
+
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <table cellspacing="0" border="0" width="100%">
+                                    <!--                                        <tr>-->
+                                    <!--                                            <td height="17" align="left" valign="middle"></td>-->
+
+                                    <!--                                            <td align="left" valign="middle"></td>-->
+
+                                    <!--                                            <td align="left" valign="middle"></td>-->
+
+                                    <!--                                            <td align="left" valign="middle"></td>-->
+                                    <!--                                            <td align="left" valign="middle"></td>-->
+
+                                    <!--                                        </tr>-->
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="center" valign="middle" bgcolor="#CCCCCC">
+                                            <b>م</b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="center" valign="middle" bgcolor="#CCCCCC">
+                                            <b>إسم المنتج</b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="center" valign="middle" bgcolor="#CCCCCC">
+                                            <b>الرقم التسلسلى</b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="center" valign="middle" bgcolor="#CCCCCC">
+                                            <b>الكمية</b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="center" valign="middle" bgcolor="#CCCCCC">
+                                            <b>ملاحظات</b>
+                                        </td>
+                                    </tr>
+
+                                    <t t-foreach="o['move_ids_without_package']" t-as="prod">
+                                        <t t-foreach="prod['move_line_ids']" t-as="lot">
+                                            <tr>
+                                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                                    align="center" valign="middle">
+                                                    <t t-esc="1"/>
+                                                </td>
+                                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                                    align="center" valign="middle">
+                                                    <t t-esc="prod.product_id.name"/>
+                                                </td>
+                                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                                    align="center" valign="middle">
+                                                    <t t-esc="lot.lot_id.name"/>
+                                                </td>
+
+                                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                                    align="center" valign="middle">
+                                                    <t t-esc="lot.qty_done"/>
+                                                </td>
+                                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                                    align="center" valign="middle">
+                                                    <t t-esc="prod.note"/>
+                                                </td>
+
+                                            </tr>
+                                        </t>
+                                    </t>
+
+
+                                </table>
+                                <br/>
+                                <br/>
+                                <br/>
+
+                                <table cellspacing="0" border="0" width="100%" class="table">
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="right" valign="middle" bgcolor="#CCCCCC">
+                                            <b>إسم المستلم:</b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="right" valign="middle" bgcolor="#CCCCCC">
+                                            <b>إسم المستلم:</b>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="right" valign="middle" bgcolor="#CCCCCC">
+                                            <b>التاريخ:</b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="right" valign="middle" bgcolor="#CCCCCC">
+                                            <b>التاريخ:</b>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="right" valign="middle" bgcolor="#CCCCCC">
+                                            <b>التوقيع:</b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="right" valign="middle" bgcolor="#CCCCCC">
+                                            <b>التوقيع:</b>
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                            </body>
+
+                        </html>
+
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

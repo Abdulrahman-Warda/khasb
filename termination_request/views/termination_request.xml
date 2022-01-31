@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="termination_request_form" model="ir.ui.view">
+            <field name="name">hr.termination.form</field>
+            <field name="model">hr.termination</field>
+            <field name="arch" type="xml">
+                <form string="Termination Request">
+                    <header>
+                        <button name="hr_officer_approval" states="hr_officer" string="Submit for Approve"
+                                type="object"
+                                class="oe_highlight"/>
+                        <button name="hr_manager_approval" states="hr_manager" string="Approve"
+                                type="object"
+                                class="oe_highlight"/>
+                        <button name="financial_manager_approval" states="financial_manager"
+                                string="Approve"
+                                type="object"
+                                groups="account.group_account_manager"
+                                class="oe_highlight"/>
+                        <button name="general_manager_approval" states="general_manager" string="Approve" type="object"
+                                class="oe_highlight" groups="termination_request.group_general_manager"/>
+                        <button name="hr_manager_approval" states="hr_manager" string="Approve"
+                                type="object"
+                                class="oe_highlight"/>
+                        <button name="reject" string="Reject" type="object" states="rejected"/>
+
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="employee_id"/>
+                                <field name="department_id"/>
+                                <field name="company_id"/>
+                            </group>
+                            <group>
+                                <field name="contract_id"/>
+                                <field name="joining_date"/>
+                                <field name="notes"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="termination_request_tree" model="ir.ui.view">
+            <field name="name">hr.termination.tree</field>
+            <field name="model">hr.termination</field>
+            <field name="arch" type="xml">
+                <tree string="Termination Request">
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="company_id"/>
+                    <field name="contract_id"/>
+                    <field name="joining_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="termination_request_action" model="ir.actions.act_window">
+            <field name="name">Termination Request</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.termination</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                    Create your First Termination Request !
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="termination_request_menu" name="Termination Requests"
+                  parent="marketme_saudi_hr_customize.hr_saudi_menu"
+                  action="termination_request_action" sequence="11"/>
+
+    </data>
+</odoo>

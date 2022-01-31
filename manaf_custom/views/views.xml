@@ -1,0 +1,58 @@
+<odoo>
+  <data>
+    <!-- Inherit Form View to Modify it -->
+    <record id="mrp_production_form_view_400" model="ir.ui.view">
+      <field name="name">mrp.production.form</field>
+      <field name="model">mrp.production</field>
+      <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='routing_id']" position="attributes">
+          <attribute name="force_save">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='routing_id']" position="replace">
+          <field name="routing_id" invisible="1"/>
+          <field name="routing_id2"/>
+          <field name="customer"/>
+          <field name="tempreature"/>
+        </xpath>
+
+      </field>
+    </record>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="mrp_workorder_form_view" model="ir.ui.view">
+      <field name="name">mrp.workorder.form</field>
+      <field name="model">mrp.workorder</field>
+      <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='is_produced']" position="after">
+          <field name="routing_id"/>
+          <field name="customer"/>
+          <field name="tempreature"/>
+        </xpath>
+      </field>
+    </record>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_picking_form_505" model="ir.ui.view">
+      <field name="name">stock.picking</field>
+      <field name="model">stock.picking</field>
+      <field name="inherit_id" ref="stock.view_picking_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook" position="inside">
+          <page string="مكونات المنتج">
+            <field name="bom_line_ids" readonly="1">
+              <tree >
+                <field name="product_id"/>
+                <field name="qty"/>
+              </tree>
+            </field>
+          </page>
+        </xpath>
+
+      </field>
+    </record>
+    
+
+  </data>
+</odoo>

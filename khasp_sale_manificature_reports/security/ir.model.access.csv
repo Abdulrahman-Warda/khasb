@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_khasp_sale_manificature_reports_khasp_sale_manificature_reports,khasp_sale_manificature_reports.khasp_sale_manificature_reports,model_khasp_sale_manificature_reports_khasp_sale_manificature_reports,,1,0,0,0

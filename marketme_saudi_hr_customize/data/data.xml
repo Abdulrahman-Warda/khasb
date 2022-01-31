@@ -1,0 +1,13 @@
+<data>
+    <record id="hr_permission_leave" model="hr.leave.type">
+        <field name="name">Permission Leave</field>
+        <field name="color_name">brown</field>
+        <field name="allocation_type">no</field>
+    </record>
+
+    <record id="hr_travel_leave" model="hr.leave.type">
+        <field name="name">Business Trip Leave</field>
+        <field name="color_name">brown</field>
+        <field name="allocation_type">no</field>
+    </record>
+</data>

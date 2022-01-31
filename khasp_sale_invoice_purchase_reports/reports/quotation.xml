@@ -1,0 +1,355 @@
+<odoo>
+    <data>
+        <template id="report_Governmental_private_quotation">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-if="o.partner_id.customer_type == 'governmental'">
+                        <t t-call="khasp_sale_invoice_purchase_reports.report_governmental_quotation"/>
+                    </t>
+                    <t t-if="o.partner_id.customer_type == 'private'">
+                        <t t-call="khasp_sale_invoice_purchase_reports.report_private_quotation"/>
+                    </t>
+                </t>
+            </t>
+
+        </template>
+        <template id="report_private_quotation">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+
+                    <style>
+                        table, th, td {
+                        border: 1px solid black;
+                        border-collapse: collapse;
+                        }
+                    </style>
+
+                    <t t-call="web.internal_layout">
+
+
+                        <div class="page">
+                            <br></br>
+                            <div style="width:100%;">
+                                <div style="float:left;width:33%;">
+                                    <p>
+                                        <strong>Tax ID:</strong>
+                                        <span t-field="o.company_id.vat"/>
+                                    </p>
+                                    <p>
+                                        <strong>CR:</strong>
+                                        <span t-field="o.company_id.company_registry"/>
+                                    </p>
+
+
+                                </div>
+
+
+                                <div style="float:right;width:25%; padding-left:60px">
+                                    <img t-if="o.company_id.state == 'sahood'"
+                                         src="/khasp_sale_invoice_purchase_reports/static/src/img/logo.jpg"
+                                         style="width:200px;height:100px;"/>
+                                    <img t-if="o.company_id.state == 'khasp'"
+                                         src="/khasp_sale_invoice_purchase_reports/static/src/img/khasp_logo.jpg"
+                                         style="width:150px;height:100px;"/>
+
+                                </div>
+                            </div>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <h3 align="center">Quotation</h3>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <th>To:
+                                        <span t-field="o.partner_id.name"/>
+                                    </th>
+                                    <td>Quotation No:
+                                        <span t-field="o.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%" rowspan="2">
+                                        <p>
+                                            dear sir,
+                                            <br/>
+                                            we have the pleasure to submit to you our quotation for design and
+                                            manufacturing
+                                            customized, as follows:
+                                        </p>
+                                    </td>
+                                    <td>Enquiry No:
+                                        <span t-field="o.name"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Date:
+                                        <span t-field="o.confirmation_date"/>
+                                    </td>
+
+                                </tr>
+                            </table>
+                            <br/>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <th>Description</th>
+                                    <th>QTY</th>
+                                    <th>Unit price(SAR)</th>
+                                    <th style="background-color:#D0D0D0">Total price(SAR)</th>
+                                </tr>
+                                <tr t-foreach="o.order_line" t-as="l">
+                                    <td>
+                                        <span align="center" t-field="l.product_id.name"/>
+                                        <br/>
+                                        <span t-field="l.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.product_uom_qty"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.price_unit"/>
+                                    </td>
+                                    <td style="background-color:#D0D0D0">
+                                        <span t-field="l.price_subtotal"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="3">Total Price without VAT (SAR)</th>
+                                    <th style="background-color:#D0D0D0" align="center">
+                                        <span t-field="o.amount_untaxed"/>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="3">VAT 15% (SAR)</th>
+                                    <th style="background-color:#D0D0D0" align="center">
+                                        <span t-field="o.amount_tax"/>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="3">Total Price Including VAT 15% (SAR)</th>
+                                    <th style="background-color:#D0D0D0" align="center">
+                                        <span t-field="o.amount_total"/>
+                                    </th>
+                                </tr>
+                            </table>
+                            <br/>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <strong>Terms and Conditions:</strong>
+                                            <br/>
+                                            <span t-field="o.note"/>
+                                        </p>
+
+                                    </td>
+                                </tr>
+                            </table>
+                            <br></br>
+                            <strong>
+                                we hope our quotation meets your requirement and should you require any further
+                                information please don't hesitate to contact the undersigned. thank you and best
+                                regards!
+                            </strong>
+                            <br/>
+                            <br/>
+                            <br/>
+
+                            <p>
+                                <strong>Thank You and Best Regards,</strong>
+                            </p>
+                        </div>
+                        <div style="width:100%;">
+                            <div style="float:right;width:40%;">
+                                <strong>
+                                    <span dir="RTL" align="right" t-field="o.signature.name"/>
+                                    <br/>
+                                    <span dir="RTL" align="right" t-field="o.signature.job_title"/>
+                                    <br/>
+                                    <br/>
+                                    <p>___________________</p>
+                                </strong>
+
+
+                            </div>
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+
+        </template>
+        <template id="report_governmental_quotation">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <link rel="stylesheet"
+                          href="https://fonts.googleapis.com/css?family=Droid Arabic Kufi"/>
+
+                    <t t-call="web.internal_layout">
+                        <div class="page" dir="RTL" width="100%">
+
+                            <div style="width:100%;">
+                                <div dir="RTL" align="right" style="float:right;width:33%;">
+                                    <p>الرقم :
+                                        <span t-field="o.name"/>
+                                    </p>
+
+                                    <p>التاريخ :
+                                        <span t-field="o.confirmation_date"/>
+                                    </p>
+
+                                    <p>الرقم الضريبى:
+                                        <span t-field="o.company_id.vat"/>
+                                    </p>
+                                    <p>مدة العرض :
+                                        <span t-field="o.offer_period"/>
+                                    </p>
+
+                                </div>
+
+                                <div style="float:left;width:25%; padding-left:60px">
+                                    <img t-if="o.company_id.state == 'sahood'"
+                                         src="/khasp_sale_invoice_purchase_reports/static/src/img/logo.jpg"
+                                         style="width:200px;height:100px;"/>
+                                    <img t-if="o.company_id.state == 'khasp'"
+                                         src="/khasp_sale_invoice_purchase_reports/static/src/img/khasp_logo.jpg"
+                                         style="width:150px;height:100px;"/>
+                                </div>
+
+                            </div>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+
+
+                            <div class="text-center" align="center">
+                                <h3>
+                                    عرض سعر :
+                                    <span t-field="o.name"/>
+
+                                </h3>
+
+                            </div>
+
+                            <br/>
+                            <br/>
+                            <div align="right">
+                                <h4>
+                                    السادة /
+                                    <span style="padding-left:100px" t-field="o.partner_id.name"/>
+                                    المحترمين
+
+                                </h4>
+                                <br></br>
+                                <p>
+                                    السلام عليكم ورحمة الله وبركاته
+                                    <span style="padding-left:100px"/>
+                                    وبعد؛؛؛
+                                </p>
+                                <br></br>
+                                <p>
+                                    يسرنا نحن مصنع
+                                    <span style="padding-left:30px; padding-right:30px"
+                                          t-field="o.company_id.company_arabic_name"/>
+                                    ان نقدم لكم عرض سعر(
+                                    <span t-foreach="o.order_line" t-as="l" t-field="l.product_id.name"/>,
+                                    )على النحو التالى:
+                                </p>
+
+                            </div>
+                            <table class="table table-bordered table-striped" style="width:100%;">
+                                <tr dir="RTL" align="right">
+                                    <th>الوصـف</th>
+                                    <th>رقم الخزن</th>
+                                    <th>الكميات</th>
+                                    <th>سعر القطعة الواحدة(الريال السعودى)</th>
+                                    <th style="background-color:#D0D0D0">السعر الاجمالى(الريال السعودى)</th>
+                                </tr>
+                                <tr t-foreach="o.order_line" t-as="l" dir="RTL" align="right">
+                                    <td>
+                                        <span t-field="l.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.product_id.prod_number"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.product_uom_qty"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.price_unit"/>
+                                    </td>
+                                    <td style="background-color:#D0D0D0">
+                                        <span t-field="l.total_without_tax"/>
+                                    </td>
+                                </tr>
+                                <tr dir="RTL" align="right">
+                                    <th colspan="4">الاجمالى قبل الضريبة المضافة:</th>
+                                    <th style="background-color:#D0D0D0">
+                                        <span t-field="o.amount_untaxed"/>
+                                    </th>
+                                </tr>
+                                <tr dir="RTL" align="right">
+                                    <th colspan="4">القيمة المضافة 15 %</th>
+                                    <th style="background-color:#D0D0D0">
+                                        <span t-field="o.amount_tax"/>
+                                    </th>
+                                </tr>
+                                <tr dir="RTL" align="right">
+                                    <th colspan="4">الاجمالى مع الضريبة المضافة:</th>
+                                    <th style="background-color:#D0D0D0">
+                                        <span t-field="o.amount_total"/>
+                                    </th>
+                                </tr>
+                            </table>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr dir="RTL" align="right">
+                                    <td>
+                                        <p>
+                                            <strong>الشروط العامة:</strong>
+                                            <br/>
+                                            <span t-field="o.general_conditions"/>
+                                        </p>
+
+                                    </td>
+                                </tr>
+                            </table>
+                            <div align="center">
+                                <p>
+                                    <strong>وتقبلوا خالص تحياتى ؛؛؛؛
+                                    </strong>
+                                </p>
+                            </div>
+                            <br></br>
+                            <div style="width:100%;">
+                                <div dir="RTL" align="right" style="float:left;width:40%;">
+                                    <p>
+                                        <span dir="RTL" align="right" t-field="o.signature.name"/>
+                                        <br/>
+                                        <span dir="RTL" align="right" t-field="o.signature.job_title"/>
+                                        <br/>
+                                        <br/>
+                                        <p>___________________</p>
+                                    </p>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+
+        </template>
+
+    </data>
+</odoo>

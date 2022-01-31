@@ -1,0 +1,166 @@
+<odoo>
+    <data>
+
+
+        <template id="report_repair_request">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+
+                    <style>
+                        table, th, td {
+                        border: 1px solid black;
+                        border-collapse: collapse;
+                        }
+                    </style>
+
+                    <t t-call="web.internal_layout">
+
+
+                        <div class="page">
+                            <br></br>
+                            <div style="width:100%;">
+                                <div style="float:left;width:33%;">
+                                    <p>
+                                        <strong>Tax ID:</strong>
+                                        <span t-field="o.company_id.vat"/>
+                                    </p>
+                                    <p>
+                                        <strong>CR:</strong>
+                                        <span t-field="o.company_id.company_registry"/>
+                                    </p>
+
+
+                                </div>
+
+
+                                <div style="float:right;width:25%; padding-left:60px">
+                                    <img t-if="o.company_id.state == 'sahood'"
+                                         src="/khasp_sale_manificature_reports/static/src/img/logo.jpg"
+                                         style="width:200px;height:100px;"/>
+                                    <img t-if="o.company_id.state == 'khasp'"
+                                         src="/khasp_sale_manificature_reports/static/src/img/khasp_logo.jpg"
+                                         style="width:150px;height:100px;"/>
+
+                                </div>
+                            </div>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <h3 align="center">Repair Request</h3>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <td>
+                                        <strong>Employee Name:</strong>
+                                        <span t-field="o.employee_name"/>
+                                    </td>
+                                    <td>
+                                        <strong>starting date:</strong>
+                                        <span t-field="o.start_Date"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Employee Number:</strong>
+                                        <span t-field="o.employee_number"/>
+                                    </td>
+                                    <td>
+                                        <strong>Finishing time:</strong>
+                                        <span t-field="o.end_date"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Department:</strong>
+                                        <span t-field="o.department_name.name"/>
+                                    </td>
+                                    <td>
+                                        <strong>Type of maintenance:</strong>
+                                        <span t-field="o.type_of_maintenance"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Supervisor Name:</strong>
+                                        <span t-field="o.supervisor_name.name"/>
+                                    </td>
+                                    <td>
+                                        <strong>Employee Signature:</strong>
+                                        <span t-field="o.employee_signature"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Machine Name:</strong>
+                                        <span t-field="o.machine_name.name"/>
+                                    </td>
+                                    <td>
+                                        <strong>Report Date:</strong>
+                                        <span t-field="o.report_date"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Request Date:</strong>
+                                        <span t-field="o.request_date"/>
+                                    </td>
+                                    <td>
+                                        <strong>Request Time:</strong>
+                                        <span t-field="o.request_time"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Shift:</strong>
+                                        <span t-field="o.shift"/>
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <strong>Description of maintenance or inspection required:</strong>
+                                        <br/>
+                                        <span t-field="o.description_of_maintenance"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <strong>Has the supervisor in that area been notified of the maintenance or
+                                            repair need?
+                                        </strong>
+                                        <span t-field="o.repair_need"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <strong>Is this repair request URGENT?</strong>
+                                        <span t-field="o.urgent_repair"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <strong>Is the maintenance or repair request due to an accident or safety
+                                            concern?
+                                        </strong>
+                                        <span t-field="o.safety_concern"/>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+
+        </template>
+
+    </data>
+</odoo>

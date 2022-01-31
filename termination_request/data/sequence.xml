@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.sequence" id="termination_request_sequence">
+            <field name="name">Termination Request Sequence</field>
+            <field name="code">hr.termination.sequence</field>
+            <field name="padding">4</field>
+            <field eval="1" name="number_increment"/>
+            <field name="model" eval="'hr.termination'"/>
+            <field name="prefix">Termination/request/</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">month</field>
+            <field name="reset_init_number">1</field>
+        </record>
+    </data>
+</odoo>

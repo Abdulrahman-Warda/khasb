@@ -1,0 +1,12 @@
+<data>
+    <record model="ir.cron" id="hr_leave_allocation_cron">
+        <field name="name">Hr Allocation</field>
+        <field name="interval_number">12</field>
+        <field name="interval_type">months</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="model_hr_contract"/>
+        <field name="state">code</field>
+        <field name="code">model.create_leave_allocation()</field>
+    </record>
+</data>

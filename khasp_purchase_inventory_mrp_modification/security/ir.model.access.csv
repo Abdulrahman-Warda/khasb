@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_workorder_pause,mrp workorder pause,model_workorder_pause,,1,1,1,1
+access_mrp_workorder_tool,mrp workorder tool,model_workorder_tool,,1,1,1,1
+access_mrp_workorder,mrp workorder,mrp.model_mrp_workorder,khasp_purchase_inventory_mrp_modification.group_mrp_worker,1,0,0,0
+access_mrp_workcenter_productivity,mrp workorder productivity,mrp.model_mrp_workcenter_productivity,khasp_purchase_inventory_mrp_modification.group_mrp_worker,1,0,0,0
+access_mrp_workcenter_productivity_loss,mrp workorder productivity loss,mrp.model_mrp_workcenter_productivity_loss,khasp_purchase_inventory_mrp_modification.group_mrp_worker,1,0,0,0

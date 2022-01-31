@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="hr_leave_encashment_form_view">
+        <field name="name">hr.leave.encashment.form (in hr_leave_encashments)</field>
+        <field name="model">hr.leave.encashment</field>
+        <field name="arch" type="xml">
+            <form string="Leave Encashment">
+                <header>
+                    <button string="Process" name="action_process" type="object" class="btn-primary" attrs="{'invisible':[('is_processed','=',True)]}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="Employee name" attrs="{'readonly':[('is_processed','=',True)]}" force_save="1"/>
+                        </h1>
+                        <label for="is_processed"/>
+                        <h1>
+                          <field name="is_processed" readonly="1" force_save="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                          <field name="holiday_status_id" attrs="{'readonly':[('is_processed','=',True)]}" force_save="1"/>
+                          <field name="available_days" readonly="1" force_save="1"/>
+                          <field name="day_amount" readonly="1" force_save="1"/>
+                          <field name="payment_type" attrs="{'readonly':[('is_processed','=',True)]}" force_save="1"/>
+                          <field name="credit_account_id" attrs="{'invisible':[('payment_type','!=','move_id')],'required':[('payment_type','=','move_id')],'readonly':[('is_processed','=',True)]}"/>
+                          <field name="move_id" attrs="{'invisible':[('payment_type','!=','move_id')],'required':[('payment_type','=','move_id')]}" readonly="1" force_save="1"/>
+                        </group>
+                        <group>
+                          <field name="calculation_mode" attrs="{'readonly':[('is_processed','=',True)]}" force_save="1"/>
+                          <field name="request_days" attrs="{'readonly':[('is_processed','=',True)]}" force_save="1"/>
+                          <field name="total_encashment" readonly="1" force_save="1"/>
+                          <field name="journal_id" attrs="{'invisible':[('payment_type','!=','move_id')],'required':[('payment_type','=','move_id')],'readonly':[('is_processed','=',True)]}"/>
+                          <field name="debit_account_id" attrs="{'invisible':[('payment_type','!=','move_id')],'required':[('payment_type','=','move_id')],'readonly':[('is_processed','=',True)]}"/>
+                          <field name="process_date" attrs="{'readonly':[('is_processed','=',True)]}" force_save="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"
+                           groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_leave_encashment_tree_view">
+        <field name="name">hr.leave.encashment.tree</field>
+        <field name="model">hr.leave.encashment</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="is_processed==True">
+                <field name="name"/>
+                <field name="process_date"/>
+                <field name="is_processed"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_hr_leave_encashment" model="ir.actions.act_window">
+        <field name="name">Leave Encashment</field>
+        <field name="res_model">hr.leave.encashment</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_hr_leave_encashment" name="Leave Encashment"
+              parent="hr_holidays.menu_hr_holidays_root"
+              action="action_hr_leave_encashment"/>
+</odoo>

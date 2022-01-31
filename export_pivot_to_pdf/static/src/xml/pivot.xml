@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+         <t t-extend="PivotView.buttons">
+        <t t-jquery="button.o_pivot_download" t-operation="after">
+            <button class="btn btn-secondary fa fa-download o_pivot_download_pdf" title="Download Pdf" aria-label="Download Pdf">Download Pdf</button>
+        </t>
+     </t>
+
+
+
+</templates>

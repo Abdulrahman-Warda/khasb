@@ -1,0 +1,607 @@
+<odoo>
+    <data>
+
+
+        <template id="report_inspection_checklist">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+
+                    <style>
+                        table, th, td {
+                        border: 1px solid black;
+                        border-collapse: collapse;
+                        page-break-inside: avoid !important;
+                        }
+                    </style>
+
+                    <t t-call="web.internal_layout">
+
+
+                        <div class="page">
+                            <br></br>
+                            <div style="width:100%;">
+                                <div style="float:left;width:33%;">
+                                    <p>
+                                        <strong>Tax ID:</strong>
+                                        <span t-field="o.company_id.vat"/>
+                                    </p>
+                                    <p>
+                                        <strong>CR:</strong>
+                                        <span t-field="o.company_id.company_registry"/>
+                                    </p>
+
+
+                                </div>
+
+
+                                <div style="float:right;width:25%; padding-left:60px">
+                                    <img t-if="o.company_id.state == 'sahood'"
+                                         src="/khasp_sale_manificature_reports/static/src/img/logo.jpg"
+                                         style="width:200px;height:100px;"/>
+                                    <img t-if="o.company_id.state == 'khasp'"
+                                         src="/khasp_sale_manificature_reports/static/src/img/khasp_logo.jpg"
+                                         style="width:150px;height:100px;"/>
+
+                                </div>
+                            </div>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <td>
+                                        <strong>Building:</strong>
+                                        <span t-field="o.building"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>FOA:</strong>
+                                        <span t-field="o.foa"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Location:</strong>
+                                        <span t-field="o.location"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Supervisor Name:</strong>
+                                        <span t-field="o.supervisor_name"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Supervisor Signature:</strong>
+                                        <span t-field="o.supervisor_signature"/>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Manager Name:</strong>
+                                        <span t-field="o.manager_name"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Manager Signature:</strong>
+                                        <span t-field="o.manager_signature"/>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Employee Name:</strong>
+                                        <span t-field="o.employee_name"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Employee Signature:</strong>
+                                        <span t-field="o.employee_signature"/>
+                                    </td>
+
+                                </tr>
+
+
+                            </table>
+                            <br></br>
+                            <br></br>
+                            <h3 align="center">LAYOUT</h3>
+                            <br></br>
+                            <br></br>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <td>
+                                        <strong>Area is tidy and well kept:</strong>
+                                        <span t-field="o.area"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Adequate storage area provided:</strong>
+                                        <span t-field="o.adequate"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Floor is free of obstructions and not-slippery:</strong>
+                                        <span t-field="o.floor"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Any opening in the floor are guarded or covered:</strong>
+                                        <span t-field="o.opening"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Walkways clearly marked and guarded if necessary:</strong>
+                                        <span t-field="o.walkways"/>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Action:</strong>
+                                        <span t-field="o.action1"/>
+                                    </td>
+
+                                </tr>
+
+
+                            </table>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <h3 align="center">ENVIRONMENT</h3>
+                            <br></br>
+                            <br></br>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <td>
+                                        <strong>Temperature is comfortable:</strong>
+                                        <span t-field="o.temp"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Lighting is adequate:</strong>
+                                        <span t-field="o.lighting"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Lighting covers and fittings are secure:</strong>
+                                        <span t-field="o.fittings"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Area is free from odours:</strong>
+                                        <span t-field="o.odours"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Noise level is acceptable/adequately controlled:</strong>
+                                        <span t-field="o.noise"/>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Ventilation is adequate:</strong>
+                                        <span t-field="o.ventilation"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Action:</strong>
+                                        <span t-field="o.action2"/>
+                                    </td>
+
+                                </tr>
+
+
+                            </table>
+                            <br></br>
+                            <br></br>
+                            <h3 align="center">EMERGENCY PROCEDURES</h3>
+                            <br></br>
+                            <br></br>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <td>
+                                        <strong>Written procedures posted:</strong>
+                                        <span t-field="o.procedures"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Extinguisher of appropriate type easily accessible:</strong>
+                                        <span t-field="o.extinguisher"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Visitor Emergency Guides are available (where required):</strong>
+                                        <span t-field="o.visitor"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Alarm can be heard in the area (if applicable):</strong>
+                                        <span t-field="o.alarm"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Escape routes are clear:</strong>
+                                        <span t-field="o.escape"/>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Emergency and hazard signage is clearly visible:</strong>
+                                        <span t-field="o.emergency"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Evacuation drills carried out:</strong>
+                                        <span t-field="o.evacuation"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Action:</strong>
+                                        <span t-field="o.action3"/>
+                                    </td>
+
+                                </tr>
+
+
+                            </table>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <h3 align="center">FIRST AID FACILITIES</h3>
+                            <br></br>
+                            <br></br>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <td>
+                                        <strong>Kits accessible within 5 minutes:</strong>
+                                        <span t-field="o.kits"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Kits are stocked and contents are in-date:</strong>
+                                        <span t-field="o.stocked"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Names and contacts of first aiders displayed:</strong>
+                                        <span t-field="o.contacts"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Action:</strong>
+                                        <span t-field="o.action4"/>
+                                    </td>
+
+                                </tr>
+
+
+                            </table>
+                            <br></br>
+                            <br></br>
+                            <h3 align="center">GENERAL FACILITIES</h3>
+                            <br></br>
+                            <br></br>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <td>
+                                        <strong>Washing facilities are clean and functional:</strong>
+                                        <span t-field="o.washing"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Lockers or equivalent available for staff:</strong>
+                                        <span t-field="o.lockers"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Eating areas clean, hygienic and adequately serviced:</strong>
+                                        <span t-field="o.eating_areas"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Action:</strong>
+                                        <span t-field="o.action5"/>
+                                    </td>
+
+                                </tr>
+
+
+                            </table>
+                            <br></br>
+                            <br></br>
+                            <h3 align="center">ELECTRICAL SAFETY</h3>
+                            <br></br>
+                            <br></br>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <td>
+                                        <strong>Portable equipment has current test tags:</strong>
+                                        <span t-field="o.equipment"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Power leads in good condition:</strong>
+                                        <span t-field="o.power_leads"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Power leads are off the floor or placed away from walkways:</strong>
+                                        <span t-field="o.power_leads2"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Power boards used (not double adaptors):</strong>
+                                        <span t-field="o.power_boards"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Faulty equipment is tagged out:</strong>
+                                        <span t-field="o.faulty_equipment"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Action:</strong>
+                                        <span t-field="o.action6"/>
+                                    </td>
+
+                                </tr>
+
+
+                            </table>
+                            <br></br>
+                            <br></br>
+                            <h3 align="center">GENERAL WORKSHOP</h3>
+                            <br></br>
+                            <br></br>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <td>
+                                        <strong>Warning and safety signage in good condition:</strong>
+                                        <span t-field="o.warning"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Procedure, plant and equipment manuals are current and available:
+                                        </strong>
+                                        <span t-field="o.plant"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Workshop free of food and drink:</strong>
+                                        <span t-field="o.workshop"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Action:</strong>
+                                        <span t-field="o.action7"/>
+                                    </td>
+
+                                </tr>
+
+
+                            </table>
+                            <br></br>
+                            <br></br>
+                            <h3 align="center">WASTE DISPOSAL</h3>
+                            <br></br>
+                            <br></br>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <td>
+                                        <strong>Waste containers are provided and labelled with Class Diamonds:</strong>
+                                        <span t-field="o.waste_containers"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Waste is segregated and stored appropriately away from drains:</strong>
+                                        <span t-field="o.segregated"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Spill kits are available:</strong>
+                                        <span t-field="o.spill_kits"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Action:</strong>
+                                        <span t-field="o.action8"/>
+                                    </td>
+
+                                </tr>
+
+
+                            </table>
+                            <br></br>
+                            <br></br>
+                            <h3 align="center">PPE</h3>
+                            <br></br>
+                            <br></br>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <td>
+                                        <strong>Correctly stored :</strong>
+                                        <span t-field="o.correctly_stored"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Well maintained and in good condition:</strong>
+                                        <span t-field="o.well_maintained"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Signage of PPE requirements displayed:</strong>
+                                        <span t-field="o.signage"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Required PPE available:</strong>
+                                        <span t-field="o.required_ppe"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Action:</strong>
+                                        <span t-field="o.action9"/>
+                                    </td>
+
+                                </tr>
+
+
+                            </table>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <h3 align="center">PAINTING</h3>
+                            <br></br>
+                            <br></br>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <td>
+                                        <strong>Ventilation is adequate for spray painting operations:</strong>
+                                        <span t-field="o.ventilation"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Respiratory equipment is maintained:</strong>
+                                        <span t-field="o.respiratory_equipment"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Paint and thinners labelled:</strong>
+                                        <span t-field="o.paint"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Paint and thinners stored correctly, bunded and segregated from
+                                            drains:
+                                        </strong>
+                                        <span t-field="o.thinners"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Action:</strong>
+                                        <span t-field="o.action10"/>
+                                    </td>
+
+                                </tr>
+
+
+                            </table>
+                            <br></br>
+                            <br></br>
+                            <table style="width:100%" class="table table-bordered ">
+                                <tr>
+                                    <td>
+                                        <strong>Other Comments:</strong>
+                                        <span t-field="o.other_comments"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>General Recommendations:</strong>
+                                        <span t-field="o.recommendations"/>
+                                    </td>
+
+                                </tr>
+
+                            </table>
+
+
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+
+        </template>
+
+    </data>
+</odoo>

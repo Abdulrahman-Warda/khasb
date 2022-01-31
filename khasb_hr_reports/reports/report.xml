@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="paperformat_euro2" model="report.paperformat">
+            <field name="name">European A4</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">28</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+  <report id="action_certificate_report_pdf"
+                model="certificate.report"
+                string="تعريف راتب"
+                name="khasb_hr_reports.certificate_report"
+                file="khasb_hr_reports.certificate_report"
+                report_type="qweb-pdf"
+                menu="False"
+                paperformat="khasb_hr_reports.paperformat_euro2"
+        />
+
+         <report id="action_consular_report_pdf"
+                model="consular.report"
+                string="تعريف سفارة"
+                name="khasb_hr_reports.consular_report"
+                file="khasb_hr_reports.consular_report"
+                report_type="qweb-pdf"
+                menu="False"
+                paperformat="khasb_hr_reports.paperformat_euro2"
+        />
+
+    </data>
+</odoo>

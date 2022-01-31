@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="design_report"
+            model="design.request"
+            string="طباعة الطلب"
+            report_type="qweb-pdf"
+            name="design_request_khasp.design_report_template"
+            file="design_request_khasp.design_report"
+        />
+
+    </data>
+</odoo>

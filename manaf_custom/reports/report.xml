@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+           <report
+            id="sale.action_report_saleorder"
+            string="Quotation / Order"
+            model="sale.order"
+            report_type="qweb-pdf"
+            file="sale.report_saleorder"
+            name="sale.report_saleorder"
+            print_report_name="'Order - %s-%s' % (object.partner_id.name,time.strftime('%Y-%m-%d'))"
+        />
+
+         <report
+            id="account.account_invoices"
+            model="account.invoice"
+            string="Invoices"
+            report_type="qweb-pdf"
+            name="account.report_invoice_with_payments"
+            file="account.report_invoice_with_payments"
+            attachment="(object.state in ('open','in_payment','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
+            print_report_name="'Invoice - %s-%s' % (object.partner_id.name,time.strftime('%Y-%m-%d'))"
+            groups="account.group_account_invoice"
+        />
+
+
+
+
+    </data>
+</odoo>

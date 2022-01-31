@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pivot_print,pivot_print,model_pivot_print,,1,1,1,1
+
+
+

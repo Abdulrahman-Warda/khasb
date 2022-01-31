@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="hr_contract_view_form_400" model="ir.ui.view">
+            <field name="name">hr.contract.form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="annual_days"/>
+                </xpath>
+                <xpath expr="//notebook//page[@name='information']" position="after">
+                    <page string="Allowances">
+                        <group>
+                            <group>
+                                <field name="house_allow"/>
+                                <field name="trans_allow"/>
+                                <field name="phone_allow"/>
+                                <field name="food_allow"/>
+                                <field name="other_allow"/>
+                            </group>
+                            <group>
+                                <field name="internal_mandate_allowances"/>
+                                <field name="external_mandate_allowances"/>
+                                <field name="internal_travel_allowances"/>
+                                <field name="abroad_travel_allowances"/>
+                                <field name="other_travel_allowances"/>
+                                <field name="hour_travel_allowances"/>
+                            </group>
+                        </group>
+                    </page>
+
+                    <page string="Deductions">
+                        <group>
+                            <field name="is_saudi"/>
+                            <field name="ded_gosi" attrs="{'invisible':[('is_saudi','=',False)]}"/>
+                            <field name="ded_employee_gosi" attrs="{'invisible':[('is_saudi','=',False)]}"/>
+                            <field name="ded_company_gosi" attrs="{'invisible':[('is_saudi','=',False)]}"/>
+                            <field name="ded_bank_fees"/>
+                            <field name="ded_other"/>
+                        </group>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

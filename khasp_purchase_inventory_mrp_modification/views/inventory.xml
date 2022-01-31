@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_picking_form_quality_state" model="ir.ui.view">
+            <field name="name">stock.picking.quality.state</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//header//field[@name='state']" position="replace">
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,quality_control,confirmed,partially_available,assigned,done"/>
+                </xpath>
+                <xpath expr="//header//button[@name='action_confirm']" position="after">
+                    <button name="%(quality_control_check)d" class="oe_highlight"
+                            type="action" string="Quality Control" states="quality_control"/>
+                </xpath>
+
+
+            </field>
+        </record>
+    </data>
+</odoo>

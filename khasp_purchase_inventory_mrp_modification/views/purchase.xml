@@ -1,0 +1,42 @@
+<odoo>
+  <data>
+   <!-- Inherit Form View to Modify it -->
+   <record id="purchase_order_form_new_state" model="ir.ui.view">
+       <field name="name">purchase.order.new.state</field>
+       <field name="model">purchase.order</field>
+       <field name="inherit_id" ref="purchase.purchase_order_form"/>
+       <field name="arch" type="xml">
+
+           <xpath expr="//header//field[@name='state']" position="replace">
+               <field name="state" widget="statusbar"
+                      statusbar_visible="draft,sent,factory_manger,financial_manger,general_manger,purchase"
+                      readonly="1"/>
+           </xpath>
+           <xpath expr="//button[@id='draft_confirm']" position="attributes">
+               <attribute name="string">General Manger</attribute>
+               <attribute name="groups">termination_request.group_general_manager</attribute>
+           </xpath>
+           <xpath expr="//button[@id='bid_confirm']" position="attributes">
+               <attribute name="invisible">1</attribute>
+           </xpath>
+           <xpath expr="//button[@name='button_cancel']" position="attributes">
+               <attribute name="states"></attribute>
+               <attribute name="string">Reject</attribute>
+               <attribute name="attrs">{'invisible':[('state','=','cancel')]}</attribute>
+           </xpath>
+           <xpath expr="//button[@name='button_confirm']" position="after">
+               <button name="check_amount_total" states="pre_draft" type="object" string="Confirm order" />
+               <field name="is_quality_checked" invisible="1"/>
+               <button name="quality_action_view_picking" class="oe_highlight" attrs="{'invisible': [('is_quality_checked', '=', False)]}" type="object" string="Receive Products" />
+               <button name="factory_manger_move" states="factory_manger" type="object" string="Factory Manger" class="oe_highlight" groups="mrp.group_mrp_manager"/>
+               <button name="financial_manger_move" states="financial_manger" type="object" string="Financial Manger" class="oe_highlight" groups="account.group_account_manager"/>
+           </xpath>
+           <xpath expr="//field[@name='partner_ref']" position="after">
+               <field name="purchase_request_id"/>
+           </xpath>
+
+       </field>
+   </record>
+   <menuitem action="stock_landed_costs.action_stock_landed_cost" name="Landed Costs" parent="purchase.menu_purchase_config" id="menu_stock_landed_cost_purchase" sequence="115"/>
+  </data>
+</odoo>

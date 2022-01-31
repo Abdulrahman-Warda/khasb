@@ -1,0 +1,21 @@
+<data>
+
+    <record id="hr_rule_business_trip" model="hr.salary.rule">
+        <field name="name">Business Trip</field>
+        <field name="sequence" eval="99"/>
+        <field name="code">Bus Tr</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result=payslip.travel_amount</field>
+    </record>
+    <record id="hr_rule_over_time" model="hr.salary.rule">
+        <field name="name">Over Time</field>
+        <field name="sequence" eval="99"/>
+        <field name="code">overtime</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result=payslip.overtime_amount</field>
+    </record>
+</data>
