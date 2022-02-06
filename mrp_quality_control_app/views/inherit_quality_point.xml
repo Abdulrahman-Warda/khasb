@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
              <field name="company_id" position="before">
                 <field name="code" invisible="1"/>
-                <field name="operation_id" attrs="{'invisible' : [('code','!=','mrp_operation')]}"/>
+                <field name="operation_id" widget="many2many_tags" attrs="{'invisible' : [('code','!=','mrp_operation')]}"/>
 
             </field>
             </field>
@@ -33,7 +33,7 @@
             </field>
 
             </field>
-            
+
         </record>
   </data>
 </odoo>

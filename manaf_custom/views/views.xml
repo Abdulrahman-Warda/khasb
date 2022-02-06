@@ -1,5 +1,20 @@
 <odoo>
   <data>
+
+
+
+    <record id="mrp.mrp_workorder_todo" model="ir.actions.act_window">
+        <field name="context">{'search_default_ready': True, 'search_default_progress': True, 'search_default_work_center': True}</field>
+    </record>
+
+    <record model="ir.rule" id="res_users_worker_workcenter_rule">
+        <field name="name">res.users.worker.workcenter.rule</field>
+        <field name="model_id" ref="mrp.model_mrp_workorder"/>
+        <field name="domain_force">[('workcenter_id', 'in', user.work_center_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('khasp_purchase_inventory_mrp_modification.group_mrp_worker'))]"/>
+        <field name="global" eval="False"/>
+    </record>
+
     <!-- Inherit Form View to Modify it -->
     <record id="mrp_production_form_view_400" model="ir.ui.view">
       <field name="name">mrp.production.form</field>
@@ -52,7 +67,7 @@
 
       </field>
     </record>
-    
+
 
   </data>
 </odoo>

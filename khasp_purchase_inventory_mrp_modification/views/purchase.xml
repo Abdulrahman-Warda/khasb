@@ -27,7 +27,8 @@
            <xpath expr="//button[@name='button_confirm']" position="after">
                <button name="check_amount_total" states="pre_draft" type="object" string="Confirm order" />
                <field name="is_quality_checked" invisible="1"/>
-               <button name="quality_action_view_picking" class="oe_highlight" attrs="{'invisible': [('is_quality_checked', '=', False)]}" type="object" string="Receive Products" />
+               <field name="is_quality_checked_done" invisible="1"/>
+               <button name="quality_action_view_picking" class="oe_highlight" attrs="{'invisible': ['|',('is_quality_checked_done','=',True),('is_quality_checked', '=', False)]}" type="object" string="Receive Products" />
                <button name="factory_manger_move" states="factory_manger" type="object" string="Factory Manger" class="oe_highlight" groups="mrp.group_mrp_manager"/>
                <button name="financial_manger_move" states="financial_manger" type="object" string="Financial Manger" class="oe_highlight" groups="account.group_account_manager"/>
            </xpath>

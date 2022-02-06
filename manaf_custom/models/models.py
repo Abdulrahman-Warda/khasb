@@ -3,10 +3,46 @@
 from odoo import models, fields, api,_
 from odoo.tools import float_compare, float_round, float_is_zero
 from odoo.exceptions import ValidationError,UserError
+from odoo.addons.mrp.models.mrp_workorder import MrpWorkorder
+
+@api.multi
+def write(self, values):
+    if list(values.keys()) != ['time_ids'] and any(workorder.state == 'done' for workorder in self):
+        print("total_scrap_items")
+        print(values.get('total_scrap_items',False))
+        print(values.get('total_scrap_items',False) or values.get('total_scrap_items',False) == 0.0)
+        print("total_scrap_items")
+        if values.get('total_scrap_items',False) or values.get('total_scrap_items',False) == 0.0:
+            print("IF")
+        else:
+            print("ELSE")
+            raise UserError(_('You can not change the finished work order.'))
+    return super(MrpWorkorder, self).write(values)
+MrpWorkorder.write = write
 
 
 class MrpOrder(models.Model):
     _inherit = 'mrp.production'
+
+    def read(self, fields=None, load='_classic_read'):
+        res = super(MrpOrder, self).read(fields, load)
+        for this in self:
+            this._compute_total_scrap_items()
+            this._compute_total_bom_items()
+        return res
+
+    @api.depends('scrap_ids')
+    def _compute_total_scrap_items(self):
+        for this in self:
+            this.total_scrap_items = sum(this.scrap_ids.mapped('scrap_qty'))
+    total_scrap_items = fields.Float(compute="_compute_total_scrap_items", store=True)
+
+    @api.depends('move_raw_ids')
+    def _compute_total_bom_items(self):
+        for this in self:
+            this.total_scrap_items = sum(this.move_raw_ids.mapped('quantity_done'))
+    total_bom_items = fields.Float(compute="_compute_total_bom_items", store=True)
+
     routing_id2 = fields.Many2one(
         'mrp.routing', 'Routing',
         readonly=False,
@@ -23,7 +59,7 @@ class MrpOrder(models.Model):
     tempreature = fields.Char('Tempreature')
     customer = fields.Many2one('res.partner','Customer')
 
-    
+
     @api.multi
     @api.depends('routing_id2')
     def _compute_routing(self):
@@ -91,8 +127,20 @@ class MrpOrder(models.Model):
         return workorders
 
 
-class MrpWorkorder(models.Model):
+class MrpWorkOrder(models.Model):
     _inherit = 'mrp.workorder'
+
+    def read(self, fields=None, load='_classic_read'):
+        res = super(MrpWorkOrder, self).read(fields, load)
+        for this in self:
+            this._compute_total_scrap_items()
+        return res
+
+    @api.depends('scrap_ids')
+    def _compute_total_scrap_items(self):
+        for this in self:
+            this.total_scrap_items = sum(this.scrap_ids.mapped('scrap_qty'))
+    total_scrap_items = fields.Float(compute="_compute_total_scrap_items", store=True)
 
     routing_id = fields.Many2one(
         'mrp.routing', 'Routing',
@@ -155,7 +203,3 @@ class StockRule(models.Model):
         move.picking_id.write({'bom_line_ids':lines2})
 
         return True
-
-
-
-

@@ -1,6 +1,20 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+
+class khasp_stock_move(models.Model):
+    _inherit = 'stock.move'
+    lot_serial_prefix = fields.Char()
+    lot_serial_initial_number = fields.Integer()
+
+    def update_serial_lot_lines(self):
+        lot_serial_initial_number = self.lot_serial_initial_number
+        for ml in self.move_line_ids:
+            ml.lot_name = self.lot_serial_prefix + '/' + str(lot_serial_initial_number)
+            lot_serial_initial_number += 1
+            if ml.product_id.tracking != 'none':
+                ml.qty_done = ml.product_uom_qty
+
 class khasp_inventory_modification(models.Model):
     _inherit = 'stock.picking'
     state = fields.Selection([
@@ -21,7 +35,8 @@ class khasp_inventory_modification(models.Model):
              " * Done: has been processed, can't be modified or cancelled anymore.\n"
              " * Cancelled: has been cancelled, can't be confirmed anymore.")
 
-
+    def set_quality_control(self):
+        self.state = 'quality_control'
     @api.multi
     def action_confirm(self):
         res = super(khasp_inventory_modification, self).action_confirm()

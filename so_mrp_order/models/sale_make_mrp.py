@@ -8,6 +8,8 @@ from odoo.exceptions import ValidationError
 class So(models.Model):
     _inherit = 'sale.order'
 
+    tempreature = fields.Char('Tempreature')
+
     @api.multi
     def create_mrp(self):
         if self.env.user.has_group('so_mrp_order.group_create_mrp_from_so'):

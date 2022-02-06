@@ -32,7 +32,11 @@
                         class="oe_highlight" states="sale"/>
 
             </xpath>
-
+            <xpath expr="//page[@name='other_information']/group" position="inside">
+              <group>
+                <field name="tempreature"/>
+              </group>
+            </xpath>
         </field>
     </record>
 

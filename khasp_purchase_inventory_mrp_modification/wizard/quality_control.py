@@ -22,22 +22,58 @@ class khasp_quality_control_modification(models.TransientModel):
     qc_fail = fields.Boolean(string="Fail",  )
     qc_state = fields.Selection(string="State", selection=[('pass', 'Pass'), ('fail', 'Fail'), ], required=False, )
     lines = fields.One2many(comodel_name="qlity.st.lines", inverse_name="wiz_id", string="", required=False,default=get_lines)
+    reason = fields.Text()
 
 
     def quality_control_pass(self):
         for rec in self:
+            if len(rec.reason) > 0:
+                rec.stock_ref.message_post(body=rec.reason)
+                rec.stock_ref.note=rec.reason
             if rec.qc_state == 'pass':
                 rec.stock_ref.write({'state':'assigned'})
                 rec.stock_ref.state = 'assigned'
                 for line in rec.lines:
-                    print("LLLLLLLLLLL")
-                    line.move_id.sudo().write({'quantity_done':line.qty})
+                    if line.product_id.tracking != 'none':
+                        if line.product_id.tracking == 'serial':
+                            mls = line.move_id.move_line_ids.sorted(lambda i:i.id)
+                            count=0
+                            for ml in mls:
+                                if count == line.qty:
+                                    print(ml)
+                                    ml.unlink()
+                                else:
+                                    count += 1
+                            if line.move_id.product_uom_qty != line.qty:
+                                line.move_id.sudo().write({'product_uom_qty': line.qty})
+                        elif line.product_id.tracking == 'lot':
+                            line.move_id.move_line_ids.qty_done = line.qty
+                            if line.move_id.product_uom_qty != line.qty:
+                                line.move_id.sudo().write({'product_uom_qty': line.qty})
+                    else:
+                        line.move_id.sudo().write({'quantity_done':line.qty})
+                return rec.stock_ref.button_validate()
             elif rec.qc_state == 'fail':
                 rec.stock_ref.write({'state':'qc_rejection'})
                 for line in rec.lines:
-                    print(">>>>>>>>>>>>>")
-                    line.move_id.sudo().write({'quantity_done': line.move_id.product_uom_qty-line.qty})
-            return rec.stock_ref.button_validate()
+                    if line.product_id.tracking != 'none':
+                        if line.product_id.tracking == 'serial':
+                            mls = line.move_id.move_line_ids.sorted(lambda i:i.id)
+                            count=0
+                            for ml in mls:
+                                if count == line.move_id.product_uom_qty-line.qty:
+                                    ml.unlink()
+                                else:
+                                    count += 1
+                        elif line.product_id.tracking == 'lot':
+                            line.move_id.move_line_ids.qty_done = line.move_id.move_line_ids.product_uom_qty-line.qty
+                        if line.move_id.product_uom_qty != line.qty:
+                            line.move_id.sudo().write({'product_uom_qty': line.move_id.product_uom_qty-line.qty})
+                        else:
+                            pass
+                    else:
+                        line.move_id.sudo().write({'quantity_done': line.move_id.product_uom_qty-line.qty})
+                return rec.stock_ref.action_cancel()
 
 
 

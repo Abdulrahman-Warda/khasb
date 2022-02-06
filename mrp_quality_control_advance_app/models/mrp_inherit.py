@@ -80,18 +80,21 @@ class mrp_production(models.Model):
 
         quality_checks = self.env['quality.point'].search(
             [('picking_type_id', '=', self.production_id.picking_type_id.id),
-             ('company_id', '=', self.production_id.company_id.id)], order="id desc", limit=1)
-        print("quality_checks",quality_checks,self.production_id.company_id.id,self.production_id.picking_type_id.id)
+             ('company_id', '=', self.production_id.company_id.id)], order="id desc").filtered(lambda qp: self.operation_id.id in qp.operation_id.ids)
+        if not quality_checks:
+            raise UserError(_('There is no quality point at this stage !'))
+
+        # print("quality_checks",quality_checks,self.production_id.company_id.id,self.production_id.picking_type_id.id)
 
         checks = self.env['quality.checks'].search([('workorder_id', '=', self.id), ('state', '=', 'do'),('mrp_id', '=', self.production_id.id),
                                                     ('product_id', '=', self.production_id.product_id.id),
-                                                    ('quality_point_id', '=', quality_checks.id),
+                                                    ('quality_point_id', 'in', quality_checks.ids),
                                                     ], )
         if not checks:
             checks = self.env['quality.checks'].create({'product_id': self.production_id.product_id.id,
                                                         'mrp_id': self.production_id.id,
                                                         'workorder_id': self.id,
-                                                        'quality_point_id': quality_checks.id,
+                                                        'quality_point_id': quality_checks[0].id,
                                                         'state': 'do',
 
                                                         })

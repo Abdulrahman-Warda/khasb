@@ -3,17 +3,35 @@
 from collections import defaultdict
 from odoo import api, fields, models, _
 
+class MrpRoutingWorkcenter(models.Model):
+    _inherit = 'mrp.routing.workcenter'
+
+    @api.multi
+    def name_get(self):
+        res = []
+        for rec in self:
+            res.append((rec.id, "%s/ %s/ %s" % (rec.routing_id.name, rec.name, rec.workcenter_id.name)))
+        print(res)
+        print(res)
+        print(res)
+        print(res)
+        print(res)
+        print(res)
+        return res
+
+
+
 class Quality_point(models.Model):
-    
+
     _inherit = 'quality.point'
 
-    operation_id = fields.Many2one('mrp.routing.workcenter',string = "Workorder Operation Center")
+    operation_id = fields.Many2many('mrp.routing.workcenter',string = "Workorder Operation Center")
     code = fields.Selection([('mrp_operation', 'Manufacturing Operation'),('incoming', 'Vendors'), ('outgoing', 'Customers'), ('internal', 'Internal')],related="picking_type_id.code",string="Code")
     test_type = fields.Selection([('pass_fail','Pass-Fail'),('measure','Measure'),('picture','Take a Picture'),('text','Text')],string="Type",default= 'pass_fail')
 
 
 class Quality_check(models.Model):
-    
+
     _inherit = 'quality.checks'
 
     mrp_id = fields.Many2one('mrp.production',string = "Production Name")
@@ -21,22 +39,22 @@ class Quality_check(models.Model):
     picture = fields.Binary(string="Photo")
     test_type = fields.Selection([('pass_fail','Pass-Fail'),('measure','Measure'),('picture','Take a Picture'),('text','Text')],string="Type",default= 'pass_fail',related="quality_point_id.test_type")
 
-    def validate_picture(self) : 
+    def validate_picture(self) :
 
         self.write({'state' : 'pass','date' : fields.datetime.now().date()})
         return
 
-    def validate_text(self) : 
+    def validate_text(self) :
 
         self.write({'state' : 'pass','date' : fields.datetime.now().date()})
         return
 
 class Quality_alert(models.Model):
-    
+
     _inherit = 'quality.alert'
 
     mrp_id = fields.Many2one('mrp.production',string = "Production Name")
-    
+
     @api.model
     @api.multi
     def default_get(self, default_fields):
@@ -44,11 +62,11 @@ class Quality_alert(models.Model):
         if self._context.get('mrp_res') :
             mrp_res = self.env['mrp.production'].browse(int(self._context.get('mrp_res')))
             res['product_id'] = mrp_res.product_id.id
-            res['product_temp_id'] =   mrp_res.bom_id.product_tmpl_id.id          
+            res['product_temp_id'] =   mrp_res.bom_id.product_tmpl_id.id
             res['date_assigned'] = fields.datetime.now()
         res = self._convert_to_write(res)
         return res
-        
+
 
     @api.model
     def create(self, vals):
@@ -59,5 +77,5 @@ class Quality_alert(models.Model):
             vals['mrp_id'] = int(self._context.get('mrp_res'))
 
             mrp_res = self.env['mrp.production'].browse(int(self._context.get('mrp_res')))
-                
+
         return super(Quality_alert, self).create(vals)

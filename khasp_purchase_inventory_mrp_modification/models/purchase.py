@@ -23,7 +23,7 @@ class khasp_purchase_modification(models.Model):
                 this.is_quality_checked = False
             elif this.picking_ids:
                 for pick in this.picking_ids:
-                    if pick.state == 'done':
+                    if pick.state in ['done','cancel']:
                         this.is_quality_checked = True
                         break
                     else:
