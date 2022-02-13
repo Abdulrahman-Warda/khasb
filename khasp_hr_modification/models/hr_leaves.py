@@ -28,6 +28,10 @@ class khasp_hr_leave_modification(models.Model):
                 raise ValidationError("you can\'t approve this request")
             rec.state = 'hr_manger'
 
+    def action_hr_manger(self):
+        for rec in self:
+            rec.state = 'validate'
+
     def action_cancel(self):
         for rec in self:
             rec.state = 'cancel'

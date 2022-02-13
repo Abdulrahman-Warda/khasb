@@ -6,35 +6,38 @@
         <field name="arch" type="xml">
             <form string="Leave Encashment">
                 <header>
-                    <button string="Process" name="action_process" type="object" class="btn-primary" attrs="{'invisible':[('is_processed','=',True)]}"/>
+
+                    <button string="Submit" name="action_submit" type="object" class="btn-primary" attrs="{'invisible':[('state','!=','draft')]}"/>
+                    <button string="Process" name="action_process" type="object" class="btn-primary" attrs="{'invisible':[('state','!=','submit')]}"/>
+                    <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only"/>
                         <h1>
-                            <field name="name" placeholder="Employee name" attrs="{'readonly':[('is_processed','=',True)]}" force_save="1"/>
+                            <field name="name" placeholder="Employee name" required="1" attrs="{'readonly':[('state','=','process')]}" force_save="1"/>
                         </h1>
-                        <label for="is_processed"/>
+                        <!-- <label for="is_processed"/>
                         <h1>
                           <field name="is_processed" readonly="1" force_save="1"/>
-                        </h1>
+                        </h1> -->
                     </div>
                     <group>
                         <group>
-                          <field name="holiday_status_id" attrs="{'readonly':[('is_processed','=',True)]}" force_save="1"/>
+                          <field name="holiday_ids" required="1" domain="[('is_encashmented','=',False),('state','=','validate'),('employee_id','=',name)]" widget="many2many_tags" attrs="{'readonly':[('state','=','process')]}" force_save="1"/>
                           <field name="available_days" readonly="1" force_save="1"/>
-                          <field name="day_amount" readonly="1" force_save="1"/>
-                          <field name="payment_type" attrs="{'readonly':[('is_processed','=',True)]}" force_save="1"/>
-                          <field name="credit_account_id" attrs="{'invisible':[('payment_type','!=','move_id')],'required':[('payment_type','=','move_id')],'readonly':[('is_processed','=',True)]}"/>
-                          <field name="move_id" attrs="{'invisible':[('payment_type','!=','move_id')],'required':[('payment_type','=','move_id')]}" readonly="1" force_save="1"/>
+                          <field name="day_amount" readonly="1" force_save="1" attrs="{'invisible':[('state','=','draft')]}"/>
+                          <field name="payment_type" attrs="{'readonly':[('state','=','process')],'invisible':[('state','=','draft')]}" force_save="1"/>
+                          <field name="credit_account_id" attrs="{'invisible':['|',('state','=','draft'),('payment_type','!=','move_id')],'required':[('payment_type','=','move_id')],'readonly':[('state','=','process')]}"/>
+                          <field name="move_id" attrs="{'invisible':['|',('state','=','draft'),('payment_type','!=','move_id')]}" readonly="1" force_save="1"/>
                         </group>
                         <group>
-                          <field name="calculation_mode" attrs="{'readonly':[('is_processed','=',True)]}" force_save="1"/>
-                          <field name="request_days" attrs="{'readonly':[('is_processed','=',True)]}" force_save="1"/>
-                          <field name="total_encashment" readonly="1" force_save="1"/>
-                          <field name="journal_id" attrs="{'invisible':[('payment_type','!=','move_id')],'required':[('payment_type','=','move_id')],'readonly':[('is_processed','=',True)]}"/>
-                          <field name="debit_account_id" attrs="{'invisible':[('payment_type','!=','move_id')],'required':[('payment_type','=','move_id')],'readonly':[('is_processed','=',True)]}"/>
-                          <field name="process_date" attrs="{'readonly':[('is_processed','=',True)]}" force_save="1"/>
+                          <field name="calculation_mode" attrs="{'required':[('state','!=','draft')],'readonly':[('state','=','process')],'invisible':[('state','=','draft')]}" force_save="1"/>
+                          <field name="request_days" attrs="{'readonly':[('state','=','process')]}" required="1" force_save="1"/>
+                          <field name="total_encashment" readonly="1" force_save="1" attrs="{'invisible':[('state','=','draft')]}"/>
+                          <field name="journal_id" attrs="{'invisible':['|',('state','=','draft'),('payment_type','!=','move_id')],'required':[('payment_type','=','move_id')],'readonly':[('state','=','process')]}"/>
+                          <field name="debit_account_id" attrs="{'invisible':['|',('state','=','draft'),('payment_type','!=','move_id')],'required':[('payment_type','=','move_id')],'readonly':[('state','=','process')]}"/>
+                          <field name="process_date" attrs="{'required':[('state','!=','draft')],'readonly':[('state','=','process')],'invisible':[('state','=','draft')]}" force_save="1"/>
                         </group>
                     </group>
                 </sheet>
@@ -51,10 +54,10 @@
         <field name="name">hr.leave.encashment.tree</field>
         <field name="model">hr.leave.encashment</field>
         <field name="arch" type="xml">
-            <tree decoration-success="is_processed==True">
+            <tree decoration-success="state=='process'">
                 <field name="name"/>
                 <field name="process_date"/>
-                <field name="is_processed"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>

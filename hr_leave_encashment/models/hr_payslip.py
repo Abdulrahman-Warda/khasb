@@ -16,6 +16,6 @@ class Payslip(models.Model):
     def _compute_total_encashment(self):
         for this in self:
             if this.employee_id and this.date_from and this.date_to:
-                this.total_encashment = sum(self.env['hr.leave.encashment'].search([('payment_type','=','payslip_id'),('is_processed','=',True),('name','=',this.employee_id.id),('process_date','>=',this.date_from),('process_date','<=',this.date_to)]).mapped('total_encashment'))
+                this.total_encashment = sum(self.env['hr.leave.encashment'].search([('payment_type','=','payslip_id'),('state','=','process'),('name','=',this.employee_id.id),('process_date','>=',this.date_from),('process_date','<=',this.date_to)]).mapped('total_encashment'))
             else:
                 this.total_encashment = 0.0

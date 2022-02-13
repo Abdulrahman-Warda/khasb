@@ -19,13 +19,16 @@
                             groups="base.group_user"/>
                     <button name="action_direct_manger" string="Confirm" type="object" class="oe_highlight"
                             states="direct_manger"/>
+                    <button name="action_hr_manger" string="Confirm" type="object" class="oe_highlight"
+                            states="hr_manger"/>
                     <button name="action_cancel" string="Cancel" type="object" class="oe_highlight"
                             attrs="{'invisible':['|',('state','=','cancel'),('state','=','confirm')]}"/>
 
                 </xpath>
                 <xpath expr="//button[@name='action_confirm']" position="attributes">
-                    <attribute name="states">hr_manger</attribute>
-                    <attribute name="groups">hr.group_hr_manager</attribute>
+                  <attribute name="invisible">1</attribute>
+                    <!-- <attribute name="states">hr_manger</attribute>
+                    <attribute name="groups">hr.group_hr_manager</attribute> -->
                 </xpath>
 
             </field>

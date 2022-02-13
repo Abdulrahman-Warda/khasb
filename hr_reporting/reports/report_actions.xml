@@ -1,0 +1,45 @@
+<odoo>
+  <data>
+    <report
+      string="تعريف السفاره"
+      id="action_report_definition_of_embassy"
+      model="hr.employee"
+      report_type="qweb-pdf"
+      name="hr_reporting.report_definition_of_embassy"
+      file="hr_reporting.report_definition_of_embassy"
+    />
+    <report
+      string="تعريف بالراتب انجليزي"
+      id="action_report_definition_of_salary_english"
+      model="hr.employee"
+      report_type="qweb-pdf"
+      name="hr_reporting.report_definition_of_salary_english"
+      file="hr_reporting.report_definition_of_salary_english"
+    />
+    <report
+      string="تعريف بدون راتب انجليزي"
+      id="action_report_definition_wo_salary_english"
+      model="hr.employee"
+      report_type="qweb-pdf"
+      name="hr_reporting.report_definition_wo_salary_english"
+      file="hr_reporting.report_definition_wo_salary_english"
+    />
+    <report
+      string="تعريف بالراتب عربي"
+      id="action_report_definition_of_salary_arabic"
+      model="hr.employee"
+      report_type="qweb-pdf"
+      name="hr_reporting.report_definition_of_salary_arabic"
+      file="hr_reporting.report_definition_of_salary_arabic"
+    />
+    <report
+      string="تعريف بدون راتب عربي"
+      id="action_report_definition_wo_salary_arabic"
+      model="hr.employee"
+      report_type="qweb-pdf"
+      name="hr_reporting.report_definition_wo_salary_arabic"
+      file="hr_reporting.report_definition_wo_salary_arabic"
+    />
+
+  </data>
+</odoo>

@@ -1,0 +1,499 @@
+<odoo>
+  <template id="report_definition_of_embassy">
+    <t t-call="web.html_container">
+      <t t-foreach="docs" t-as="o">
+        <t t-call="web.external_layout">
+          <div class="page" dir="LTR">
+            <html>
+                <!-- <head>
+                    <link rel="stylesheet"
+                          href="https://fonts.googleapis.com/css?family=Droid Arabic Kufi"/>
+                    <style>
+                        body {
+                        font-family: 'Droid Arabic Kufi', serif;
+                        font-size: 20px;
+                        }
+                    </style>
+                </head> -->
+                <body>
+                  <div class="row">
+                    <p>
+                      <h1>Certificate No: <span t-esc="o.env['ir.sequence'].search([('code','=','embassy.definition')]).number_next_actual"/></h1><br/>
+                      <span style="display:none;" t-esc="o.env['ir.sequence'].search([('code','=','embassy.definition')]).write({'number_next_actual':o.env['ir.sequence'].search([('code','=','embassy.definition')]).number_next_actual+o.env['ir.sequence'].search([('code','=','embassy.definition')]).number_increment})" /><br/>
+                    </p>
+                  </div>
+                  <div class="row">
+                    <p>
+                      <h2>Date: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/></h2><br/>
+                    </p>
+                  </div>
+                  <div class="row">
+                    <p>
+                      Embassy of The<br/>
+                      Riyadh<br/>
+                      Kingdom of Saudi Arabia
+                    </p>
+                  </div>
+                  <div class="row">
+                    <p style="font-size:18px;">
+                      <strong>Dear Sir,</strong><br/>
+                      We would like to inform you that Mr <span t-esc="o.name"/><br/>
+                      is holding Passport No.(<span t-esc="o.passport_id"/>) is employed at the Khasb Investments since <span t-esc="o.contract_id.date_start"/>.
+                      <br/>
+                      He receives from the <span t-esc="o.company_id.name"/> a gross salary of SR. <span t-esc="o.contract_id.new_wage"/>- only per month inclusive of allowances due.<br/>
+                      He is provided with transportation allowances and Medical Insurance for him.<br/><br/>
+                      Therefore, we kindly request that you grant him a multiple entry visa as early as possible.<br/>
+                      Thank you and we appreciate your usual cooperation and assistance in this regard.<br/><br/>
+                      This certificate is generated electronically. To verify the authenticity of this certificate, please contact the Human Resources Department on +966 11 418 8000  between 8 am and 3 am (GMT +3) during working days from Sunday to Thursday.
+                      <br/>
+                      <br/>
+                      <span t-esc="o.env['hr.department'].search([('is_hr_department','=',True)],limit=1).name"/>
+                      <br/>
+                      <br/>
+                      <br/><span t-esc="o.env['hr.department'].search([('is_hr_department','=',True)],limit=1).manager_id.name"/>
+                    </p>
+                  </div>
+                </body>
+            </html>
+          </div>
+        </t>
+      </t>
+    </t>
+  </template>
+
+
+  <template id="report_definition_of_salary_english">
+    <t t-call="web.html_container">
+      <t t-foreach="docs" t-as="o">
+        <t t-call="web.external_layout">
+          <div class="page" dir="LTR">
+            <html>
+                <body>
+                  <div class="row">
+                    <h1 class="text-center">"CERTIFICATE OF EMPLOYMENT "</h1>
+                    <br/>
+                    <br/>
+                  </div>
+                  <div class="row">
+                    <p>
+                      <h4>Certificate No: <span t-esc="o.env['ir.sequence'].search([('code','=','with.salary.english')]).number_next_actual"/></h4><br/>
+                      <span style="display:none;" t-esc="o.env['ir.sequence'].search([('code','=','with.salary.english')]).write({'number_next_actual':o.env['ir.sequence'].search([('code','=','with.salary.english')]).number_next_actual+o.env['ir.sequence'].search([('code','=','with.salary.english')]).number_increment})" /><br/>
+                    </p>
+                  </div>
+                  <div class="row">
+                    <p>
+                      <h4>Date: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/></h4><br/>
+                    </p>
+                  </div>
+                  <div calss="row">
+                    <table class="table" style="font-size:18px;">
+                      <tr>
+                        <td>
+                          Employee Name
+                        </td>
+                        <td>
+                          <span t-esc="o.name"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Employee Number
+                        </td>
+                        <td>
+                          <span t-esc="o.mobile_phone"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Job Title
+                        </td>
+                        <td>
+                          <span t-esc="o.job_id.name"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Nationality
+                        </td>
+                        <td>
+                          <span t-esc="o.country_id.name"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          National ID / Iqama
+                        </td>
+                        <td>
+                          <span t-esc="o.identification_id"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Service Date
+                        </td>
+                        <td>
+                          <span t-esc="o.contract_id.date_start"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Basic Salary
+                        </td>
+                        <td>
+                          <span t-esc="o.contract_id.wage"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Monthly Housing Allowance
+                        </td>
+                        <td>
+                          <span t-esc="o.contract_id.house_allow"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Transportation Allowance
+                        </td>
+                        <td>
+                          <span t-esc="o.contract_id.trans_allow"/>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="row">
+                    <p style="font-size:18px;">
+                      <span t-esc="o.company_id.name"/> certifies that the above employee is one of its current employees.<br/>
+                      This certificate is issued upon the request of the employee for whatever legal purposes this may serve and without any responsibility on our part.<br/>
+                      <br/>
+                      This certificate is generated electronically. To verify the authenticity of this certificate, please contact the Human Resources Department on +966 11 418 8000  between 8 am and 3 am (GMT +3) during working days from Sunday to Thursday.
+                      <br/>
+                      <br/>
+                      <span t-esc="o.env['hr.department'].search([('is_hr_department','=',True)],limit=1).name"/>
+                      <br/>
+                      <br/>
+                      <br/><span t-esc="o.env['hr.department'].search([('is_hr_department','=',True)],limit=1).manager_id.name"/>
+                    </p>
+                  </div>
+                </body>
+            </html>
+          </div>
+        </t>
+      </t>
+    </t>
+  </template>
+
+  <template id="report_definition_wo_salary_english">
+    <t t-call="web.html_container">
+      <t t-foreach="docs" t-as="o">
+        <t t-call="web.external_layout">
+          <div class="page" dir="LTR">
+            <html>
+                <body>
+                  <div class="row">
+                    <h1 class="text-center">"CERTIFICATE OF EMPLOYMENT "</h1>
+                    <br/>
+                    <br/>
+                  </div>
+                  <div class="row">
+                    <p>
+                      <h4>Certificate No: <span t-esc="o.env['ir.sequence'].search([('code','=','without.salary.english')]).number_next_actual"/></h4><br/>
+                      <span style="display:none;" t-esc="o.env['ir.sequence'].search([('code','=','without.salary.english')]).write({'number_next_actual':o.env['ir.sequence'].search([('code','=','without.salary.english')]).number_next_actual+o.env['ir.sequence'].search([('code','=','without.salary.english')]).number_increment})" /><br/>
+                    </p>
+                  </div>
+                  <div class="row">
+                    <p>
+                      <h4>Date: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/></h4><br/>
+                    </p>
+                  </div>
+                  <div calss="row">
+                    <table class="table" style="font-size:18px;">
+                      <tr>
+                        <td>
+                          Employee Name
+                        </td>
+                        <td>
+                          <span t-esc="o.name"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Employee Number
+                        </td>
+                        <td>
+                          <span t-esc="o.mobile_phone"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Job Title
+                        </td>
+                        <td>
+                          <span t-esc="o.job_id.name"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Nationality
+                        </td>
+                        <td>
+                          <span t-esc="o.country_id.name"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          National ID / Iqama
+                        </td>
+                        <td>
+                          <span t-esc="o.identification_id"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Service Date
+                        </td>
+                        <td>
+                          <span t-esc="o.contract_id.date_start"/>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="row">
+                    <p style="font-size:18px;">
+                      <span t-esc="o.company_id.name"/> certifies that the above employee is one of its current employees.<br/>
+                      This certificate is issued upon the request of the employee for whatever legal purposes this may serve and without any responsibility on our part.<br/>
+                      <br/>
+                      This certificate is generated electronically. To verify the authenticity of this certificate, please contact the Human Resources Department on +966 11 418 8000  between 8 am and 3 am (GMT +3) during working days from Sunday to Thursday.
+                      <br/>
+                      <br/>
+                      <span t-esc="o.env['hr.department'].search([('is_hr_department','=',True)],limit=1).name"/>
+                      <br/>
+                      <br/>
+                      <br/><span t-esc="o.env['hr.department'].search([('is_hr_department','=',True)],limit=1).manager_id.name"/>
+                    </p>
+                  </div>
+                </body>
+            </html>
+          </div>
+        </t>
+      </t>
+    </t>
+  </template>
+
+
+  <template id="report_definition_of_salary_arabic">
+    <t t-call="web.html_container">
+      <t t-foreach="docs" t-as="o">
+        <t t-call="web.external_layout">
+          <div class="page" dir="RTL">
+            <html>
+                <body>
+                  <div class="row">
+                    <h1 class="text-center">" شهادة تعريف "</h1>
+                    <br/>
+                    <br/>
+                  </div>
+                  <div class="row">
+                    <p>
+                      <h4>رقم الشهادة: <span t-esc="o.env['ir.sequence'].search([('code','=','with.salary.arabic')]).number_next_actual"/></h4><br/>
+                      <span style="display:none;" t-esc="o.env['ir.sequence'].search([('code','=','with.salary.arabic')]).write({'number_next_actual':o.env['ir.sequence'].search([('code','=','with.salary.arabic')]).number_next_actual+o.env['ir.sequence'].search([('code','=','with.salary.arabic')]).number_increment})" /><br/>
+                    </p>
+                  </div>
+                  <div class="row">
+                    <p>
+                      <h4>التاريخ: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/></h4><br/>
+                    </p>
+                  </div>
+                  <div calss="row">
+                    <table class="table" style="font-size:18px;">
+                      <tr>
+                        <td>
+                          اســم المــوظـف
+                        </td>
+                        <td>
+                          <span t-esc="o.name"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          الرقم الوظيفي
+                        </td>
+                        <td>
+                          <span t-esc="o.mobile_phone"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          الرقم الوظيفي
+                        </td>
+                        <td>
+                          <span t-esc="o.job_id.name"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          الجنسيـــة
+                        </td>
+                        <td>
+                          <span t-esc="o.country_id.name"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          رقم الهويـة / الإقامة
+                        </td>
+                        <td>
+                          <span t-esc="o.identification_id"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          تــاريـخ التعيين
+                        </td>
+                        <td>
+                          <span t-esc="o.contract_id.date_start"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          الـراتـب الأساسـي
+                        </td>
+                        <td>
+                          <span t-esc="o.contract_id.wage"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          بدل السكن الشهري
+                        </td>
+                        <td>
+                          <span t-esc="o.contract_id.house_allow"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          بـدل المواصـلات
+                        </td>
+                        <td>
+                          <span t-esc="o.contract_id.trans_allow"/>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="row">
+                    <p style="font-size:18px;">
+                      تشهد شركة <span t-esc="o.company_id.name"/> بأن الموظف أعلاه هو أحد منسوبيها حتى تاريخه. وقد صدرت له هذه الشهادة بنـاءً على طلبـه دون أن يترتب على ذلك أدنى مسؤولية على الشركة..<br/>
+                      <br/>
+                      صدرت  هذه  الشهادة  إلكترونياً،  ويمكنكم  التحقق  من  صحة  محتوياتها  من  خلال  التواصل  مع  إدارة  الموارد  البشرية  على   +966 11 418 8000 من  الساعة  التاسعة  صباحاً  وحتى  الرابعة  مساءً  خلال  أيام  العمل  من  الأحد  إلى  الخميس.
+                      <br/>
+                      <br/>
+                      <span t-esc="o.env['hr.department'].search([('is_hr_department','=',True)],limit=1).name"/>
+                      <br/>
+                      <br/>
+                      <br/><span t-esc="o.env['hr.department'].search([('is_hr_department','=',True)],limit=1).manager_id.name"/>
+                    </p>
+                  </div>
+                </body>
+            </html>
+          </div>
+        </t>
+      </t>
+    </t>
+  </template>
+
+  <template id="report_definition_wo_salary_arabic">
+    <t t-call="web.html_container">
+      <t t-foreach="docs" t-as="o">
+        <t t-call="web.external_layout">
+          <div class="page" dir="RTL">
+            <html>
+                <body>
+                  <div class="row">
+                    <h1 class="text-center">" شهادة تعريف "</h1>
+                    <br/>
+                    <br/>
+                  </div>
+                  <div class="row">
+                    <p>
+                      <h4>رقم الشهادة: <span t-esc="o.env['ir.sequence'].search([('code','=','without.salary.arabic')]).number_next_actual"/></h4><br/>
+                      <span style="display:none;" t-esc="o.env['ir.sequence'].search([('code','=','without.salary.arabic')]).write({'number_next_actual':o.env['ir.sequence'].search([('code','=','without.salary.arabic')]).number_next_actual+o.env['ir.sequence'].search([('code','=','without.salary.arabic')]).number_increment})" /><br/>
+                    </p>
+                  </div>
+                  <div class="row">
+                    <p>
+                      <h4>التاريخ: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/></h4><br/>
+                    </p>
+                  </div>
+                  <div calss="row">
+                    <table class="table" style="font-size:18px;">
+                      <tr>
+                        <td>
+                          اســم المــوظـف
+                        </td>
+                        <td>
+                          <span t-esc="o.name"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          الرقم الوظيفي
+                        </td>
+                        <td>
+                          <span t-esc="o.mobile_phone"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          الرقم الوظيفي
+                        </td>
+                        <td>
+                          <span t-esc="o.job_id.name"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          الجنسيـــة
+                        </td>
+                        <td>
+                          <span t-esc="o.country_id.name"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          رقم الهويـة / الإقامة
+                        </td>
+                        <td>
+                          <span t-esc="o.identification_id"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          تــاريـخ التعيين
+                        </td>
+                        <td>
+                          <span t-esc="o.contract_id.date_start"/>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="row">
+                    <p style="font-size:18px;">
+                      تشهد شركة <span t-esc="o.company_id.name"/> بأن الموظف أعلاه هو أحد منسوبيها حتى تاريخه. وقد صدرت له هذه الشهادة بنـاءً على طلبـه دون أن يترتب على ذلك أدنى مسؤولية على الشركة..<br/>
+                      <br/>
+                      صدرت  هذه  الشهادة  إلكترونياً،  ويمكنكم  التحقق  من  صحة  محتوياتها  من  خلال  التواصل  مع  إدارة  الموارد  البشرية  على   +966 11 418 8000 من  الساعة  التاسعة  صباحاً  وحتى  الرابعة  مساءً  خلال  أيام  العمل  من  الأحد  إلى  الخميس.
+                      <br/>
+                      <br/>
+                      <span t-esc="o.env['hr.department'].search([('is_hr_department','=',True)],limit=1).name"/>
+                      <br/>
+                      <br/>
+                      <br/><span t-esc="o.env['hr.department'].search([('is_hr_department','=',True)],limit=1).manager_id.name"/>
+                    </p>
+                  </div>
+                </body>
+            </html>
+          </div>
+        </t>
+      </t>
+    </t>
+  </template>
+</odoo>
