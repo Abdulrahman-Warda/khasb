@@ -1,7 +1,7 @@
 <odoo>
   <data>
     <report
-      string="تعريف السفاره"
+      string="Embassy Letter"
       id="action_report_definition_of_embassy"
       model="hr.employee"
       report_type="qweb-pdf"
@@ -9,7 +9,7 @@
       file="hr_reporting.report_definition_of_embassy"
     />
     <report
-      string="تعريف بالراتب انجليزي"
+      string="Employeement Letter With Salary English"
       id="action_report_definition_of_salary_english"
       model="hr.employee"
       report_type="qweb-pdf"
@@ -17,7 +17,7 @@
       file="hr_reporting.report_definition_of_salary_english"
     />
     <report
-      string="تعريف بدون راتب انجليزي"
+      string="Employeement Letter Without Salary English"
       id="action_report_definition_wo_salary_english"
       model="hr.employee"
       report_type="qweb-pdf"
@@ -25,7 +25,7 @@
       file="hr_reporting.report_definition_wo_salary_english"
     />
     <report
-      string="تعريف بالراتب عربي"
+      string="Employeement Letter With Salary Arabic"
       id="action_report_definition_of_salary_arabic"
       model="hr.employee"
       report_type="qweb-pdf"
@@ -33,7 +33,7 @@
       file="hr_reporting.report_definition_of_salary_arabic"
     />
     <report
-      string="تعريف بدون راتب عربي"
+      string="Employeement Letter Without Salary Arabic"
       id="action_report_definition_wo_salary_arabic"
       model="hr.employee"
       report_type="qweb-pdf"

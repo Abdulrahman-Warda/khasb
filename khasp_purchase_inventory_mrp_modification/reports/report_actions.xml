@@ -1,0 +1,13 @@
+<odoo>
+  <data>
+    <report
+      string="Manufacture Orders Report"
+      id="action_report_mor"
+      model="mrp.production"
+      report_type="qweb-pdf"
+      name="khasp_purchase_inventory_mrp_modification.report_mrp_mor"
+      file="khasp_purchase_inventory_mrp_modification.report_mrp_mor"
+      paperformat="khasp_sale_manificature_reports.custom_report_qweb_paperformat"
+    />
+  </data>
+</odoo>

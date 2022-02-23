@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record id="emabssy_report_wizard_form" model="ir.ui.view">
+            <field name="name">embassy.report.wizard.form</field>
+            <field name="model">embassy.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Select Embassy">
+                    <group>
+                        <field name="embassy"/>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Print" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <!--        wizard action-->
+
+        <record id="emabssy_report_wizard_action" model="ir.actions.act_window">
+            <field name="name">Select Embassy</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">embassy.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="emabssy_report_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

@@ -10,7 +10,7 @@
         1- add (factory manger, financial manger, general manger) states to purchase order
         2- add quality control before eny transaction operations
         3- add machine tool to every machine in mrp machine
-        4-give domain to every worker to his work order  
+        4-give domain to every worker to his work order
     """,
 
     'author': "My Company",
@@ -39,6 +39,8 @@
         'views/workcenter_mrp.xml',
         'views/product.xml',
         'views/templates.xml',
+        'reports/report_actions.xml',
+        'reports/report_templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

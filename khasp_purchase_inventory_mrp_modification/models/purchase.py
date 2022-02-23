@@ -28,6 +28,9 @@ class khasp_purchase_modification(models.Model):
                         break
                     else:
                         this.is_quality_checked = False
+                for line in this.picking_ids:
+                    if line.state in ['quality_control','assigned']:
+                        this.is_quality_checked = False
             for line in this.order_line:
                 if line.product_qty != line.qty_received:
                     this.is_quality_checked_done = False

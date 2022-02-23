@@ -1,0 +1,179 @@
+<odoo>
+  <data>
+    <template id="report_mrp_mor">
+      <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+          <t t-call="web.external_layout">
+            <div class="page" dir="LTR">
+              <div class="row text-center">
+                <h1 class="text-center">Manufacture Orders Report</h1><br/>
+              </div>
+              <div class="row">
+                <table class="table table-bordered">
+                  <tr>
+                    <td>
+                      <span t-field="o.name"/>
+                    </td>
+                    <td>
+                      <span t-field="o.product_id.name"/>
+                    </td>
+                    <td>
+                      QTY:<span t-field="o.product_qty"/>
+                    </td>
+                    <td>
+                      <span t-field="o.date_planned_start"/>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="row">
+                <table class="table table-bordered col-12">
+                  <tr>
+                    <td calss="col-4">
+                      RAW MATERIALS
+                    </td>
+                    <td calss="col-4">
+                      LABORS
+                    </td>
+                    <td calss="col-4">
+                      MACHINES
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="row">
+                <table class="table table-bordered col-12">
+                  <tr>
+                    <td calss="col-4">
+                      <table class="table table-bordered">
+                        <tr>
+                          <td>ITEM</td>
+                          <td>PLANNED QRT</td>
+                          <td>ESTIMATED COST</td>
+                          <td>ACTUAL QTY</td>
+                          <td>REAL COST</td>
+                        </tr>
+                        <t t-set="pq" t-value="0"/>
+                        <t t-set="ec" t-value="0"/>
+                        <t t-set="aq" t-value="0"/>
+                        <t t-set="rc" t-value="0"/>
+                        <t t-foreach="o.pro_material_cost_ids" t-as="raw_line">
+                          <tr>
+                            <td><span t-esc="raw_line.product_id.name"/></td>
+                            <td><span t-esc="raw_line.planned_qty"/></td>
+                            <t t-set="pq" t-value="pq+raw_line.planned_qty"/>
+                            <td><span t-esc="raw_line.total_cost"/></td>
+                            <t t-set="ec" t-value="ec+raw_line.total_cost"/>
+                            <td><span t-esc="raw_line.actual_qty"/></td>
+                            <t t-set="aq" t-value="aq+raw_line.actual_qty"/>
+                            <td><span t-esc="raw_line.total_actual_cost"/></td>
+                            <t t-set="rc" t-value="rc+raw_line.total_actual_cost"/>
+                          </tr>
+                        </t>
+                        <tr>
+                          <td></td>
+                          <td><span t-esc="pq"/></td>
+                          <td><span t-esc="ec"/></td>
+                          <td><span t-esc="aq"/></td>
+                          <td><span t-esc="rc"/></td>
+                        </tr>
+                      </table>
+                    </td>
+                    <td calss="col-4">
+                      <table class="table table-bordered">
+                        <tr>
+                          <td>WORK ORDER</td>
+                          <td>EMPLOYEE</td>
+                          <td>PLANNED DURATION</td>
+                          <td>ESTIMATED COST</td>
+                          <td>ACTUAL DURATION</td>
+                          <td>REAL COST</td>
+                        </tr>
+                        <t t-set="pq" t-value="0"/>
+                        <t t-set="ec" t-value="0"/>
+                        <t t-set="aq" t-value="0"/>
+                        <t t-set="rc" t-value="0"/>
+                        <t t-foreach="o.pro_labour_cost_ids" t-as="labour_line">
+                          <tr>
+                            <td><span t-esc="labour_line.mrp_wo_labour_id.name"/></td>
+                            <td><span t-esc="labour_line.mrp_wo_labour_id.worker_id.name"/></td>
+                            <td><span t-esc="labour_line.planned_qty"/></td>
+                            <t t-set="pq" t-value="pq+labour_line.planned_qty"/>
+                            <td><span t-esc="labour_line.total_cost"/></td>
+                            <t t-set="ec" t-value="ec+labour_line.total_cost"/>
+                            <td><span t-esc="labour_line.actual_qty"/></td>
+                            <t t-set="aq" t-value="aq+labour_line.actual_qty"/>
+                            <td><span t-esc="labour_line.total_actual_cost"/></td>
+                            <t t-set="rc" t-value="rc+labour_line.total_actual_cost"/>
+                          </tr>
+                        </t>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td><span t-esc="pq"/></td>
+                          <td><span t-esc="ec"/></td>
+                          <td><span t-esc="aq"/></td>
+                          <td><span t-esc="rc"/></td>
+                        </tr>
+                      </table>
+                    </td>
+                    <td calss="col-4">
+                      <table class="table table-bordered">
+                        <tr>
+                          <td>WORK ORDER</td>
+                          <td>MACHINE</td>
+                          <td>PLANNED DURATION</td>
+                          <td>ESTIMATED COST</td>
+                          <td>ACTUAL DURATION</td>
+                          <td>REAL COST</td>
+                        </tr>
+                        <t t-set="pq" t-value="0"/>
+                        <t t-set="ec" t-value="0"/>
+                        <t t-set="aq" t-value="0"/>
+                        <t t-set="rc" t-value="0"/>
+                        <t t-foreach="o.pro_overhead_cost_ids" t-as="overhead_line">
+                          <tr>
+                            <td><span t-esc="overhead_line.mrp_wo_overhead_id.name"/></td>
+                            <td><span t-esc="overhead_line.mrp_wo_overhead_id.workcenter_id.name"/></td>
+                            <td><span t-esc="overhead_line.planned_qty"/></td>
+                            <t t-set="pq" t-value="pq+overhead_line.planned_qty"/>
+                            <td><span t-esc="overhead_line.total_cost"/></td>
+                            <t t-set="ec" t-value="ec+overhead_line.total_cost"/>
+                            <td><span t-esc="overhead_line.actual_qty"/></td>
+                            <t t-set="aq" t-value="aq+overhead_line.actual_qty"/>
+                            <td><span t-esc="overhead_line.total_actual_cost"/></td>
+                            <t t-set="rc" t-value="rc+overhead_line.total_actual_cost"/>
+                          </tr>
+                        </t>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td><span t-esc="pq"/></td>
+                          <td><span t-esc="ec"/></td>
+                          <td><span t-esc="aq"/></td>
+                          <td><span t-esc="rc"/></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <span>Total Estimated Cost</span> : <span t-esc="o.total_all_cost"/>
+                  <br/>
+                  <span>Total Cost</span> : <span t-esc="o.total_actual_all_cost"/>
+                </div>
+                <div class="col-6">
+                  <span>Total Estimated Cost(per unit)</span> : <span t-esc="o.product_unit_cost"/>
+                  <br/>
+                  <span>Total Cost(per unit)</span> : <span t-esc="o.product_unit_cost"/>
+                </div>
+              </div>
+            </div>
+          </t>
+        </t>
+      </t>
+    </template>
+  </data>
+</odoo>

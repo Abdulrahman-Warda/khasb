@@ -22,7 +22,7 @@ class khasp_quality_control_modification(models.TransientModel):
     qc_fail = fields.Boolean(string="Fail",  )
     qc_state = fields.Selection(string="State", selection=[('pass', 'Pass'), ('fail', 'Fail'), ], required=False, )
     lines = fields.One2many(comodel_name="qlity.st.lines", inverse_name="wiz_id", string="", required=False,default=get_lines)
-    reason = fields.Text()
+    reason = fields.Text(required=True)
 
 
     def quality_control_pass(self):

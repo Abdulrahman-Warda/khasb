@@ -1,5 +1,45 @@
 <odoo>
   <data>
+    <record id="letter_config_form" model="ir.ui.view">
+        <field name="name">Letters Configuration</field>
+        <field name="model">letter.config</field>
+        <field name="arch" type="xml">
+            <form>
+              <sheet>
+                <group>
+                  <group>
+                    <field name="name"/>
+                    <field name="name_arabic"/>
+                    <field name="position"/>
+                    <field name="position_arabic"/>
+                    <field name="department"/>
+                    <field name="department_arabic"/>
+                  </group>
+                  <group>
+                    <field name="image" widget="image"/>
+                  </group>
+                </group>
+                <group>
+                  <field name="definition_of_embassy"/>
+                  <field name="definition_of_salary_english"/>
+                  <field name="definition_wo_salary_english"/>
+                  <field name="definition_of_salary_arabic"/>
+                  <field name="definition_wo_salary_arabic"/>
+                </group>
+              </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_letter_config" model="ir.actions.act_window">
+        <field name="name">Letters Configuration</field>
+        <field name="res_model">letter.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_letter_config" action="action_letter_config" name="Letters Configuration" parent="hr.menu_human_resources_configuration"/>
+
+
     <record model="ir.ui.view" id="hr_department_form_inherit">
       <field name="name">hr.department.form.inherit</field>
       <field name="model">hr.department</field>
@@ -8,6 +48,24 @@
         <field name="name" position="after">
           <field name="is_hr_department"/>
         </field>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="hr_employee_form_inherit">
+      <field name="name">hr.employee.form.inherit</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_form"/>
+      <field name="arch" type="xml">
+        <field name="passport_id" position="after">
+          <field name="national_id_iqama"/>
+        </field>
+        <field name="work_location" position="after">
+          <field name="employee_number"/>
+        </field>
+        <xpath expr="//sheet" position="before">
+          <header>
+            <button name="%(emabssy_report_wizard_action)d" string="Embassy Report" type="action" />
+          </header>
+        </xpath>
       </field>
     </record>
   </data>
