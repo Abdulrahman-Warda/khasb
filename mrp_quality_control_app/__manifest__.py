@@ -10,8 +10,8 @@
                         Pass-Fail Type, Measure Type, Picture Type and Text Type for Manufacturing and Warehouse Operations.
                         Also Generate Quality Check and Alert Report.
 
-This app help to user for Quality Control like Quality Check and Quality Alert for Warehouse. Also Generate Quality Check and Alert Report. 
-   
+This app help to user for Quality Control like Quality Check and Quality Alert for Warehouse. Also Generate Quality Check and Alert Report.
+
 Quality Control Inspections
 Internal Validation and Verification
 QC features of warehouse management
@@ -23,11 +23,11 @@ WMS Quality assurance
 QUALITY CONTROL WMS
 Inventory Control and Quality Control
 Inventory Quality Control
-Quality Control Inventory 
+Quality Control Inventory
 Quality Control Management
 Inventory control
 warehouse quality control
- Inventory Management 
+ Inventory Management
  Stock Control and Inventory Management
  warehouse quality control
  Warehouse Performance Management
@@ -51,10 +51,10 @@ Pre-shipment inspection
 shipment inspection
 Pre Shipment Inspection
 
-quality control inspections 
-product quality control inspections 
-wms quality control inspections 
-warehouse quality control inspections 
+quality control inspections
+product quality control inspections
+wms quality control inspections
+warehouse quality control inspections
 Quality Control and Preshipment Inspection
 Warehouse quality audit checklist
 Quality Management
@@ -81,8 +81,8 @@ Manufacturing Quality Team management
 Manufacturing quality alerts
 
 warehouse QC control qc Control team purchase qc management warehouse qc management picking qc management
-This app help to user for Quality Control like Quality Check and Quality Alert for manufacturing. Also Generate Quality Check and Alert Report. 
-   
+This app help to user for Quality Control like Quality Check and Quality Alert for manufacturing. Also Generate Quality Check and Alert Report.
+
 MRP Quality Control Inspections
 MRP Internal Validation and Verification
 QC features of MRP management
@@ -94,11 +94,11 @@ MRP Quality assurance
 QUALITY CONTROL MRP
 MRP Control and Quality Control
 MRP Quality Control
-Quality Control MRP 
+Quality Control MRP
 Quality Control Management FOR MRP
 MRP control for quality Inspection
 MRP quality control INSTPECTION
- MRP Quality Inspection  Management 
+ MRP Quality Inspection  Management
  MRP Control for Quality and MRP Inspection Management
  MRP quality control
  MRP Performance Management
@@ -131,11 +131,11 @@ Quality control Manufacturing
 Manufacturing Quality assurance
 QUALITY CONTROL Manufacturing
 Manufacturing Control and Quality Control
-Quality Control Manufacturing 
+Quality Control Manufacturing
 Manufacturing Quality Control Management FOR Manufacturing
 Manufacturing control for quality Inspection
 Manufacturing quality control INSTPECTION
- Manufacturing Quality Inspection  Management 
+ Manufacturing Quality Inspection  Management
  Manufacturing Control for Quality and Manufacturing Inspection Management
  Manufacturing quality control
  Manufacturing Performance Management
@@ -167,8 +167,8 @@ Manufacturing QC control qc Control team Manufacturing qc management QC control 
             'views/check_wizard.xml',
             'views/mrp_menu.xml',
             'views/inherit_quality_point.xml',
-            'views/workorder.xml'
-            
+            'views/workorder.xml',
+            'views/views.xml'
             ],
     'installable': True,
     'auto_install': False,
@@ -177,4 +177,3 @@ Manufacturing QC control qc Control team Manufacturing qc management QC control 
     'category': 'Manufacturing',
 
 }
-

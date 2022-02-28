@@ -6,7 +6,7 @@ from odoo.exceptions import AccessError, UserError
 
 
 class mrp_production(models.Model):
-    
+
     _inherit = 'mrp.production'
 
     quality_checks = fields.Boolean(string="Quality Checks",compute="_compute_quality_check")
@@ -27,7 +27,7 @@ class mrp_production(models.Model):
             'context': {'mrp_res':self.id},
             'res_model': 'quality.alert',
             'views': [(view_id,'form')],
-            
+
         }
 
 
@@ -37,6 +37,11 @@ class mrp_production(models.Model):
         checks = self.env['quality.checks'].search([('mrp_id','=',self.id),('state','=','do')])
         if checks :
             raise UserError(_(' You still need to do the quality checks!'))
+        for product in self.mapped('product_id'):
+            product.button_bom_cost()
+            new_price = product.standard_price
+            counterpart_account_id = product.property_account_expense_id.id or product.categ_id.property_account_expense_categ_id.id
+            product.do_change_standard_price(new_price, counterpart_account_id)
         return res
 
     def _compute_quality_check(self):
@@ -66,12 +71,12 @@ class mrp_production(models.Model):
         res = super(mrp_production, self)._generate_moves()
         quality_checks = self.env['quality.point'].search([('picking_type_id','=',self.picking_type_id.id),('product_id','=',self.product_id.id),('company_id','=',self.company_id.id)],order="id desc",limit=1)
 
-        if quality_checks : 
+        if quality_checks :
             self.quality_point = True
             self.env['quality.checks'].create({'product_id' : self.product_id.id,
                                                     'mrp_id': self.id,
                                                     'quality_point_id' : quality_checks.id,
                                                     'state':'do',
                                                     })
-    
+
         return res
